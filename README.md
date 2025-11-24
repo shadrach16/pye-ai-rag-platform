@@ -37,8 +37,6 @@ This is the core engine that makes the bot "smart." When a user uploads a file, 
 
 
 
-[Image of RAG architecture diagram]
-
 <div align="center">
   <img src="./assets/Advanced-RAG.png" alt="RAG" width="800"  >
   <p><em>Figure 1: RAG architecture diagram.</em></p>
