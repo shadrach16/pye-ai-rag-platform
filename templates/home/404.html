@@ -1,0 +1,270 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personalised AI Solutions">
+
+    <!-- ========== Page Title ========== -->
+    <title>PYE</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/themify-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5/html5shiv.min.js"></script>
+      <script src="assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ========== Google Fonts ========== -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+ 
+    
+</head>
+ 
+
+
+    <!-- End Services Area -->
+
+    <!-- Start Work Process Area
+    ============================================= -->
+   
+    <!-- End Blog Area -->
+
+<style>
+    section {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      width: 50%;
+    }
+
+    .signin-container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f7f7f7;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 800px; /* Increase the max-width to make it wider */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #e0e0e0;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .card-body {
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .form-control {
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-check-label {
+      font-weight: normal;
+    }
+
+    .btn {
+      border-radius: 4px;
+      width: 100%;
+    }
+    
+    /* Center the card within the container */
+    .signin-container .card {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    input {
+        min-height: 45px !important;
+    }
+</style>
+
+
+     {% include 'layouts\header.html' %}
+
+
+
+
+  <style>
+        .body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            padding-top: 10%;
+        }
+        .error-container {
+            text-align: center;
+        }
+        .error-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 20px;
+        }
+        .error-image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+    <div class="body">
+    <div class="error-container">
+        <div class="error-message">Oops! Page Not Found</div>
+        <img class="error-image" width="75px" src="https://img.icons8.com/?size=512&id=CPwSF8YxJ6EJ&format=png" alt="Coming Soon">
+        <h6 class=" my-4 text-center" style="margin-left:10%; margin-right:10%; line-height: 1.7em;" > It seems like you've landed on a page that's in the middle of a transformation. Don't worry, though! We're busy working behind the scenes to bring you something awesome. </h6>
+        <a href="javascript:void(0);" onclick="history.back();" class="btn btn-primary" style="background:#0053a6;" >Go Back</a>
+    </div>
+    </div>
+
+
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  
+ 
+</body>
+<style>
+    .highlight {
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 100px;
+    }    
+    .highlight1 {
+        color: #000;
+        padding: 10px 12px;
+        border-radius: 4px;
+    }
+    .highlight0 {
+        background-color: #000000e6;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 4px;
+    }
+    .highlight2 {
+        background-color: #1289dd;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 4px;
+    }
+        .btn-rounded {
+        border-radius: 10px;
+    }
+
+    .btn-black-white {
+        background-color: #dadee3;
+        color: #fff;
+    }
+     .blue-text {
+        color: blue;
+    }
+</style>
+ 
+<style>
+@keyframes jobCountAnimation {
+    0% {
+        background: radial-gradient(circle at center, black, black 50%, transparent 50%, transparent);
+        color: white;
+    }
+    100% {
+        background: radial-gradient(circle at center, black, black 50%, transparent 50%, transparent);
+        color: white;
+    }
+}
+
+.jobCount {
+    animation: jobCountAnimation 5s steps(5) infinite;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: blue;
+</style>
+ 
+
+
+{% endblock content %}
+
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+
+    function increaseBrowserZoom(zoom) {
+  document.documentElement.style.zoom = zoom ;
+}
+
+function getSystemDimensions() {
+const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+return viewportWidth +' x ' + viewportHeight
+}
+
+console.log('getSystemDimensions: ',getSystemDimensions() )
+
+if ( getSystemDimensions()  < '1200 x 930'){
+  increaseBrowserZoom('70%');
+}
+
+
+
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

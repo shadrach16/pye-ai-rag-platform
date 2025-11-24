@@ -1,0 +1,418 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personalised AI Solutions">
+
+    <!-- ========== Page Title ========== -->
+    <title>PYE</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/themify-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5/html5shiv.min.js"></script>
+      <script src="assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ========== Google Fonts ========== -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+ 
+    
+</head>
+ 
+ 
+
+<style>
+       section {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      margin-left: 5rem;
+    }
+
+    .signin-container {
+      background-color: #f0f8ff !important;
+      height: 100%;
+/*       justify-content: center;*/
+    }
+    .body {
+      background-color: silver !important;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 800px; /* Increase the max-width to make it wider */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      background-color: #f9f9f9;
+      border-bottom: 1px solid #e0e0e0;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .card-body {
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .form-control {
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-check-label {
+      font-weight: normal;
+    }
+
+    .btn {
+      border-radius: 4px;
+      width: 100%;
+    }
+    
+  
+    input {
+        height: 33px  !important;
+        font-size: 13px !important;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+ 
+
+.word {
+  margin: auto;
+/*  font: 700 normal 2.5em 'tahoma';*/
+/*  text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;*/
+}
+ 
+.waviy {
+/*  position: relative;*/
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0,0,0,.2));
+  font-size: 30px;
+  font-weight: bold;
+}
+.waviy span {
+  font-family: 'Alfa Slab One', cursive;
+/*  position: relative;*/
+  display: inline-block;
+  color: #000000;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(.1s * var(--i));
+  
+}
+@keyframes waviy {
+  0%,40%,100% {
+    transform: translateY(0)
+  }
+  20% {
+    transform: translateY(-20px)
+  }
+}
+
+</style>
+
+
+
+     {% include 'layouts\header.html' %}
+
+
+
+
+<div style="display: flex; height:100%" class="signin-container " >
+     
+     <section style="margin-top: 5%; width: 80%;  " >
+     
+          <div  class="   mb-3 pt-3" style=" padding: 20px;    display: flex;
+    gap: 10%;
+ ">
+<div style="width:370px;" >
+             <h3 class="font-weight-bolder mt-3 mb-3" > Welcome to Pye  </h3>
+             <p> Let pye.ai powered your next customized chatbot with Gemini. Experience unmatched speed and data security. No idea is too big. </p>
+
+                 <a href="{% url 'social:begin' 'google-oauth2' %}"  type="submit" class="btn    w-100 text-capitalize my-3 "  style="border-radius: 1.17647rem; background: #d5d5d5; border: 1px solid silver; color:#173217;"   > <svg style="    margin-right: 10px;
+    margin-left: -10px;" width="34px" height="34px" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30.0014 16.3109C30.0014 15.1598 29.9061 14.3198 29.6998 13.4487H16.2871V18.6442H24.1601C24.0014 19.9354 23.1442 21.8798 21.2394 23.1864L21.2127 23.3604L25.4536 26.58L25.7474 26.6087C28.4458 24.1665 30.0014 20.5731 30.0014 16.3109Z" fill="#4285F4"></path> <path d="M16.2863 29.9998C20.1434 29.9998 23.3814 28.7553 25.7466 26.6086L21.2386 23.1863C20.0323 24.0108 18.4132 24.5863 16.2863 24.5863C12.5086 24.5863 9.30225 22.1441 8.15929 18.7686L7.99176 18.7825L3.58208 22.127L3.52441 22.2841C5.87359 26.8574 10.699 29.9998 16.2863 29.9998Z" fill="#34A853"></path> <path d="M8.15964 18.769C7.85806 17.8979 7.68352 16.9645 7.68352 16.0001C7.68352 15.0356 7.85806 14.1023 8.14377 13.2312L8.13578 13.0456L3.67083 9.64746L3.52475 9.71556C2.55654 11.6134 2.00098 13.7445 2.00098 16.0001C2.00098 18.2556 2.55654 20.3867 3.52475 22.2845L8.15964 18.769Z" fill="#FBBC05"></path> <path d="M16.2864 7.4133C18.9689 7.4133 20.7784 8.54885 21.8102 9.4978L25.8419 5.64C23.3658 3.38445 20.1435 2 16.2864 2C10.699 2 5.8736 5.1422 3.52441 9.71549L8.14345 13.2311C9.30229 9.85555 12.5086 7.4133 16.2864 7.4133Z" fill="#EB4335"></path> </g></svg> Continue with Google</a>
+
+           </div>
+           <div>
+
+            <form method="post" role="form"  style="
+                width: 330px;
+    background: #f6f8fa;
+    padding: 18px;
+    border-radius: 4px;
+    border: 1px solid #e7e6e6;
+    " >
+              {% csrf_token %} 
+             
+
+
+<p class="my-0 py-0" style="font-size:13px;" > Username or email address </p>
+
+     <div class="input-group  my-2">
+ 
+                {% render_field form.username class="form-control"  %}
+
+  
+</div>
+
+
+<p class="mb-0 mt-2 py-0"  style="font-size:13px;"> Password </p>
+ 
+
+            <div class="input-group my-2">
+ 
+                   {% render_field form.password class="form-control"  %}
+  
+
+</div>
+
+ 
+
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-success w-100 my-2 py-2 text-capitalize " style="background-color: #2c713c; height:37px;
+    border-radius: 6px; ">Sign in</button>
+              </div>
+
+           
+
+
+            </form>
+
+            <div class="login-callout mt-3" style="
+                width: 330px;
+    background: #f6f8fa;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #e7e6e6;
+    text-align: center;
+    " >
+            <webauthn-subtle class="js-webauthn-subtle" data-catalyst="">
+    <p class="mb-0 mt-0 js-webauthn-subtle-emu-control">
+      <button data-action="click:webauthn-subtle#prompt" type="button" data-view-component="true" class="Button--link Button--medium Button">  <span class="Button-content">
+    <span class="Button-label" style="color:#0969da">Forgot password</span>
+  </span>
+</button>
+    </p>
+  </webauthn-subtle>
+
+          <p class="mt-1 mb-0 p-0">
+            New to Pye?
+              <a href="/customer/register" style="color: #0969da; font-weight:bold;" >Create an account</a>
+          </p>
+        </div>
+
+
+          </div>
+          </div>
+
+
+
+          
+
+ 
+
+
+    </section>
+
+ 
+ 
+
+ 
+  </div>
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/equal-height.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.appear.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr.custom.13711.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/progress-bar.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/count-to.js' %}"></script>
+    <script src="{% static 'assets/js/YTPlayer.min.js' %}"></script>
+    <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+    <script src="{% static 'assets/js/bootsnav.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+ 
+</body>
+ 
+</div>
+<style>
+@keyframes jobCountAnimation {
+    0% {
+        background: radial-gradient(circle at center, black, black 50%, transparent 50%, transparent);
+        color: white;
+    }
+    100% {
+        background: radial-gradient(circle at center, black, black 50%, transparent 50%, transparent);
+        color: white;
+    }
+}
+
+.jobCount {
+    animation: jobCountAnimation 5s steps(5) infinite;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 10px;
+    background-color: blue;
+</style>
+ 
+
+
+{% endblock content %}
+
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <script>
+
+ 
+
+//     var words = ["Privately customize AI applications (PMs) using your organization's data.",
+//      "Accelerate development of generative AI applications using PMs through an API, without managing infrastructure.",
+//     "The easiest way to build and scale generative AI applications with pye models (PMs).",
+//       "Choose PMs from Anthropic, ChatGPT, Llamda etc. to find the right PM for your use case.",
+//     "Thanks for working with us."],
+//     part,
+//     i = 0,
+//     offset = 0,
+//     len = words.length,
+//     forwards = true,
+//     skip_count = 0,
+//     skip_delay = 15,
+//     speed = 70;
+
+
+// var wordflick = function () {
+//   setInterval(function () {
+//     if (forwards) {
+//       if (offset >= words[i].length) {
+//         ++skip_count;
+//         if (skip_count == skip_delay) {
+//           forwards = false;
+//           skip_count = 0;
+//         }
+//       }
+//     }
+//     else {
+//       if (offset == 0) {
+//         forwards = true;
+//         i++;
+//         offset = 0;
+//         if (i >= len) {
+//           i = 0;
+//         }
+//       }
+//     }
+//     part = words[i].substr(0, offset);
+//     if (skip_count == 0) {
+//       if (forwards) {
+//         offset++;
+//       }
+//       else {
+//         offset--;
+//       }
+//     }
+//     $('.word').text(part);
+//   },speed);
+// };
+
+// $(document).ready(function () {
+//   wordflick();
+// });
+
+
+
+     let animationIcon = `     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="28px" height="28px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="84" cy="50" r="10" fill="#e15b64">
+    <animate attributeName="r" repeatCount="indefinite" dur="0.25s" calcMode="spline" keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="1s" calcMode="discrete" keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#e15b64">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+</circle><circle cx="50" cy="50" r="10" fill="#f47e60">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+</circle><circle cx="84" cy="50" r="10" fill="#f8b26a">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#abbd81">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+</circle>
+</svg>`
+
+
+
+    function increaseBrowserZoom(zoom) {
+  document.documentElement.style.zoom = zoom ;
+}
+
+function getSystemDimensions() {
+const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+return viewportWidth +' x ' + viewportHeight
+}
+
+console.log('getSystemDimensions: ',getSystemDimensions() )
+
+if ( getSystemDimensions()  < '1200 x 930'){
+  increaseBrowserZoom('70%');
+}
+
+
+
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

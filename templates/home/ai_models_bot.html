@@ -1,0 +1,995 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style type="text/css">
+	
+	/* Dropdown Button */
+.dropbtn {
+  font-size: 14px;
+  border: none;
+  height: 40px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute; 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: #3e8e41;}
+ 
+/* Modal Header */
+#deleteModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+#chatModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+#shareModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+
+
+/* Modal Header */
+#exampleModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+/* Modal Content */
+#exampleModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+#exampleModal  .modal-footer {
+  padding: 0px; 
+  color: white;
+  padding-right: 12px;
+  padding-top: 7px;
+  background-color: white;
+}
+/* Modal Body */
+.modal-body {padding: 0px !important;}
+
+/* Modal Footer */
+#chatModal .modal-footer {
+  padding: 0px; 
+  color: white;
+  width: 50%;
+  margin: 4px;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 13px;
+}
+
+/* Modal Content */
+#deleteModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+#chatModal .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 20; opacity: 1}
+}
+
+
+ .user-icon {
+ 	width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+ }
+
+    .message {
+/*      padding: 6px;
+      margin-bottom: 10px;*/
+    }
+
+    .user-message {
+    line-height: 1.5;
+    overflow-x: auto;
+    text-wrap: wrap;
+    }
+
+ #chatbot:hover {
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.edit-icon {
+	float: right;
+}
+
+.message {
+	    display: flex;
+}
+
+input {
+  min-height: 40px;
+}
+
+pre {
+      padding: 10px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    overflow-x: auto;
+    text-wrap: wrap;
+        background-color: #dcdcdc5e;
+    border-top: 1px solid #c0c0c096;
+    border-bottom: 1px solid #c0c0c096;
+}
+
+.flex-container {
+        padding-left:10px ;
+            display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 50px;
+}
+
+}
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menus {
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+          margin-top: -18px;
+          margin-left: 30px;
+}
+
+.menus svg {
+  margin-right: 13px;
+}
+
+
+ 
+  .custom-col {
+    flex-basis: 25%;
+    max-width: 25%;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+
+.dropdown-content a {
+  border-bottom: 1px solid #eee;
+}
+
+
+
+</style>
+{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+     <div class="banner-area text-combo top-pad-90 rectangular-shape bg-light-gradient ">
+        <div class="item">
+            <div class="box-table">
+                <div class="box-cell">
+
+                    <div class="containedr my-2 ">
+                        <div class="row cards px-5" style="display: flex; align-items: flex-start; flex-direction: row; width:100%;">
+
+
+
+
+
+
+
+
+                          <div style="display:flex; justify-content:space-between; align-items:center; " >
+                            <h3 class=" my-3 text-dark text-capitalize "   > {{connection.name}}</h3>
+
+<div class='menu-icon'  style="display: flex; justify-content:space-between;align-items: center; flex-direction: row;">
+
+ 
+
+<span class="icons" >
+<svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20,1H4A3,3,0,0,0,1,4V14a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V4A3,3,0,0,0,20,1Zm1,13a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1V4A1,1,0,0,1,4,3H20a1,1,0,0,1,1,1Zm-2-2a1,1,0,0,1-1,1H6a1,1,0,0,1,0-2H18A1,1,0,0,1,19,12Zm0-6a1,1,0,0,1-1,1H16a1,1,0,0,1,0-2h2A1,1,0,0,1,19,6ZM10,6a1,1,0,0,1,1-1h2a1,1,0,0,1,0,2H11A1,1,0,0,1,10,6ZM5,6A1,1,0,0,1,6,5H8A1,1,0,0,1,8,7H6A1,1,0,0,1,5,6ZM19,9a1,1,0,0,1-1,1H16a1,1,0,0,1,0-2h2A1,1,0,0,1,19,9ZM10,9a1,1,0,0,1,1-1h2a1,1,0,0,1,0,2H11A1,1,0,0,1,10,9ZM5,9A1,1,0,0,1,6,8H8a1,1,0,0,1,0,2H6A1,1,0,0,1,5,9Zm9.707,10.293a1,1,0,0,1,0,1.414l-2,2a1,1,0,0,1-1.414,0l-2-2a1,1,0,0,1,1.414-1.414L12,20.586l1.293-1.293A1,1,0,0,1,14.707,19.293Z"></path></g></svg>
+
+</span>
+</div>
+
+
+
+                        </div>
+
+
+
+
+
+   <div class='search-filter mt-3   mb-3  ' style="    background: white;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    border: 1.3px solid silver;
+    border-radius: 20px;" >
+                                   
+                                  <form method="get" class="form-group has-search mx-2  " style="display:flex; flex-direction: row; align-items: center; justify-content:flex-start;" >
+    <div style="width:100%; margin-right:15px ;" >
+    <span style="    margin-top: 4px;" class="fa fa-search form-control-feedback"></span>
+    <input style="    border-radius: 400px;
+    background-color: #2196f314; 
+    height: 44px;padding-left: 40px;
+    " type="text" class="form-control" placeholder="Search {{connection.name}} Bots" name="q"   value="{{q}}" >
+    </div>
+   
+           
+  </form>
+ 
+</div>
+
+
+
+
+
+<div class="main mb-4  ">
+  
+   <div class='search-filter   w-100' style="display:flex; flex-direction: row; align-items: center; justify-content:space-between;" >
+
+
+
+<div>
+
+
+   <a  pk="{{connection.pk}}" chat-name="{{connection.name}}" 
+    class="btn circle btn-md btn-outline-dark wow fadeInUp create-bot" style="width: 170px;  height: 40px; margin-right: 12px;" id='next' href="/customer/select_connector?exclude=ai model,&connections_pk={{connection.pk}}" role="button" aria-pressed="true">   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" style="margin-top: -2px;margin-right: 6px;"   viewBox="0 0 1024 1024" fill="#000000"  version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M512 0C250.733601 0 46.039591 111.952387 46.039591 254.906974v514.053564c0 142.954587 204.69401 254.906974 465.960409 254.906974s465.960409-111.952387 465.960409-254.906974v-514.053564C977.827921 111.952387 773.266399 0 512 0zM125.53241 508.224091c0-20.535645 9.009186-41.07129 26.762583-61.209471 5.696985-6.359426 8.74421-14.176219 9.671626-21.993013 84.792341 52.465261 209.066115 85.057317 350.033381 85.057317 139.642386 0 263.121232-32.062104 347.781084-83.599949 1.589856 6.491914 4.504593 12.586363 9.274162 17.885885 19.475741 21.065597 29.279855 42.528658 29.279856 63.991719 0 82.937508-158.720662 175.414154-386.46759 175.414155S125.53241 591.161599 125.53241 508.224091zM512 79.492819c227.746927 0 386.46759 92.476646 386.46759 175.414155S739.746927 430.453616 512 430.453616 125.53241 337.97697 125.53241 254.906974 284.253073 79.492819 512 79.492819z m0 865.014362C284.253073 944.507181 125.53241 852.030534 125.53241 768.960538c0-20.535645 9.009186-41.07129 26.762583-61.209471 7.41933-8.479234 10.599043-19.210765 9.804114-29.544831 84.792341 52.332773 209.066115 84.924829 349.900893 84.924829 139.112434 0 262.061327-31.797128 346.72118-82.937508 0.529952 8.876698 3.842153 17.753396 10.334066 24.775262 19.475741 21.065597 29.279855 42.528658 29.279856 63.991719 0 83.069996-158.588174 175.546643-386.335102 175.546643z"></path></g></svg> Import Data</a>
+
+
+   <a  href="/customer/customize_bot?name={{connection.name}}&connections_pk={{connection.pk}}"
+    class="btn circle btn-md  wow fadeInUp create-bot" style="background: #394bdb; color: white;  height: 40px" id='next' href="#" role="button" aria-pressed="true">   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg> Create ChatBot »</a>
+
+
+</div>
+
+<div style="display:flex; justify-content:center; align-items:center;" >
+
+                                  <form method="get" class="form-group   " style="display:flex; flex-direction: row; align-items: center; justify-content:flex-start;"   >
+
+  <span class="  text-dark font-weight-bold" style="margin-right: 10px; display: flex;" > <svg style="margin-right: 6px;"  width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.875 4.00002C10.875 3.69877 10.6948 3.42676 10.4173 3.30934C10.1399 3.19192 9.81916 3.25188 9.60289 3.46159L5.47789 7.4616C5.33222 7.60285 5.25 7.79711 5.25 8.00002C5.25 8.20293 5.33222 8.39719 5.47789 8.53844L9.60289 12.5384C9.81916 12.7482 10.1399 12.8081 10.4173 12.6907C10.6948 12.5733 10.875 12.3013 10.875 12V8.75002L18 8.75002C18.4142 8.75002 18.75 8.41423 18.75 8.00002C18.75 7.58581 18.4142 7.25002 18 7.25002L10.875 7.25002V4.00002Z" fill="#1C274C"></path> <path opacity="0.5" d="M13.125 12C13.125 11.6988 13.3052 11.4268 13.5827 11.3093C13.8601 11.1919 14.1808 11.2519 14.3971 11.4616L18.5221 15.4616C18.6678 15.6029 18.75 15.7971 18.75 16C18.75 16.2029 18.6678 16.3972 18.5221 16.5384L14.3971 20.5384C14.1808 20.7482 13.8601 20.8081 13.5827 20.6907C13.3052 20.5733 13.125 20.3013 13.125 20V16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25L13.125 15.25L13.125 12Z" fill="#1C274C"></path> </g></svg> Sort by: </span>
+       <select  class=" form-control form-select" value="{{sort}}" id="sort" name="sort" style="width:200px; 
+       padding-left:12px !important;     border-radius: 400px;">
+      <option value="Alphabetically (A-Z)" > Alphabetically (A-Z) </option>
+      <option value="Alphabetically (A-Z)" > Alphabetically (Z-A) </option>
+
+
+        </select>
+           
+  </form>
+
+  <div class="menus">
+
+<svg width="20px" height="20px" viewBox="0 -0.5 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>menu_navigation_grid [#1530]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-59.000000, -200.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M14.55,60 L24,60 L24,51 L14.55,51 L14.55,60 Z M3,60 L12.45,60 L12.45,51 L3,51 L3,60 Z M14.55,49 L24,49 L24,40 L14.55,40 L14.55,49 Z M3,49 L12.45,49 L12.45,40 L3,40 L3,49 Z" id="menu_navigation_grid-[#1530]"> </path> </g> </g> </g> </g></svg>
+
+
+<svg viewBox="0 0 600 600" version="1.1" id="svg9724" sodipodi:docname="menu.svg" inkscape:version="1.2.2 (1:1.2.2+202212051550+b0a8486541)" width="20px" height="20px" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs id="defs9728"></defs> <sodipodi:namedview id="namedview9726" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" showgrid="true" inkscape:zoom="0.59480855" inkscape:cx="-49.59579" inkscape:cy="515.29185" inkscape:window-width="1920" inkscape:window-height="1009" inkscape:window-x="0" inkscape:window-y="1080" inkscape:window-maximized="1" inkscape:current-layer="g10449" showguides="true"> <inkscape:grid type="xygrid" id="grid9972" originx="0" originy="0"></inkscape:grid> <sodipodi:guide position="-260,300" orientation="0,-1" id="guide383" inkscape:locked="false"></sodipodi:guide> <sodipodi:guide position="300,520" orientation="1,0" id="guide385" inkscape:locked="false"></sodipodi:guide> <sodipodi:guide position="240,520" orientation="0,-1" id="guide939" inkscape:locked="false"></sodipodi:guide> <sodipodi:guide position="220,80" orientation="0,-1" id="guide941" inkscape:locked="false"></sodipodi:guide> </sodipodi:namedview> <g id="g10449" transform="matrix(0.95173205,0,0,0.95115787,13.901174,12.168794)" style="stroke-width:1.05103"> <g id="path10026" inkscape:transform-center-x="-0.59233046" inkscape:transform-center-y="-20.347403" transform="matrix(1.3807551,0,0,1.2700888,273.60014,263.99768)"></g> <g id="g11314" transform="matrix(1.5092301,0,0,1.3955555,36.774048,-9.4503933)" style="stroke-width:50.6951"></g> <path style="color:#000000;fill:#000000;stroke-width:1.05104;stroke-linecap:square;stroke-linejoin:round;-inkscape-stroke:none;paint-order:stroke fill markers" d="m 116.82051,533.90848 c 0,-35.77923 -30.001428,-65.78273 -65.71225,-65.78274 -35.710867,10e-6 -65.714445,30.00351 -65.714445,65.78274 0,35.7791 30.003578,65.78265 65.714445,65.78265 35.710822,0 65.71225,-30.00355 65.71225,-65.78265 z" id="path1237"></path> <path style="color:#000000;fill:#000000;stroke-width:1.05104;stroke-linecap:square;stroke-linejoin:round;-inkscape-stroke:none;paint-order:stroke fill markers" d="m 116.82051,302.6125 c 0,-35.77918 -30.001428,-65.78266 -65.71225,-65.78267 -35.710867,1e-5 -65.714445,30.00349 -65.714445,65.78267 2.6e-5,35.77922 30.003597,65.78043 65.714445,65.78045 35.710806,-2e-5 65.71224,-30.00123 65.71225,-65.78045 z" id="path1235"></path> <path style="color:#000000;fill:#000000;stroke-width:1.05104;stroke-linecap:square;stroke-linejoin:round;-inkscape-stroke:none;paint-order:stroke fill markers" d="m 116.82051,71.313209 c 0,-35.779199 -30.001428,-65.7804582 -65.71225,-65.7804662 -35.710867,8e-6 -65.714445,30.0012672 -65.714445,65.7804662 0,35.779271 30.003578,65.782741 65.714445,65.782751 35.710822,-1e-5 65.71225,-30.00348 65.71225,-65.782751 z" id="path346"></path> <path style="color:#000000;fill:#000000;stroke-width:1.05103;stroke-linecap:round;-inkscape-stroke:none" d="m 211.58808,21.527961 a 47.572886,49.785578 0 0 0 -47.57256,49.787552 47.572886,49.785578 0 0 0 47.57256,49.785227 H 568.24859 A 47.572886,49.785578 0 0 0 615.82336,71.315513 47.572886,49.785578 0 0 0 568.24859,21.527961 Z" id="path1011"></path> <path style="color:#000000;fill:#000000;stroke-width:1.05103;stroke-linecap:round;-inkscape-stroke:none" d="m 211.58808,252.82616 a 47.572886,49.785578 0 0 0 -47.57256,49.78524 47.572886,49.785578 0 0 0 47.57256,49.78523 h 356.66051 a 47.572886,49.785578 0 0 0 47.57477,-49.78523 47.572886,49.785578 0 0 0 -47.57477,-49.78524 z" id="path1011-7"></path> <path style="color:#000000;fill:#000000;stroke-width:1.05103;stroke-linecap:round;-inkscape-stroke:none" d="m 211.58808,484.1232 a 47.572886,49.785578 0 0 0 -47.57256,49.78523 47.572886,49.785578 0 0 0 47.57256,49.78524 h 356.66051 a 47.572886,49.785578 0 0 0 47.57477,-49.78524 47.572886,49.785578 0 0 0 -47.57477,-49.78523 z" id="path1011-5"></path> </g> </g></svg>
+
+<svg fill="#000000" version="1.1" id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <metadata> <sfw xmlns="&amp;ns_sfw;"> <slices> </slices> <slicesourcebounds width="505" height="984" bottomleftorigin="true" x="0" y="-552"> </slicesourcebounds> </sfw> </metadata> <g> <g> <g> <path d="M20,5H4C3.4,5,3,4.6,3,4s0.4-1,1-1h16c0.6,0,1,0.4,1,1S20.6,5,20,5z"></path> </g> </g> <g> <g> <path d="M20,21H4c-0.6,0-1-0.4-1-1s0.4-1,1-1h16c0.6,0,1,0.4,1,1S20.6,21,20,21z"></path> </g> </g> <g> <g> <path d="M20,13H4c-0.6,0-1-0.4-1-1s0.4-1,1-1h16c0.6,0,1,0.4,1,1S20.6,13,20,13z"></path> </g> </g> </g> </g></svg>
+
+  </div>
+  </div>
+
+
+
+
+</div>
+                 
+
+                               <div class=" my-3 ">
+    <div style="border: 1px solid #ccc; border-radius: 10px; ">
+      <div class="font-weight-bolder" style="background-color: white; color: black; padding: 10px; border-bottom: 1px solid #ccc; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        {{connection.name}} - ChatBots ({{chatbots|length}})
+      </div>
+      <div class="p-3" style="background-color: #f4f4f4; padding: 10px; border-bottom-left-radius: 10px;  min-height: 50vh;border-bottom-right-radius: 10px;">
+  {% include 'home/prompts.html' %}
+      </div>
+    </div>
+  </div>
+
+ 
+	</div>
+
+
+
+<!-- START CONNECTOR -->
+
+
+
+
+
+<div class="chat-button" onclick="toggleChat()">
+   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill="#EBEEEF" d="M50 0c27.613 0 50 22.386 50 50s-22.387 50-50 50C22.386 100 0 77.614 0 50S22.386 0 50 0z"></path> <defs> <circle id="a" cx="50" cy="50" r="50"></circle> </defs> <clipPath id="b"> <use xlink:href="#a" overflow="visible"></use> </clipPath> <g clip-path="url(#b)"> <path fill="#F1C40E" d="M45 61h10c11.046 0 20 8.954 20 20v8c0 11.046-8.954 20.001-20 20.001H45c-11.046 0-20-8.955-20-20.001v-8c0-11.046 8.954-20 20-20z"></path> <path fill="#FFF55C" d="M49.865 79.994c-2.042 0-3.863 1.538-3.863 3.152 0 .685.51 1.19 1.24 1.19.847 0 1.152-.504 1.38-.985.244-.519.439-.963 1.335-.963.793 0 1.398.377 1.398 1.061 0 .588-.701.798-1.318 1.267-.72.546-1.535 1.166-1.535 2.226 0 .606.429 1.223 1.224 1.223.889 0 1.088-.49 1.25-.907.061-.157.116-.308.207-.438.125-.178.436-.396.764-.625.867-.608 2.057-1.441 2.057-2.938 0-2.409-2.231-3.263-4.139-3.263zm-.1 9.126c-.78 0-1.412.646-1.412 1.438 0 .797.632 1.439 1.412 1.439.78 0 1.411-.646 1.411-1.439s-.631-1.438-1.411-1.438zM51 53c7.732 0 14 4.479 14 10.001C65 68.521 58.732 73 51 73s-14-4.479-14-9.999C37 57.479 43.268 53 51 53z"></path> <path fill="#4D301A" d="M33 47.001h36A2 2 0 0 1 71 49v11a2 2 0 0 1-2 2H33a2 2 0 0 1-2-2V49a2 2 0 0 1 2-1.999z"></path> <path fill="#DF9274" d="M51 19c11.046 0 20 11.193 20 25 0 13.809-8.954 25-20 25S31 57.809 31 44c0-13.807 8.954-25 20-25z"></path> <path fill="#ffffff" d="M43.5 43a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"></path> <path fill="#3498DB" d="M43.5 45a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"></path> <path fill="#ffffff" d="M57.5 43a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"></path> <path fill="#3498DB" d="M57.5 45a1.5 1.5 0 1 1-.002 3.002A1.5 1.5 0 0 1 57.5 45z"></path> <path fill="#4D301A" d="M70.619 39.143C68.811 27.661 60.716 19 51 19c-10.006 0-18.296 9.186-19.768 21.179 1.559.524 11.375 3.339 23.859-5.729 2.589 2.925 7.729 7.181 15.528 4.693z"></path> <path fill="#C0392C" d="M70.027 37c-1.202.008-.996 3.358-.996 7.5 0 .835-.012 1.637-.02 2.388-1.045 1.618-3.777 5.537-7.025 7.566-2.707 1.692-6.332 2.837-8.23 3.364A3 3 0 1 0 51 62a2.995 2.995 0 0 0 2.891-2.236c1.27-.306 5.731-1.474 8.916-3.463 2.562-1.603 4.854-4.363 6.262-6.294.1 1.233.353 1.993.958 1.993C73.326 52 76 48.642 76 44.5s-2.674-7.522-5.973-7.5zM32 37c-3.313-.022-6 3.358-6 7.5s2.687 7.5 6 7.5c1.283 0 1-3.358 1-7.5s.207-7.492-1-7.5z"></path> </g> </g></svg>
+
+</div>
+
+<div class="chat-iframe-container" id="chatIframeContainer">
+  <div class="close-button" onclick="toggleChat()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M18.36 6.64a1.5 1.5 0 00-2.12 0L12 8.88 7.76 4.64a1.5 1.5 0 00-2.12 2.12L9.88 12l-4.24 4.24a1.5 1.5 0 002.12 2.12L12 13.12l4.24 4.24a1.5 1.5 0 002.12-2.12L14.12 12l4.24-4.24a1.5 1.5 0 000-2.12z"/>
+            </svg>
+        </div>
+   <iframe id="chatIframe" src="http://192.168.117.97:8030/customer/chatbot/iframe/FANDF2202408061?user_id=adroit" width="100%" height="100%" frameborder="0"></iframe>
+</div>
+
+<style>
+   .chat-button {
+            position: fixed;
+            bottom: 80px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 10000;
+        }
+        .chat-button svg {
+            width: 57px;
+            height: 60px;
+            fill: #fff;
+        }
+        .chat-iframe-container {
+          z-index: 10000;
+            position: fixed;
+            bottom: 144px;
+            right: 20px;
+            width: 480px;
+            height: 650px;
+            display: none;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius:8px;
+        }
+        .chat-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+            .close-button {
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            width: 25px;
+            height: 25px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .close-button svg {
+            width: 23px;
+            height: 14px;
+            fill: #fff;
+        }
+
+        iframe {
+          border-radius:8px;
+        }
+
+</style>
+        
+
+
+<script>
+function toggleChat() {
+    const chatContainer = document.getElementById('chatIframeContainer');
+    if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+        chatContainer.style.display = 'block';
+    } else {
+        chatContainer.style.display = 'none';
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+<!-- END CONNECTOR -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="m-4" style="display: flex; justify-content:flex-end; align-items:center;" >
+
+{% if chatbots.has_other_pages %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if chatbots.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ chatbots.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in chatbots.paginator.page_range %}
+                {% if chatbots.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if chatbots.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ chatbots.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+
+<div class="results-per-page">
+  <label for="resultsPerPage">Results per page:</label>
+  <select id="resultsPerPage" onchange="changeResultsPerPage(this.value)">
+    <option value="5" {% if chatbots.paginator.per_page == 5 %}selected{% endif %}>5</option>
+    <option value="10" {% if chatbots.paginator.per_page == 10 %}selected{% endif %}>10</option>
+    <option value="20" {% if chatbots.paginator.per_page == 20 %}selected{% endif %}>20</option>
+    <option value="30" {% if chatbots.paginator.per_page == 30 %}selected{% endif %}>30</option>
+    <!-- Add more options for different results per page as needed -->
+  </select>
+</div>
+
+</div>
+
+
+
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+<!-- share Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+     
+    <div class="modal-body" id='modal-body'  > 
+   
+  </div>
+  
+    </div>
+  </div>
+</div>
+ 
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#051837">
+        <h6 class="text-white pt-1"  ><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12C4 13.3807 5.11929 14.5 6.5 14.5C7.88071 14.5 9 13.3807 9 12C9 10.6193 7.88071 9.5 6.5 9.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 6.5L9 10" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 17.5L9 14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M16.5 21C17.8807 21 19 19.8807 19 18.5C19 17.1193 17.8807 16 16.5 16C15.1193 16 14 17.1193 14 18.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M18.665 6.74993C17.9746 7.94566 16.4457 8.35535 15.2499 7.66499C14.0542 6.97464 13.6445 5.44566 14.3349 4.24993C15.0252 3.0542 16.5542 2.64451 17.7499 3.33487" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg> <span class="pt-1" > Share: How to use Bot directly in your app</span></h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body my-3"   style="    padding: 2px 16px;
+    height: 29vw; ">
+     
+    
+
+
+    <div class='share m-4' style="width: 95%; overflow-x: scroll;" > 
+  <button class="bg-white p-1" onclick="CopyToClipboard('link')" class="copy p-1 " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button>
+<p class="link" style="color:#50a14f; " ><span style="color:black;" > GET: >> </span><span id="apiContainer" ></span>  </p>
+<p class="link_description" style="    background: #c0c0c033;
+    padding: 5px;
+    border-radius: 4px;color: black;" > Access Bot via Link <span id='apiContainertooltip' ></span> </p>
+    </div> 
+    
+
+        <div class='share m-4' style="width: 95%; overflow-x: scroll;" > 
+  <button   class="bg-white p-1" onclick="CopyToClipboard('iframe')" class="copy p-1 " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button>
+<p class="link" style="color:#50a14f; " ><span style="color:black;" > Iframe: </span> <span id="iframeContainer" ></span> </p>
+<p class="link_description" style="    background: #c0c0c033;
+    padding: 5px;
+    border-radius: 4px;color: black;" > Access Bot via Iframe <span id='iframeContainertooltip' ></span> </p>
+    </div> 
+
+
+   <div class='share m-4' style="width: 95%; overflow-x: scroll;" > 
+  <button class="bg-white p-1" onclick="CopyToClipboard('api')" class="copy " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button>
+<p class="link" style="color:#50a14f; " ><span style="color:black;" > API: </span> <span id="msgApiContainer" ></span>  </p>
+<p class="link_description" style="    background: #c0c0c033;
+    padding: 5px;
+    border-radius: 4px;color: black;" > Access Bot via API <span id='msgApiContainertooltip' ></span> </p>
+    </div> 
+
+
+
+  </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+<!-- Delete Chat Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-white py-2" id="deleteModalLabel">Delete Chatbot</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body px-5 ">
+    <p class="text-center my-4 text-danger" ><svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 -5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-518.000000, -1146.000000)" fill="#bd0f0f"> <path d="M540.647,1159.24 C541.039,1159.63 541.039,1160.27 540.647,1160.66 C540.257,1161.05 539.623,1161.05 539.232,1160.66 L536.993,1158.42 L534.725,1160.69 C534.331,1161.08 533.692,1161.08 533.298,1160.69 C532.904,1160.29 532.904,1159.65 533.298,1159.26 L535.566,1156.99 L533.327,1154.76 C532.936,1154.37 532.936,1153.73 533.327,1153.34 C533.718,1152.95 534.352,1152.95 534.742,1153.34 L536.981,1155.58 L539.281,1153.28 C539.676,1152.89 540.314,1152.89 540.708,1153.28 C541.103,1153.68 541.103,1154.31 540.708,1154.71 L538.408,1157.01 L540.647,1159.24 L540.647,1159.24 Z M545.996,1146 L528.051,1146 C527.771,1145.98 527.485,1146.07 527.271,1146.28 L518.285,1156.22 C518.074,1156.43 517.983,1156.71 517.998,1156.98 C517.983,1157.26 518.074,1157.54 518.285,1157.75 L527.271,1167.69 C527.467,1167.88 527.723,1167.98 527.979,1167.98 L527.979,1168 L545.996,1168 C548.207,1168 550,1166.21 550,1164 L550,1150 C550,1147.79 548.207,1146 545.996,1146 L545.996,1146 Z" id="delete" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>  Are you sure you want to delete this bot? </p>
+      <div class="modal-footer" style="width: 100%;">
+
+        <a type="button" href="" id="deleteBtn" class="btn circle btn-md btn-danger wow fadeInUp" style="    height: 40px"    role="button" aria-pressed="true"> Delete »</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+ 
+
+
+  <script>
+ function generateUUID() {
+            // Function to generate a random UUID
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function generateSystemUUID() {
+            // Check if a UUID already exists in localStorage
+            let uuid = localStorage.getItem('systemUUID');
+            if (!uuid) {
+                uuid = hashCode( generateUUID());
+                localStorage.setItem('systemUUID', uuid);
+            }
+            return uuid;
+        }
+
+        function hashCode(str) {
+            let hash = 0, i, chr;
+            if (str.length === 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                chr = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash.toString(16);
+}
+ 
+
+
+
+ function goBack() {
+      window.history.back();
+    }
+
+
+
+// function CopyToClipboard(link){
+//   if (link === 'api'){
+//     var copyText = document.getElementById("msgApiContainer");
+//      var tooltipEl = document.getElementById("msgApiContainertooltip")
+//   } else if (link === 'iframe'){
+//     var copyText = document.getElementById("iframeContainer");
+//      var tooltipEl = document.getElementById("iframeContainertooltip")
+//   } else {
+//     var copyText = document.getElementById("apiContainer");
+//      var tooltipEl = document.getElementById("apiContainertooltip")
+//   }
+   
+//   navigator.clipboard.writeText(copyText.textContent);
+//   // console.log(tooltipEl)
+//   tooltipEl.innerHTML= ` <svg style="margin-left: 5px;" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0ea427" d="M512 64a448 448 0 110 896 448 448 0 010-896zm-55.808 536.384l-99.52-99.584a38.4 38.4 0 10-54.336 54.336l126.72 126.72a38.272 38.272 0 0054.336 0l262.4-262.464a38.4 38.4 0 10-54.272-54.336L456.192 600.384z"></path></g></svg> Copied`
+
+// }
+
+
+// $(".share-chat-btn").click(function(event) {
+
+
+//    var api_id = $(this).attr('api_id')
+
+// var apiString =   `${document.location.origin}/customer/chatbot/iframe/${api_id}?user_id={{user}}`
+//     var apiContainer = document.getElementById('apiContainer');
+//         apiContainer.textContent = apiString;
+
+
+// var msgApiContainerString =   `${document.location.origin}/customer/process_message?message=who+develop+pye&api_id=${api_id}?user_id={{user}}`
+//     var msgApiContainer = document.getElementById('msgApiContainer');
+//         msgApiContainer.textContent = msgApiContainerString;
+
+
+// var iframeString = `<iframe id="iframe" src="${document.location.origin}/customer/chatbot/iframe/${api_id}?user_id={{user}}" width="100%" height="100%" frameborder="0"></iframe>`;
+//         var iframeContainer = document.getElementById('iframeContainer');
+//         iframeContainer.textContent = iframeString;
+
+// })
+// $(".chat-btn").click(function(event) {
+
+//    var api_id = $(this).attr('api_id')
+
+// $("#chatModal #modal-body").html( `<iframe src="/customer/chatbot/iframe/${api_id}?user_id={{user}}" width="100%" height="600" frameborder="0"></iframe>`)
+// //     getMessage( pk) 
+// $("#chat-modal-header").text("Preview - "+$(this).attr('chat-name') +" (Bot)")
+// // localStorage.setItem("selectedConn",pk)
+// });
+    
+$(".delete-bot").click(function(event) {  
+localStorage.setItem("selectedConn",$(this).attr('pk'))
+
+$("#deleteBtn").attr('href',`/customer/chatbot/delete?pk=${$(this).attr('pk')}&connections_pk={{connection.pk}}`)
+$("h6#deleteModalLabel").text("Delete Chatbot (" + $(this).attr('chat-name')+")" )
+$("input#chatbots_pk").val($(this).attr('pk') )
+// localStorage.setItem("selectedConn",pk)
+});
+    
+ 
+
+ 
+
+ $(".create-bot").click(function(event) {  
+localStorage.setItem("selectedConn",$(this).attr('pk'))
+
+$("h6#exampleModalLabel").text("Create Personalized bot for " + $(this).attr('chat-name') )
+$("input#connections_pk").val($(this).attr('pk') )
+// localStorage.setItem("selectedConn",pk)
+});
+
+
+
+
+
+  // Make an AJAX request to the server
+  let sendIcon = `<svg width="36px" height="36px" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.7 8.97989L4.14 17.7099C4.05 17.3799 4 17.0299 4 16.6699V7.32989C4 4.24989 7.33 2.32989 10 3.86989L14.04 6.19989L18.09 8.53989C18.31 8.66989 18.52 8.80989 18.7 8.97989Z" fill="{{configs.send_bg_color}}"></path> <path opacity="0.4" d="M18.0907 15.4598L14.0407 17.7998L10.0007 20.1298C8.0907 21.2298 5.8407 20.5698 4.7207 18.9598L5.1407 18.7098L19.5807 10.0498C20.5807 11.8498 20.0907 14.3098 18.0907 15.4598Z" fill="{{configs.send_color}}"></path> </g></svg>`
+
+
+
+
+
+// Send message to the server
+function sendMessage(message) {
+
+
+
+  $('#send-button').html(animationIcon)
+  $('#send-button').prop('disabled', true);
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      message: message,
+      pk:localStorage.getItem("selectedConn"),
+      uuid:generateSystemUUID()
+    },
+    success: function(res) {
+      // Handle the response from the server
+        $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+      displayResponse(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+// Handle user input and send the message
+function handleUserInput() {
+  var inputField = document.getElementById('input-field');
+  var message = inputField.value.trim();
+
+  if (message !== '') {
+    displayMessage(message);
+    sendMessage(message);
+    inputField.value = '';
+  }
+}
+
+
+
+function getMessage(pk) {
+  // Make an AJAX request to the server
+
+  $('#send-button').html(animationIcon)
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      pk ,
+      uuid:generateSystemUUID()
+    },
+    success: function(res) {
+      // Handle the response from the server
+      mergeMessage(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+
+function mergeMessage(response){
+  let chat_history = JSON.parse(JSON.parse(response).chat_history||'[]')
+  // displayResponse(JSON.parse(response).greeting ||"Hi, how can I help you today?")
+  chat_history.forEach(chat=>{
+
+if (chat.type === "HumanMessage"){
+  displayMessage(chat.content)
+} else {
+  displayResponse(chat.content)
+}
+ 
+  })
+        $('#send-button').html(sendIcon)
+
+ 
+}
+
+
+  
+// Display user message in the chat container
+
+function displayMessage(message) {
+    var bodyElement = document.getElementById('message-body');
+    var chatContainerUsr = document.createElement('div');
+    chatContainerUsr.setAttribute('id', 'chat-container-usr');
+
+    var messageElement = document.createElement('div');
+      messageElement.setAttribute('style',`display: flex;align-items: center; width:100%;{% if configs.font %}font-family:{{configs.font}};{% endif %}{% if configs.font_size %}font-size: {{configs.font_size}}px{% endif %};{% if configs.user_msg_color %}color: {{configs.user_msg_color}}{% endif %};`)
+    messageElement.classList.add('message', 'user-message');
+
+    var messageText = document.createElement('span');
+    messageText.textContent = message;
+
+    messageElement.appendChild(messageText);
+    chatContainerUsr.appendChild(messageElement);
+    bodyElement.appendChild(chatContainerUsr);
+
+    let modalBody = document.getElementById('modal-body');
+    modalBody.scrollTop = modalBody.scrollHeight;
+}
+
+
+
+// Display bot response in the chat container
+function displayResponse(response) {
+    var bodyElement = document.getElementById('message-body');
+      var chatContainer = document.createElement('div');
+    chatContainer.setAttribute('id', 'chat-container');
+
+
+
+    var messageElement = document.createElement('pre');
+    messageElement.classList.add('message', 'bot-message');
+
+    var imgElement = document.createElement('img');
+    const bot_image = "{{configs.bot_image|safe}}";
+
+    imgElement.src = bot_image ? bot_image : '{% static "assets/img/pyebot.png" %}';
+    imgElement.alt = 'Bot Image';
+    imgElement.style.width = '23px';
+    imgElement.style.height = '23px';
+    imgElement.style.marginRight = '10px';
+    imgElement.style.position = 'absolute';
+    imgElement.style.left = '5px';
+    imgElement.style.marginTop = '-20px';
+    imgElement.style.borderRadius = '50%';
+
+    let regex = /```([^`]+)```/g;
+    const wrappedText = response.replace(regex, '<div class="code-class">$1</div>');
+
+    messageElement.innerHTML = wrappedText;
+    messageElement.insertAdjacentElement('beforeend', imgElement);
+
+    chatContainer.insertAdjacentElement('beforeend', messageElement);
+    bodyElement.appendChild(chatContainer);
+
+    let modalBody = document.getElementById('modal-body');
+    modalBody.scrollTop = modalBody.scrollHeight;
+}
+
+// Attach event listener to the send button
+$('#send-button').click(handleUserInput);
+
+
+
+function changeResultsPerPage(resultsPerPage) {
+    // Get the current URL and remove the existing 'page' query parameter
+    const url = window.location.href;
+    const urlWithoutPage = url.replace(/[\?&]page=\d+/gi, '');
+
+    // Redirect to the new URL with the updated 'per_page' query parameter
+    window.location.href = `${urlWithoutPage}?per_page=${resultsPerPage}`;
+  }
+
+
+
+
+  </script>
+{% endblock javascripts %}
+

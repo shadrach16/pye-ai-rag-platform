@@ -1,0 +1,469 @@
+{% extends 'layouts/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style>
+
+ 
+.ias-border-activating {
+    border-left: 4px solid #0fb9dd;
+}
+.sheet__section {
+    margin-bottom: 0;
+    padding: 28px 30px;
+    position: relative;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+
+.title_label {
+  word-wrap: break-word;
+    display: block;
+    font-family: OpenSansSemibold,arial,sans-serif;
+    font-size: 16px;
+    line-height: 22px;
+    margin: 4px auto;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    color: #095bb1;
+}
+.title_description {
+      display: block;
+    font-size: 14px;
+    margin: 4px auto;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+#product:hover {
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.css-1p1plhh {
+    width: 16px;
+    padding: 2px;
+    background-color: #9e9e9e6b;
+    margin-right: 2px;
+    border-radius: 2px;
+}
+
+.css-1cz2kbt {
+    display: flex; flex-direction: row;align-items: center;
+}
+
+.css-15katg5 {
+    align-items: stretch;
+    border-width: 0;
+    border-style: solid;
+    box-sizing: border-box;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    flex-shrink: 0;
+    outline: none;
+    min-height: 0;
+    min-width: 0;
+    max-width: 700px;
+    list-style-type: none;
+    gap:8px;
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-left: 0px !important;
+}
+
+
+@media screen and (min-width: 1322px) {
+.css-avkm3u {
+min-width: 200px;
+}
+}
+
+
+.css-10z1dta {
+    display: flex;
+    flex-direction: column;
+}
+
+.css-avkm3u {
+        border-radius: 8px;
+    background-color: #f1f1f1;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    position: relative;
+    padding: 8px;
+    border: 1px solid gray;
+
+}
+
+.col-lg-8 {
+    width: 70% !important;
+}
+
+.col-lg-4 {
+    width: 29% !important;
+}
+
+.css-avkm3u:hover {
+border: 1px solid #eee;
+}
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="container-fluid py-3">
+      
+      <div class="row">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class=" ">
+            <div class="  px-3">
+              <div class="row">
+                
+
+                <div class="col-lg-8">
+                  <div class="d-flex flex-column h-100">
+                    <h2 class="font-weight-bolder">Welcome, {{user}}!</h2>
+                    <p style="font-size:14px" class="text-md mb-0   text-dark">Start by creating your Pye project (PMs) and connecting Data Source to seamlessly share and integrate it into your application.</p>
+
+
+                          <div class='search-filter px-4 mt-3' id="product" style="    background: white;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    border: 1.3px solid silver;
+    border-radius: 20px;
+        border-left:8px solid #2152ff;" >
+            <h5 class="headline headline--sub">Get Inspired by Weekly Prompts</h5>
+            <div class="" style="font-size: 14px;">
+          Stay ahead with our Real-time AI Prompts. Explore the infinite potential of generative AI to fuel your creativity. Get customized prompts that resonate with your preferences and ignite fresh ideas instantly.
+            </div>
+             
+            <div style="display: flex; align-items:center;" class="mt-3" >
+        <a class="btn circle btn-md btn-outline-dark wow fadeInUp py-2 " style="border-radius: 28px; height: 33px;" data-wow-duration="1.8s" data-bs-toggle="modal" data-bs-target="#subscriptionModal"  >
+                                   
+                                              <span class="nav-link-text ms-1 text-capitalize" > Subscribe to prompts »</span>
+                                            </a>
+
+                                               <a  class="btn circle btn-md btn-outline-dark wow fadeInUp py-2 text-capitalize mx-3 " style="border-radius: 28px; height: 33px; 
+                                               width:170px ;"  href="tutorial">
+           
+        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 18.4151C20.3136 18.2627 20.5862 18.0706 20.8284 17.8284C22 16.6569 22 14.7712 22 11C22 7.22876 22 5.34315 20.8284 4.17157C19.6569 3 17.7712 3 14 3H10C6.22876 3 4.34315 3 3.17157 4.17157C2 5.34315 2 7.22876 2 11C2 14.7712 2 16.6569 3.17157 17.8284C3.41375 18.0706 3.68645 18.2627 4 18.4151" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> <path d="M9.94955 16.0503C10.8806 15.1192 11.3461 14.6537 11.9209 14.6234C11.9735 14.6206 12.0261 14.6206 12.0787 14.6234C12.6535 14.6537 13.119 15.1192 14.0501 16.0503C16.0759 18.0761 17.0888 19.089 16.8053 19.963C16.7809 20.0381 16.7506 20.1112 16.7147 20.1815C16.2973 21 14.8648 21 11.9998 21C9.13482 21 7.70233 21 7.28489 20.1815C7.249 20.1112 7.21873 20.0381 7.19436 19.963C6.91078 19.089 7.92371 18.0761 9.94955 16.0503Z" stroke="#1C274C" stroke-width="1.5"></path> </g></svg>
+            <span class="nav-link-text ms-1 text-capitalize ">Watch Tutorial</span>
+          </a>
+
+
+
+          </div>
+          </div>
+
+                  
+
+ 
+
+
+<section class="mt-4" >
+    <div class="css-nghpcj mt-2">
+
+
+        <div class="css-1lh9qec" style="display: flex; flex-direction:row;align-items: center;    height: 25px;" >
+            <h2 style="font-size:20px;line-height:1.1em;font-weight:bold" class="css-scxoy8 mr-4">Get Started</h2>
+            
+            <div class="css-1cz2kbt mx-4" style="margin-top: -3px;">
+                <div class="css-1p1plhh"></div>
+                <div class="css-1p1plhh"></div>
+                <div class="css-1p1plhh"></div>
+
+        </div>
+
+        <span style="font-size:16px;line-height:inherit" class="css-10z1dta font-weight-bold">0/4</span>
+
+        <div class="css-36v8q4 mt-1">
+        <button style="height:24px;width:24px;box-shadow:none;background: transparent;"  type="button" aria-label="Hide section" class="css-162thqv btn btn-sm btn-light border-0 "><svg preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="width:16px;--rotate:0deg" aria-hidden="true" class="css-492dz9"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.46967 5.46967C5.76256 5.17678 6.23744 5.17678 6.53033 5.46967L12 10.9393L17.4697 5.46967C17.7626 5.17678 18.2374 5.17678 18.5303 5.46967C18.8232 5.76256 18.8232 6.23744 18.5303 6.53033L13.0607 12L18.5303 17.4697C18.8232 17.7626 18.8232 18.2374 18.5303 18.5303C18.2374 18.8232 17.7626 18.8232 17.4697 18.5303L12 13.0607L6.53033 18.5303C6.23744 18.8232 5.76256 18.8232 5.46967 18.5303C5.17678 18.2374 5.17678 17.7626 5.46967 17.4697L10.9393 12L5.46967 6.53033C5.17678 6.23744 5.17678 5.76256 5.46967 5.46967Z"></path></svg></button></div>
+
+    </div>
+
+
+    <span style="font-size:13px;line-height:inherit" class="css-scxoy8">See what you can accomplish with Pye</span>
+
+    <ul class="css-15katg5 mt-3 ">
+
+        <li class="css-avkm3u"><a href="/customer/tutorial" class="css-xhvgwz"><span style="font-size:inherit;line-height:inherit;font-weight:bold" class="css-10z1dta text-dark ">Project</span><span style="font-size:13px;line-height:inherit" class="css-scxoy8 text-secondary "><svg preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="width:16px;--rotate:0deg" aria-hidden="true" class="css-1afyr3i"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75L5 12.75C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25L17.1893 11.25L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697Z"></path></svg>Create your first project</span><div class="css-36v8q4"> </div></a></li>
+
+       
+
+        <li class="css-avkm3u"><a href="/customer/ai_models"><span style="font-size:inherit;line-height:inherit;font-weight:bold" class="css-10z1dta text-dark ">Embedding</span><span style="font-size:13px;line-height:inherit" class="css-scxoy8 text-secondary"><svg preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="width:16px;--rotate:0deg" aria-hidden="true" class="css-1afyr3i"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75L5 12.75C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25L17.1893 11.25L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697Z"></path></svg>Import Data</span><div class="css-36v8q4"></div></a></li>
+
+         <li class="css-avkm3u"><a href="/customer/ai_models" class="css-xhvgwz"><span style="font-size:inherit;line-height:inherit;font-weight:bold" class="css-10z1dta text-dark">Create ChatBot</span><span style="font-size:13px;line-height:inherit" class="css-scxoy8 text-secondary"><svg preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="width:16px;--rotate:0deg" aria-hidden="true" class="css-1afyr3i"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75L5 12.75C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25L17.1893 11.25L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697Z"></path></svg>Design prompt and skin</span><div class="css-36v8q4"></div></a></li>
+
+
+             <li class="css-avkm3u"><a href="/customer/prompt_writer" class="css-xhvgwz"><span style="font-size:inherit;line-height:inherit;font-weight:bold" class="css-10z1dta text-dark">Share & Integrate</span><span style="font-size:13px;line-height:inherit" class="css-scxoy8 text-secondary"><svg preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="width:16px;--rotate:0deg" aria-hidden="true" class="css-1afyr3i"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.5303 11.4697C19.8232 11.7626 19.8232 12.2374 19.5303 12.5303L12.5303 19.5303C12.2374 19.8232 11.7626 19.8232 11.4697 19.5303C11.1768 19.2374 11.1768 18.7626 11.4697 18.4697L17.1893 12.75L5 12.75C4.58579 12.75 4.25 12.4142 4.25 12C4.25 11.5858 4.58579 11.25 5 11.25L17.1893 11.25L11.4697 5.53033C11.1768 5.23744 11.1768 4.76256 11.4697 4.46967C11.7626 4.17678 12.2374 4.17678 12.5303 4.46967L19.5303 11.4697Z"></path></svg>Integrate bot into site or app</span><div class="css-36v8q4"> </div></a></li>
+
+
+    </ul>
+
+</div></section>
+
+
+
+
+
+
+
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+          
+        <div class="col-lg-4">
+             <a href='/customer/source-credential?source-val=pye&type_name=ai%20model&redirect=ai_models'  class="btn circle btn-md text-white  wow fadeInUp my-4 w-100" style="border-radius: 20px;background-color: #2152ff;" >
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                                              <span class="nav-link-text ms-1 text-uppercase">Create New Project »</span>
+                                            </a>
+
+          <div class="card ">
+            <div class="overflow-hidden position-relative border-radius-xl bg-cover h-100" style="background-image: url('/static/assets/img/ivancik.jpg');">
+              <span class="mask bg-gradient-dark"></span>
+              <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">AI-Enhanced Support System</h5>
+                <p class="text-white">As a valued client, you can interact directly with our team, request supports, ask questions, and access our extensive library of tutorials. Power your application with gemini AI.</p>
+                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                  Read More
+                  <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                </a>
+              </div>
+            <div class="card-body  position-relative z-index-1  py-3 px-3" style="background-color: white; opacity: 1;" >
+              <span   > Help us to improve our service and recommendations with your preferences. </span> </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+   
+
+
+
+
+
+
+
+
+
+<section >
+
+
+
+                               <div class=" my-2 ">
+    <div style="border: 1px solid #ccc; border-radius: 10px;">
+      <div class="font-weight-bolder" style="background-color: white; color: black; padding: 10px; border-bottom: 1px solid #ccc; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <div style="display: flex; align-items:flex-end;justify-content: space-between;"   >
+
+                <h2 style="font-size:20px;font-weight:bold" class="css-scxoy8 mb-3 mx-1 mt-4" >Recent Projects</h2>
+
+
+        <a class="btn circle   wow fadeInUp py-2 " style="border-radius: 28px; height: 33px;
+            background: #e2e1e1;
+    color: #504c4c;
+    box-shadow: none;" data-wow-duration="1.8s" href="/customer/ai_models"  >
+                                   
+                                              <span class="nav-link-text ms-1 text-capitalize" > View All »</span>
+                                            </a>
+
+             
+
+
+
+          </div>
+      </div>
+      <div class="px-3" style="background-color: #f4f4f4; padding: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+{% include 'home/connections.html' %}
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+       
+   
+
+ 
+
+
+ 
+
+
+
+
+</section>
+
+
+ 
+
+  </div>
+
+<hr />
+<div style="display:flex;justify-content:center;width:100%">
+
+
+    <!-- start 1 -->
+     <!--   <div class="col-lg-3 col-md-4 col-sm-4 col-6 my-4 mx-3  py-4 px-3 " id='product' style="  
+    padding-top: 10px; 
+
+    border: 2px dashed silver;border-radius: 14px; "   >
+     
+
+   <div class="box" style="      
+      display: flex;
+    flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top:5px ; 
+
+        "
+
+     >
+<svg width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <style>.c{fill:none;stroke:white;stroke-linecap:round;stroke-linejoin:round;}.d{fill:silver;}</style> </defs> <g id="a"></g> <g id="b"> <circle class="d" cx="12" cy="12" r="10.5"></circle> <line class="c" x1="4.5" x2="19.5" y1="12" y2="12"></line> <line class="c" x1="12" x2="12" y1="4.5" y2="19.5"></line> </g> </g></svg>
+
+   <a href='/customer/source-credential?source-val=pye&type_name=ai%20model&redirect=ai_models'  class="btn circle btn-md text-white  wow fadeInUp my-4 w-100 mx-2" style="border-radius: 20px;background-color: #2152ff;" >
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                                              <span class="nav-link-text ms-1 text-uppercase">Create New Project »</span>
+                                            </a>
+
+</div>
+    </div> -->
+
+<!-- end 1 -->
+
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Create Chat Bot Modal -->
+<div class="modal fade" id="subscriptionModal" tabindex="-1" aria-labelledby="subscriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-md">
+    <div class="modal-content p-4  ">
+   <form id="subscription-form" >
+    <h4>Subscribe to Prompts</h4>
+    <p>Enter your email to receive creative prompts:</p>
+    <input class="form-control mb-3" name="email" type="email" id="emailInput" placeholder="Your Email">
+    <button type="submit" id="subscribe-button" class="btn btn-primary w-100">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div> 
+
+
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+<script>
+document.getElementById("subscription-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    document.getElementById("subscribe-button").disabled = true;
+    
+    // Get the form data
+    var formData = new FormData(this);
+    fetch("/customer/subscribe/", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"), // Don't forget to include CSRF token
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        alert("Subscribed successfully.")
+
+    })
+    .catch(error => {
+        alert(String(error));
+    });
+});
+
+// Function to get CSRF token from cookies
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        var cookies = document.cookie.split(";");
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+</script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+
+{% endblock javascripts %}

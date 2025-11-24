@@ -1,0 +1,451 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+  background-color: #252f40;
+  color: white;
+  float: left;
+  font-weight: bold;
+  border: none;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+
+.tablink:hover {
+  background-color: #FF5722;
+
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: white;
+  display: none;
+  padding: 40px;
+  height: 100%;
+  border-radius: 20px; 
+/* background-color: #ffffff;*/
+}
+
+ button.pye {
+    border-top-left-radius: 20px;
+ }
+
+  button.directory_service {
+    border-top-right-radius: 20px;
+ }
+</style>
+
+
+{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+     <div class="banner-area text-combo top-pad-90 rectangular-shape bg-light-gradient ">
+        <div class="item">
+            <div class="box-table">
+                <div class="box-cell">
+                    <div class="containedr mx-4 " style="display: flex; align-items: center; flex-direction: column; width:100%;" >
+
+                        <div class="  px-5" style="width:100%" >
+                               
+
+                                            <div class='search-filter mt-3  ' style="    background: white;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    border: 1.3px solid silver;
+    border-radius: 20px; padding-left: 20px;padding-right: 20px;
+    display: flex; justify-content: space-between;"
+
+
+     >
+   
+    <div style="width:88%"  >
+                                   
+                                  <form method="get" class="form-group has-search   " style="display:flex; flex-direction: row; align-items: center; justify-content:flex-start;" >
+    <div style="width:100%; margin-right:15px ;" >
+    <span style="    margin-top: 4px;" class="fa fa-search form-control-feedback"></span>
+    <input style="    border-radius: 400px;
+    background-color: #2196f314; 
+    height: 44px;padding-left: 40px;
+    " type="text" class="form-control" placeholder="Search Connectors" name="q"   value="{{q}}" >
+    </div>
+   
+           
+  </form>
+<p class="wow fadeInLeft my-1 font-weight-bodld " data-wow-duration="1.5s" style="font-size:17px; color:black;"  >
+                                   Select a connector for your Pipeline, whether it's for the source or target destination. 
+                                    </p>
+                                </div>
+
+
+
+  
+<a class="btn circle btn-md btn-dark wow fadeInUp" style="  background: #394bdb; color: white; border-radius: 20px;  height: 40px" id='next' href="/customer/source-credential?source-val=pye&type_name=blank&exclude={{exclude_args}}&connections_pk={{connections_pk}}" role="button" aria-pressed="true">   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg> Connect »</a>
+
+ 
+
+
+
+</div>
+
+
+
+
+                           </div>
+
+
+
+
+
+
+
+
+
+  <div class="  px-5" style="width:100%" >
+                               
+
+
+ {% if connector_list|length is 0 %}
+ <div class="my-3" style="display: flex;justify-content: center;align-items: center; flex-direction:column;" > 
+   <svg fill="#867979" width="64px" height="64px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#867979"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M520.741 163.801a10.234 10.234 0 00-3.406-3.406c-4.827-2.946-11.129-1.421-14.075 3.406L80.258 856.874a10.236 10.236 0 00-1.499 5.335c0 5.655 4.585 10.24 10.24 10.24h846.004c1.882 0 3.728-.519 5.335-1.499 4.827-2.946 6.352-9.248 3.406-14.075L520.742 163.802zm43.703-26.674L987.446 830.2c17.678 28.964 8.528 66.774-20.436 84.452a61.445 61.445 0 01-32.008 8.996H88.998c-33.932 0-61.44-27.508-61.44-61.44a61.445 61.445 0 018.996-32.008l423.002-693.073c17.678-28.964 55.488-38.113 84.452-20.436a61.438 61.438 0 0120.436 20.436zM512 778.24c22.622 0 40.96-18.338 40.96-40.96s-18.338-40.96-40.96-40.96-40.96 18.338-40.96 40.96 18.338 40.96 40.96 40.96zm0-440.32c-22.622 0-40.96 18.338-40.96 40.96v225.28c0 22.622 18.338 40.96 40.96 40.96s40.96-18.338 40.96-40.96V378.88c0-22.622-18.338-40.96-40.96-40.96z"></path></g></svg>
+   <p> No search found for {{q}} !! </p>
+   </div>
+{% endif %}
+
+
+                                            <div class='search-filter mt-3' style="    background: white;
+   
+
+    border: 1.3px solid silver;
+    border-radius: 20px;" >
+
+
+
+
+
+
+
+
+  {% for key, connect in connector_list.items  %}
+
+{% if key == 'pye' or q %}
+ <button class="tablink text-capitalize {{key}} " id="defaultOpen" onclick="openPage('{{key}}', this, '#FF5722')"  >{{ key }} Connector</button>
+
+{% else %}
+
+{% if key == 'directory service' %}
+
+ <button class="tablink text-capitalize directory_service "
+ {% if q %}
+ id="defaultOpen" 
+{% endif %}
+    onclick="openPage('{{key}}', this, '#FF5722')" >{{ key }}</button>
+ {% else %}
+ <button class="tablink text-capitalize {{key}} " 
+ {% if q %}
+ id="defaultOpen" 
+{% endif %}
+  onclick="openPage('{{key}}', this, '#FF5722')" >{{ key }}</button>
+
+{% endif %}
+{% endif %}
+
+ 
+ {% endfor %}
+
+
+   {% for key, connect in connector_list.items  %}
+
+ <div id="{{key}}" class="tabcontent   " style="margin-top:110px" >
+    <div class="row ">
+    {% for element in connect %}
+
+{% if element.name not in exclude %}
+
+{% if element.disabled %}
+
+ <div class="col-md-2 col-sm-6 card px-3 pb-3 pt-2 m-2 {{element.alias}} " id='disabled' type_name="{{element.name}}"  source-val="{{key}}" style="border-radius:2px; display:flex; align-items: center;
+    justify-content: center; " >
+
+{% else %}
+
+    
+    <div class="col-md-2 col-sm-6 card px-3 pb-3 pt-2 m-2 source {{element.alias}}"  type_name="{{element.name}}"  source-val="{{key}}" style="border-radius:2px; display:flex; align-items: center;
+    justify-content: center;" >
+
+ 
+
+{% endif %}
+
+    <p class="text-left w-100 my-0" style="color: #eee;margin-top: 0px; margin-bottom: 0px; " ><i class="fas fa-check-circle check_class" style="font-size:18px;color: #80808082;" ></i> </p>
+    <img src="{{ element.icon}}" style="width:50px; height: 50px;   border-radius: 6px; " class=" mt-2" >
+     <p class="mt-3 font-weight-bold text-capitalize text-center " style="color:black;" > {{ element.name }} </p>
+    </div>
+
+
+{% endif %}
+
+    {% endfor %}
+  </div>
+
+
+
+</div>
+
+
+
+
+
+ {% endfor %}
+
+
+
+
+ 
+
+
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="main  w-100 my-3 py-2  " style=" padding-left: 30px; ">
+
+
+  
+   
+
+
+
+ 
+</div>
+
+                        </div>  
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+
+<style type="text/css">
+  .main {
+    width: 100%; 
+
+}
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.385rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.385rem;
+    height: 2.385rem;
+    line-height: 2.385rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.source:hover {
+    border: 1px solid #FF5722;
+    border-radius: 3px !important;
+
+}
+
+#disabled p,div{
+     color: silver !important;
+     
+}
+#disabled .check_class{
+     color: #eee !important;
+     
+}
+
+.source:hover .check_class {
+    color: #FF5722 !important;
+}
+
+#hover {
+    border: 1px solid #FF5722;
+    border-radius: 3px !important;
+
+}
+#hover .check_class {
+    color: #FF5722 !important;
+}
+</style>
+
+
+<style type="text/css">
+
+
+  .main {
+    width: 100%; 
+
+}
+
+td,th {
+    padding: 3px !important;  
+
+}
+
+th {
+
+        height: 50px;
+
+}
+ 
+
+
+ 
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+ 
+
+</style>
+
+
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
+  <script>
+
+ $(".blank").attr('id','hover')
+ // $(".MySQL").attr('id','hover')
+ // $(".CSV").attr('id','hover')
+ // $(".Active_Directory").attr('id','hover')
+ // $(".REST").attr('id','hover')
+ // $(".SAP_only").attr('id','hover')
+ // $(".Amazon_S3").attr('id','hover')
+ // $(".MQTT").attr('id','hover')
+
+
+
+
+
+
+
+
+
+
+
+
+
+const connector = "{{connector.pk}}"
+ const source =  $(".source")
+ source.click(function(e){
+ source.removeAttr("id")
+ $(this).attr('id','hover')
+// localStorage.set("source-val", $(this).attr('source-val'))
+const source_url = "/customer/source-credential?source-val=" + ($(this).attr('source-val') || 'pye');
+
+$("#next").attr("href", source_url + "&type_name=" + ($(this).attr('type_name') || "blank")+'&exclude={{exclude_args}}&connections_pk={{connections_pk}}'  );
+
+    })
+
+
+
+ 
+
+ 
+
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+{% endblock javascripts %}
+

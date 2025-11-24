@@ -1,0 +1,332 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Anada - Data Science & Analytics Template">
+
+    <!-- ========== Page Title ========== -->
+    <title>PYE</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/themify-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5/html5shiv.min.js"></script>
+      <script src="assets/js/html5/respond.min.js"></script>;
+    <![endif]-->
+
+    <!-- ========== Google Fonts ========== -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+
+    <!-- Header 
+    ============================================= -->
+    <header id="home">
+
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-light attr-border navbar-fixed dark no-background bootsnav">
+
+            <!-- Start Top Search -->
+            <div class="container">
+                <div class="row">
+                    <div class="top-search">
+                        <div class="input-group">
+                            <form action="#">
+                                <input type="text" name="text" class="form-control" placeholder="Search">
+                                <button type="submit">
+                                    <i class="ti-search"></i>
+                                </button>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Top Search -->
+
+            <div class="container">
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="ti-search"></i></a></li>
+                        <li class="side-menu"><a href="#"><i class="ti-menu-alt"></i></a></li>
+                    </ul>
+                </div>        
+                <!-- End Atribute Navigation -->
+
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <img src="{% static 'assets/img/logo-light.png' %}" class="logo default" alt="Logo">
+                        <img src="{% static 'assets/img/logo.png' %}" class="logo logo-responsive" alt="Logo">
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                      
+                        <li>
+                            <a href="">Home</a>
+                        </li>
+                        <li>
+                            <a href="presentation">Pricing</a>
+                        </li>
+                        {% if '0' in auth %}
+                        <li>
+                            <a href="customer/register">Register</a>
+                        </li>
+                        <li>
+                            <a href="customer/customerclick">Login</a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="customer/dashboard">My profile</a>
+                        </li>
+                        <li>
+                            <a href="logout">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div>
+
+            <!-- Start Side Menu -->
+            <div class="side">
+                <a href="#" class="close-side"><i class="ti-close"></i></a>
+                <div class="widget">
+                    <h4 class="title">Contact Info</h4>
+                    <ul class="contact">
+                        <li>
+                            <div class="icon">
+                                <i class="flaticon-email"></i>
+                            </div>
+                            <div class="info">
+                                <span>Email</span> Info@gmail.com
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <i class="flaticon-call-1"></i>
+                            </div>
+                            <div class="info">
+                                <span>Phone</span> +123 456 7890
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <i class="flaticon-countdown"></i>
+                            </div>
+                            <div class="info">
+                                <span>Office Hours</span> Sat - Wed : 8:00 - 4:00
+                            </div> 
+                        </li>
+                    </ul>
+                </div>
+                <div class="widget">
+                    <h4 class="title">Additional Links</h4>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                    </ul>
+                </div>
+                <div class="widget social">
+                    <h4 class="title">Connect With Us</h4>
+                    <ul class="link">
+                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li class="pinterest"><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li class="dribbble"><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Side Menu -->
+
+        </nav>
+        <!-- End Navigation -->
+
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="f-items default-padding">
+                <div class="row">
+                    <div class="equal-height col-lg-4 col-md-6 item">
+                        <div class="f-item about">
+                            <img src="{% static 'assets/img/logo.png' %}" alt="Logo">
+                            <p>
+                                Required honoured trifling eat pleasure man relation. Assurance yet bed was improving furniture man. Distrusts delighted
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="equal-height col-lg-2 col-md-6 item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Usefull Links</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Classic Business</a>
+                                </li>
+                                <li>
+                                    <a href="#">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="#">Project</a>
+                                </li>
+                                <li>
+                                    <a href="#">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="equal-height col-lg-2 col-md-6 item">
+                        <div class="f-item link">
+                            <h4 class="widget-title">Services</h4>
+                            <ul>
+                                <li>
+                                    <a href="#">Marketing & Sales</a>
+                                </li>
+                                <li>
+                                    <a href="#">Manufacturing</a>
+                                </li>
+                                <li>
+                                    <a href="#">Supply Chain</a>
+                                </li>
+                                <li>
+                                    <a href="#">Data Visualization</a>
+                                </li>
+                                <li>
+                                    <a href="#">Big Data</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="equal-height col-lg-4 col-md-6 item">
+                        <div class="f-item contact">
+                            <h4 class="widget-title">Contact Info</h4>
+                            <p>
+                                 Possible offering at contempt mr distance stronger an. Attachment excellence announcing
+                            </p>
+                            <div class="address">
+                                <ul>
+                                    <li>
+                                        <strong>Email:</strong> 3xotech@gmail.com
+                                    </li>
+                                    <li>
+                                        <strong>Contact:</strong> +44-20-7328-4499
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="social">
+                                <li class="facebook">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li class="twitter">
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                                <li class="youtube">
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                </li>
+                                <li class="instagram">
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>&copy; Copyright 2019. All Rights Reserved by <a href="#">validthemes</a></p>
+                    </div>
+                    <div class="col-lg-6 text-right link">
+                        <ul>
+                            <li>
+                                <a href="#">Terms</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy</a>
+                            </li>
+                            <li>
+                                <a href="#">Support</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shape -->
+        <div class="footer-shape" style="background-image: url(assets/img/shape/1.svg);"></div>
+        <!-- End Shape -->
+    </footer>
+    <!-- End Footer-->
+
+    <!-- jQuery Frameworks
+    ============================================= -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/equal-height.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.appear.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr.custom.13711.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/progress-bar.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/count-to.js' %}"></script>
+    <script src="{% static 'assets/js/YTPlayer.min.js' %}"></script>
+    <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+    <script src="{% static 'assets/js/bootsnav.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+<style type="text/css">
+  
+
+  h1,h2,h3,h4,h5{font-weight:300}a,.btn-link{color:#139FD7}a:hover,.btn-link:hover{color:#118ec0}.page-header{margin-top:10px}.page-header h1{display:flex;flex-flow:row wrap;align-items:center;justify-content:space-between}.page-header h1 span{width:100%;margin-right:10px}.page-header h1 small{display:inline-block;flex-shrink:0;font-size:16px;margin-top:10px;font-weight:300}.page-header h1 small a{text-decoration:underline}@media all and (min-width:768px){.page-header h1{flex-flow:row nowrap}.page-header h1 small{font-size:24px;margin-top:5px}}.btn{border-radius:1.5em}.btn.btn-default{color:#139FD7;border-color:#139FD7}.btn.btn-default:hover{background:#F8F8F8}.btn.btn-primary{background:#139FD7;border-color:#139FD7;color:#fff}.btn.btn-primary:hover{background:#118ec0;border-color:#118ec0}.navbar{border-radius:0}.top-nav{margin-bottom:0;min-height:auto;background:#139FD7;font-size:12px}.top-nav .navbar-right{margin-right:0}.top-nav li a,.top-nav li button.btn-link{color:#fff;padding-top:2.5px;padding-right:0;padding-bottom:2.5px;padding-left:10px}.top-nav li a:hover,.top-nav li button.btn-link:hover{text-decoration:underline;background:none}.top-nav button:focus,.top-nav a:focus,.top-nav li a:focus{background-color:#139FD7;outline:none;text-decoration:none}.primary-navbar{padding:10px 0;margin-bottom:0}.primary-navbar .active a{color:black;font-weight:bold;background-color:white}.primary-navbar li a:hover,.primary-navbar .btn-link:hover{color:inherit;background:none;text-decoration:underline}.primary-navbar li button.btn-link{padding-top:10px;padding-right:5px;padding-bottom:10px;padding-left:15px;margin:0;border:0}@media all and (min-width:768px){.primary-navbar{font-size:18px}.primary-navbar li a{padding-right:0}}.fullscreen-main-navbar{border:none;display:flex;flex-direction:row;align-items:center;flex-wrap:wrap;width:100%;background-color:white;justify-content:space-between}@media all and (min-width:768px){.fullscreen-main-navbar .navbar-header{order:1}.fullscreen-main-navbar .extra-nav-content{order:2}.fullscreen-main-navbar .fullscreen-mini-nav{order:3}}@media all and (max-width:767px){.fullscreen-main-navbar .navbar-header{order:1}.fullscreen-main-navbar .extra-nav-content{order:3}.fullscreen-main-navbar .fullscreen-mini-nav{order:2}}.fullscreen-main-navbar div,.fullscreen-main-navbar .form-inline{display:flex;align-items:baseline}.fullscreen-main-navbar .fullscreen-mini-nav .help-links{display:flex;align-items:baseline}.fullscreen-main-navbar .fullscreen-mini-nav .help-links li a.btn-link{color:#139FD7}.fullscreen-main-navbar #id_editor_toolbar,.fullscreen-main-navbar #id_console_controls,.fullscreen-main-navbar .ng-scope{flex:1;justify-content:space-between}.fullscreen-main-navbar div#id_console_name_wrapper{display:block}.fullscreen-main-navbar li a,.fullscreen-main-navbar li button.btn-link{padding-top:2.5px;padding-right:0;padding-bottom:2.5px;padding-left:10px;border:0;color:#333}.fullscreen-main-navbar button.btn-link{width:100%;text-align:left}.fullscreen-main-navbar button.btn-link:hover{text-decoration:none;background-color:#f5f5f5}.fullscreen-main-navbar button:focus,.fullscreen-main-navbar a:focus,.fullscreen-main-navbar li a:focus{outline:none;text-decoration:none}.fullscreen-main-navbar .navbar-header{margin:0}.fullscreen-main-navbar .extra-nav-content{justify-content:flex-end}.fullscreen-main-navbar .navbar-brand{padding:10px 4px 10px 4px}.help-navbar{align-items:baseline}.fullscreen-hamburger button.navbar-toggle{display:block}.navbar-header{margin-left:1em}.navbar-toggle .icon-bar{background:black}.teacher-navbar{margin-bottom:0;min-height:auto;background:#333;color:#bbb;font-size:12px;padding-top:0.75ex;padding-bottom:0.75ex;text-align:center}.teacher-navbar .navbar-right{margin-right:0}.teacher-navbar a,.teacher-navbar button.btn-link{color:#fff;text-decoration:underline}.admin-nav{margin-bottom:0;min-height:auto;background:#B33;color:#fff;font-size:12px;padding-top:0.75ex;padding-bottom:0.75ex;text-align:center}.admin-nav .navbar-right{margin-right:0}.admin-nav a,.admin-nav button.btn-link{color:#fff;text-decoration:underline}.extra-nav-content{flex:1;flex-wrap:wrap}body{font-family:"Roboto",Arial,sans-serif;margin:0}.icon{width:1em;height:1em;fill:currentColor;vertical-align:middle}.footer-spacer{min-height:3em}.footer{margin-top:1.5em}
+
+
+  .youtube-video-alternative{display:none}@media (max-width:480px){.jumbotron{padding:20px}.jumbotron h1{font-size:40px}}@media (max-width:767px){.jumbotron{padding:40px}.bumf-left{margin-left:0;width:100%;float:left}}@media (max-width:979px){.jumbotron{padding:40px}.bumf-left{margin-left:0;width:100%;float:left}}@media (min-width:1200px){.bumf-left{margin-left:0;margin-right:20px;width:40.4255%;float:left}}.jumbotron h1{font-size:50px;margin-top:12px;padding-bottom:25px;font-weight:bold}.bumf-left{margin-right:30px}#id_main_screenshot{margin-top:10px;box-shadow:12px 12px 29px #555}.carousel{height:250px}.details-stripe{padding:20px}.details-stripe p{font-size:16px!important;line-height:150%}#id_buttons{padding-top:20px;padding-bottom:20px}#id_hosting_details{background-color:#5D707F;color:#EEEEEE;margin-top:50px}#id_hosting_details h1{color:#EEEEEE}#id_hosting_details h2{color:#EEEEEE}#id_hosting_details a{color:#BAE0FF!important}#id_hosting_details a.btn{color:#FFFFFF!important}#id_develop_anywhere_details{background-color:white}#id_education_details{background-color:#5D707F;color:#EEEEEE;margin-top:50px}#id_education_details h1{color:#EEEEEE}#id_education_details h2{color:#EEEEEE}#id_education_details h3{color:#EEEEEE}#id_education_details a{color:#BAE0FF!important}#id_education_details a.btn{color:#FFFFFF!important}#id_support_details{background-color:#6DBEFF}#id_support_details table{border-collapse:separate;border-spacing:10px}#id_support_details a{color:#FFFFFF!important}.jumbotron{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;padding:30px;margin-top:12px}h3{margin-top:0}#id_company_info_strip{color:#888888;padding-top:15px;padding-bottom:15px;margin-left:0;margin-top:30px;margin-bottom:30px;border-radius:6px}
+</style>
+</body>
+</html>

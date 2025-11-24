@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Remita Payment Page</title>
+</head>
+{% load static %}
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Anada - Data Science & Analytics Template">
+
+    <!-- ========== Page Title ========== -->
+    <title>PYE</title>
+
+    <!-- ========== Favicon Icon ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon1.png' %}" type="image/x-icon">
+
+    <!-- ========== Start Stylesheet ========== -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/font-awesome.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/themify-icons.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/flaticon-set.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/magnific-popup.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/animate.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/bootsnav.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" />
+    <!-- ========== End Stylesheet ========== -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="assets/js/html5/html5shiv.min.js"></script>
+      <script src="assets/js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ========== Google Fonts ========== -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Preloader Start -->
+    <div class="se-pre-con"></div>
+    <!-- Preloader Ends -->
+   
+
+
+
+
+
+    <!-- Start Banner 
+    ============================================= -->
+    <div class="banner-area btn-video shape-right top-pad-50 bg-gray text-combo">
+        <div class="item">
+            <div class="box-table">
+                <div class="box-cell">
+                    <div class="container">
+                        <div class="row">
+                            <div class="double-items">
+                                <div class="col-lg-7 info">
+                                    <div class="button wow fadeInLeft" data-wow-duration="1.7s">
+                                        <a class="btn-simple md light" href="/"> Home</a>
+                                    </div>
+                                    <a>
+                                        
+                                    </a>
+                                    <h2 class="wow fadeInDown" data-wow-duration="1s">PAYMENT GATEWAY</h2>
+                                    <p class="wow fadeInUp" data-wow-duration="1.5s">
+                                        
+                                    </p>
+                                    <div class="button wow fadeInLeft" data-wow-duration="1.7s">
+                                        <a class="btn-simple md light" href="#"><i class="fas fa-angle-right"></i> PAYMENT TUTORIAL</a>
+                                        <a href="https://www.youtube.com/watch?v=Ju-86rnV0S8" class="popup-youtube theme video-play-button inline item-center relative">
+                                            <!-- https://www.youtube.com/watch?v=Ju-86rnV0S8&t=65s -->
+                                            <i class="fa fa-play"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 thumb max-right wow fadeInDown" data-wow-duration="1s">
+                                    <img class="shape-animated" src="{% static 'assets/img/illustration/14.png' %}" alt="Thumb">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
+    <div class="services-area left-border default-padding bottom-less">
+    <!-- Shape Fixed Rotation -->
+    <div class="shape-fixed animation-rotation">
+        <img src="{% static 'assets/img/round-shappe.png' %}" alt="Thumb">
+    </div>
+    <!-- Dhape Fixed Rotation -->
+    <style>
+        .custom-input-group {
+            width: 1100px; /* Adjust the width as needed */
+        }
+   </style>
+
+    <div class="container">
+        <div class="services-items">
+            <div class="row">
+                <div class="single-item col-lg-6 col-md-8"> <!-- Adjusted column widths -->
+                    <div class="payment-box blue-box small-box"> <!-- Added "small-box" class -->
+                        <h1>Remita Payment</h1>
+
+                        <form id="paymentForm" method="POST" action="{% url 'process_payment' %}">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="amount">Amount:</label>
+                                <div class="input-group custom-input-group">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" style="border-radius: 5px; background-color: white; color: black; width: 460px; height: 150%;">
+                                            <h6><strong>$20</strong></h6>.USD
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Add other required fields as needed -->
+                            <div class="form-group">
+                                <label for="card_expiry">Card Expiry:</label>
+                                <div class="card-expiry-inputs">
+                                    <input type="text" name="card_expiry_date" id="card_expiry_date" placeholder="MM" required>
+                                    <input type="text" name="card_expiry_month" id="card_expiry_month" placeholder="YY" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="card_expiry">Card Expiry:</label>
+                                <input type="text" name="card_expiry" id="card_expiry" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="card_cvv">CVV:</label>
+                                <input type="text" name="card_cvv" id="card_cvv" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Pay with Remita</button>
+                        </form>
+                    </div>
+                </div>
+                 <div class="col-lg-5 info">
+                    <div class="remita-info">
+                        <h2>Secure and Convenient Payments</h2>
+                        <p>We provide a secure and convenient payment experience for our valued customers. Our platform leverages the trusted Remita payment system, enabling you to make seamless payments for a wide range of services.</p>
+                        <p>Experience the benefits of hassle-free transactions with Remita. From bill payments to fund transfers, Remita offers a variety of payment options, including debit cards, bank transfers, and mobile wallets.</p>
+                        <p>Unlock a world of convenience and reliable payment solutions. Make your payment securely using the form on the right, and gain access to our exceptional facilities and services. If you have any questions or need assistance, our dedicated support team is here to help.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style type="text/css">
+    .blue-box {
+    background-color: #70b2f9;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    margin: 0 auto;
+    }
+
+    .blue-box h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .blue-box .form-group label {
+        color: white;
+        font-weight: bold;
+    }
+    .blue-box h1 {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff; /* Change the color to your desired color, e.g., red */
+    }
+
+    .blue-box .form-group input[type="number"],
+    .blue-box .form-group input[type="text"],
+    .blue-box .form-group input[type="email"] {
+        background-color: rgb(0 0 0);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .blue-box button {
+        background-color: white;
+        color: blue;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .blue-box button:hover {
+        background-color: #fb0000;
+    }
+
+</style>
+    <!-- End Services Area -->
+
+    <!-- Start Why Chose Us -->
+    
+
+
+    
+
+    <!-- jQuery Frameworks -->
+    <!-- ============================================= -->
+    <script src="{% static 'assets/js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/equal-height.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.appear.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr.custom.13711.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/progress-bar.min.js' %}"></script>
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/js/count-to.js' %}"></script>
+    <script src="{% static 'assets/js/YTPlayer.min.js' %}"></script>
+    <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+    <script src="{% static 'assets/js/bootsnav.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

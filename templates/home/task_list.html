@@ -1,0 +1,483 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+     <div class="banner-area text-combo top-pad-90 rectangular-shape bg-light-gradient " style="">
+        <div class="item">
+            <div class="box-table">
+                <div class="box-cell">
+                    <div class="containedr mx-4 ">
+                        <div class="row cardS px-3 my-2" style="display: flex; align-items: flex-start; flex-direction: row; width:100%;">
+
+<div style="display:flex; justify-content:space-between; align-items:center; " >
+                            <h4 class="my-2 text-dark" > Pipelines <svg width="34px" height="34px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 10L12 14L16 10" stroke="#200E32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></h4>
+
+<div class='menu-icon'  style="display: flex; justify-content:space-between;align-items: center; flex-direction: row;">
+
+ 
+
+<span class="icons" >
+<svg fill="#000000" width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M20,1H4A3,3,0,0,0,1,4V14a3,3,0,0,0,3,3H20a3,3,0,0,0,3-3V4A3,3,0,0,0,20,1Zm1,13a1,1,0,0,1-1,1H4a1,1,0,0,1-1-1V4A1,1,0,0,1,4,3H20a1,1,0,0,1,1,1Zm-2-2a1,1,0,0,1-1,1H6a1,1,0,0,1,0-2H18A1,1,0,0,1,19,12Zm0-6a1,1,0,0,1-1,1H16a1,1,0,0,1,0-2h2A1,1,0,0,1,19,6ZM10,6a1,1,0,0,1,1-1h2a1,1,0,0,1,0,2H11A1,1,0,0,1,10,6ZM5,6A1,1,0,0,1,6,5H8A1,1,0,0,1,8,7H6A1,1,0,0,1,5,6ZM19,9a1,1,0,0,1-1,1H16a1,1,0,0,1,0-2h2A1,1,0,0,1,19,9ZM10,9a1,1,0,0,1,1-1h2a1,1,0,0,1,0,2H11A1,1,0,0,1,10,9ZM5,9A1,1,0,0,1,6,8H8a1,1,0,0,1,0,2H6A1,1,0,0,1,5,9Zm9.707,10.293a1,1,0,0,1,0,1.414l-2,2a1,1,0,0,1-1.414,0l-2-2a1,1,0,0,1,1.414-1.414L12,20.586l1.293-1.293A1,1,0,0,1,14.707,19.293Z"></path></g></svg>
+
+</span>
+</div>
+
+
+
+                        </div>
+
+                        <div class='search-filter mt-1' style="    background: white;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    border: 1.3px solid silver;
+    border-radius: 20px; padding-left: 20px; " >
+                                   
+                                  <form method="get" class="form-group has-search   " style="display:flex; flex-direction: row; align-items: center; justify-content:flex-start;" >
+    <div style="width:70%; margin-right:15px ;" >
+    <span style="    margin-top: 4px;" class="fa fa-search form-control-feedback"></span>
+    <input style="    border-radius: 400px;
+    background-color: #2196f314; 
+    height: 44px;padding-left: 40px;
+    " type="text" class="form-control" placeholder="Search Pipelines" name="q"   value="{{q}}" >
+    </div>
+      <span class="mx-4 text-dark font-weight-bold " style="display: flex;" > <svg style="margin-right: 6px;" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 6H19M21 12H16M21 18H16M7 20V13.5612C7 13.3532 7 13.2492 6.97958 13.1497C6.96147 13.0615 6.93151 12.9761 6.89052 12.8958C6.84431 12.8054 6.77934 12.7242 6.64939 12.5617L3.35061 8.43826C3.22066 8.27583 3.15569 8.19461 3.10948 8.10417C3.06849 8.02393 3.03853 7.93852 3.02042 7.85026C3 7.75078 3 7.64677 3 7.43875V5.6C3 5.03995 3 4.75992 3.10899 4.54601C3.20487 4.35785 3.35785 4.20487 3.54601 4.10899C3.75992 4 4.03995 4 4.6 4H13.4C13.9601 4 14.2401 4 14.454 4.10899C14.6422 4.20487 14.7951 4.35785 14.891 4.54601C15 4.75992 15 5.03995 15 5.6V7.43875C15 7.64677 15 7.75078 14.9796 7.85026C14.9615 7.93852 14.9315 8.02393 14.8905 8.10417C14.8443 8.19461 14.7793 8.27583 14.6494 8.43826L11.3506 12.5617C11.2207 12.7242 11.1557 12.8054 11.1095 12.8958C11.0685 12.9761 11.0385 13.0615 11.0204 13.1497C11 13.2492 11 13.3532 11 13.5612V17L7 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>  Filter: </span>
+       <select  class=" form-control form-select" value="{{filter}}" id="filter" name="filter" style="max-width:300px; 
+       padding-left:12px !important;     border-radius: 400px;">
+      <option value="" > -- Select --  </option>
+      <option value="status" > Status  </option>
+      <option value="schedule_time" > Schedule Time  </option>
+ 
+   
+        </select>
+           
+  </form>
+<p class="wow fadeInLeft mb-0 text-secondary font-weight-bolsd " data-wow-duration="1.5s" style="font-size:16px"  >
+                                   Efficiently feed your AI model with near real-time data from private sources.
+                                    </p>
+</div>
+
+   
+
+                                  
+                                    <div class="mt-4" style="display:flex;flex-direction:row;" >
+
+                                         <a href="{% url 'new_task' %}" class="btn circle btn-md btn-dark wow fadeInUp" style="border-radius: 14px;  " >
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                                              <span class="nav-link-text ms-1 text-uppercase">Create Pipeline »</span>
+                                            </a>
+
+                                              <a href="/customer/select_connector" class="btn circle btn-md btn-outline-secondary wow fadeInUp mx-3" style="border-radius: 14px;" >
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/> </svg>
+                                              <span class="nav-link-text ms-1 text-uppercase">Create Connector »</span>
+                                            </a>
+
+
+
+ 
+                                    </div>
+                                     
+          
+
+                                 
+
+
+
+<div class="main mb-4 mt-3">
+  <!-- Actual search box -->
+
+
+
+<div class="  table-responsive" style="    border-radius: 15px;
+    border: 1px solid silver">
+<table class="table    table-hover table-striped table-bordered  " cellspacing="5" cellpadding="5"  >
+
+     <div class='search-filter m-3' style="display:flex; flex-direction: row; align-items: center; justify-content:space-between;" >
+
+<div style="display:flex; flex-direction: row; align-items: center; justify-content:space-between;" >
+<h5> Your work </h5>
+<svg style="margin-left: 20px; cursor: pointer; margin-top:-6px;" onClick="window.location.reload();"  width="28px" height="28px"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.37756 11.6296H6.62756H7.37756ZM7.37756 12.5556L6.81609 13.0528C6.95137 13.2056 7.14306 13.2966 7.34695 13.3049C7.55084 13.3133 7.74932 13.2382 7.89662 13.0969L7.37756 12.5556ZM9.51905 11.5414C9.81805 11.2547 9.82804 10.7799 9.54137 10.4809C9.2547 10.182 8.77994 10.172 8.48095 10.4586L9.51905 11.5414ZM6.56148 10.5028C6.28686 10.1927 5.81286 10.1639 5.50277 10.4385C5.19267 10.7131 5.16391 11.1871 5.43852 11.4972L6.56148 10.5028ZM14.9317 9.0093C15.213 9.31337 15.6875 9.33184 15.9915 9.05055C16.2956 8.76927 16.3141 8.29476 16.0328 7.9907L14.9317 9.0093ZM12.0437 6.25C9.05802 6.25 6.62756 8.653 6.62756 11.6296H8.12756C8.12756 9.49251 9.87531 7.75 12.0437 7.75V6.25ZM6.62756 11.6296L6.62756 12.5556H8.12756L8.12756 11.6296H6.62756ZM7.89662 13.0969L9.51905 11.5414L8.48095 10.4586L6.85851 12.0142L7.89662 13.0969ZM7.93904 12.0583L6.56148 10.5028L5.43852 11.4972L6.81609 13.0528L7.93904 12.0583ZM16.0328 7.9907C15.0431 6.9209 13.6212 6.25 12.0437 6.25V7.75C13.1879 7.75 14.2154 8.23504 14.9317 9.0093L16.0328 7.9907Z" fill="#1C274C"></path> <path d="M16.6188 11.4443L17.1795 10.9462C17.044 10.7937 16.8523 10.703 16.6485 10.6949C16.4447 10.6868 16.2464 10.7621 16.0993 10.9034L16.6188 11.4443ZM14.4805 12.4581C14.1817 12.745 14.1722 13.2198 14.4591 13.5185C14.746 13.8173 15.2208 13.8269 15.5195 13.54L14.4805 12.4581ZM17.4393 13.4972C17.7144 13.8068 18.1885 13.8348 18.4981 13.5597C18.8078 13.2846 18.8358 12.8106 18.5607 12.5009L17.4393 13.4972ZM9.04688 15.0047C8.76342 14.7027 8.28879 14.6876 7.98675 14.9711C7.68472 15.2545 7.66966 15.7292 7.95312 16.0312L9.04688 15.0047ZM11.9348 17.7499C14.9276 17.7499 17.3688 15.3496 17.3688 12.3703H15.8688C15.8688 14.5047 14.1158 16.2499 11.9348 16.2499V17.7499ZM17.3688 12.3703V11.4443H15.8688V12.3703H17.3688ZM16.0993 10.9034L14.4805 12.4581L15.5195 13.54L17.1383 11.9853L16.0993 10.9034ZM16.0581 11.9425L17.4393 13.4972L18.5607 12.5009L17.1795 10.9462L16.0581 11.9425ZM7.95312 16.0312C8.94543 17.0885 10.3635 17.7499 11.9348 17.7499V16.2499C10.792 16.2499 9.76546 15.7704 9.04688 15.0047L7.95312 16.0312Z" fill="#1C274C"></path> <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg>
+</div>
+<div style="display:flex; flex-direction: row; align-items: center; justify-content:space-between;">
+
+                                  <form method="get" class="form-group   "  >
+    
+ <span class="  text-dark font-weight-bold" style="margin-right: 20px; display: flex;" ><svg style="margin-right: 6px;"  width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.875 4.00002C10.875 3.69877 10.6948 3.42676 10.4173 3.30934C10.1399 3.19192 9.81916 3.25188 9.60289 3.46159L5.47789 7.4616C5.33222 7.60285 5.25 7.79711 5.25 8.00002C5.25 8.20293 5.33222 8.39719 5.47789 8.53844L9.60289 12.5384C9.81916 12.7482 10.1399 12.8081 10.4173 12.6907C10.6948 12.5733 10.875 12.3013 10.875 12V8.75002L18 8.75002C18.4142 8.75002 18.75 8.41423 18.75 8.00002C18.75 7.58581 18.4142 7.25002 18 7.25002L10.875 7.25002V4.00002Z" fill="red"></path> <path opacity="0.5" d="M13.125 12C13.125 11.6988 13.3052 11.4268 13.5827 11.3093C13.8601 11.1919 14.1808 11.2519 14.3971 11.4616L18.5221 15.4616C18.6678 15.6029 18.75 15.7971 18.75 16C18.75 16.2029 18.6678 16.3972 18.5221 16.5384L14.3971 20.5384C14.1808 20.7482 13.8601 20.8081 13.5827 20.6907C13.3052 20.5733 13.125 20.3013 13.125 20V16.75H6C5.58579 16.75 5.25 16.4142 5.25 16C5.25 15.5858 5.58579 15.25 6 15.25L13.125 15.25L13.125 12Z" fill="red"></path> </g></svg> Sort by: </span>
+       <select  class=" form-control form-select" value="{{sort}}" id="sort" name="sort" style="width:200px; 
+       padding-left:12px !important;     border-radius: 400px;">
+      <option value="Alphabetically (A-Z)" > Alphabetically (A-Z) </option>
+      <option value="Alphabetically (A-Z)" > Alphabetically (Z-A) </option>
+
+
+        </select>
+           
+  </form>
+</div>
+</div>
+  <thead class="  ">
+    <tr> 
+ 
+
+
+      <th>  <div class="flex-container">Name</div></th> 
+      <th>  <div class="flex-container">Sources</div></th> 
+      <th>  <div class="flex-container">Transformers</div></th> 
+      <th>  <div class="flex-container">Targets</div></th> 
+      <th>  <div class="flex-container">Status</div></th> 
+     <th>  <div class="flex-container">Last Trained</div></th>  
+      <th>  <div class="flex-container">Created By</div></th> 
+      <th>  <div class="flex-container">Date Created</div></th> 
+      <th>  <div class="flex-container"></div></th> 
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+    <tr>
+    
+      <td>  <div class="flex-container">  <svg style="margin-right: 20px;" width="22px" height="22px"  viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="gold"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="gold" fill-rule="evenodd" d="M2.75 2.5A1.75 1.75 0 001 4.25v1C1 6.216 1.784 7 2.75 7h1a1.75 1.75 0 001.732-1.5H6.5a.75.75 0 01.75.75v3.5A2.25 2.25 0 009.5 12h1.018c.121.848.85 1.5 1.732 1.5h1A1.75 1.75 0 0015 11.75v-1A1.75 1.75 0 0013.25 9h-1a1.75 1.75 0 00-1.732 1.5H9.5a.75.75 0 01-.75-.75v-3.5A2.25 2.25 0 006.5 4H5.482A1.75 1.75 0 003.75 2.5h-1zM2.5 4.25A.25.25 0 012.75 4h1a.25.25 0 01.25.25v1a.25.25 0 01-.25.25h-1a.25.25 0 01-.25-.25v-1zm9.75 6.25a.25.25 0 00-.25.25v1c0 .138.112.25.25.25h1a.25.25 0 00.25-.25v-1a.25.25 0 00-.25-.25h-1z" clip-rule="evenodd"></path></g></svg> <span class="ml-3 text-dark"> {{ task.name }} <br/> 
+        <span class="my-1 text-secondary pl-4"> {% if task.description %} {{ task.description }} {% else %} No description {% endif %} </span> </span> </td> 
+
+        
+      <td>  <div class="flex-container">{{ task.get_sources }}</div></td>
+ 
+      <td>  <div class="flex-container">{{ task.get_transformers }}</div></td>
+      <td>  <div class="flex-container">{{ task.get_targets }}</div></td>
+
+
+      {% if task.status == "stopped"  or not task.status  %}
+  <td  >  <div class="flex-container-center" > 
+
+  <svg fill="#200f5c" width="24px" height="24px" viewBox="0 0 32.00 32.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#200f5c" stroke-width="0.00032" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="0" y="0" width="32.00" height="32.00" rx="16" fill="gray" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#a01c1c" stroke-width="6.4"></g><g id="SVGRepo_iconCarrier"> <title>circle</title> <path d="M0 16q0 3.264 1.28 6.208t3.392 5.12 5.12 3.424 6.208 1.248 6.208-1.248 5.12-3.424 3.392-5.12 1.28-6.208-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048z"></path> </g></svg>
+
+   </div></td>
+      {% endif %}
+
+            {% if task.status == "running"  %}
+  <td  >  <div class="flex-container-center" > 
+
+<svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="107px" height="5px" viewBox="0 0 128 6" xml:space="preserve"><rect x="0" y="0" width="100%" height="100%" fill="#FFFFFF"/><path fill="#c5e8d9" d="M3.034,0.054H8.081A2.973,2.973,0,1,1,8.081,6H3.034A2.973,2.973,0,1,1,3.034.054Zm14.6,0h5.047a2.973,2.973,0,1,1,0,5.946H17.638A2.973,2.973,0,1,1,17.638.054Zm14.6,0h5.047a2.973,2.973,0,1,1,0,5.946H32.242A2.973,2.973,0,1,1,32.242.054Zm14.6,0h5.047a2.973,2.973,0,1,1,0,5.946H46.846A2.973,2.973,0,1,1,46.846.054Zm14.6,0H66.5A2.973,2.973,0,1,1,66.5,6H61.45A2.973,2.973,0,1,1,61.45.054Zm14.6,0H81.1A2.973,2.973,0,1,1,81.1,6H76.054A2.973,2.973,0,1,1,76.054.054Zm14.6,0H95.7A2.973,2.973,0,1,1,95.7,6H90.658A2.973,2.973,0,1,1,90.658.054Zm14.6,0h5.047a2.973,2.973,0,1,1,0,5.946h-5.047A2.973,2.973,0,1,1,105.262.054Zm14.6,0h5.047a2.973,2.973,0,1,1,0,5.946h-5.047A2.973,2.973,0,1,1,119.866.054Z"/><g><path fill="#13a165" d="M-26.993,0H-7.235A3,3,0,0,1-4.228,3,3,3,0,0,1-7.235,6H-26.993A3,3,0,0,1-30,3,3,3,0,0,1-26.993,0Z"/><animateTransform attributeName="transform" type="translate" values="16 0;30 0;44.5 0;59 0;74 0;88.5 0;103 0;117.5 0;132 0;147 0;160.5 0" calcMode="discrete" dur="990ms" repeatCount="indefinite"/></g></svg>
+
+   </div></td>
+      {% endif %}
+
+
+
+        {% if task.status == "paused"  %}
+  <td  > <div class="flex-container-center" > 
+
+  <svg fill="#200f5c" width="24px" height="24px" viewBox="0 0 32.00 32.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#200f5c" stroke-width="0.00032" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="0" y="0" width="32.00" height="32.00" rx="16" fill="blue" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#a01c1c" stroke-width="6.4"></g><g id="SVGRepo_iconCarrier"> <title>circle</title> <path d="M0 16q0 3.264 1.28 6.208t3.392 5.12 5.12 3.424 6.208 1.248 6.208-1.248 5.12-3.424 3.392-5.12 1.28-6.208-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048z"></path> </g></svg>
+
+   </div></td>
+      {% endif %}
+
+
+        {% if task.status == "error"  %}
+  <td  > <div class="flex-container-center" > 
+
+  <svg fill="#200f5c" width="24px" height="24px" viewBox="0 0 32.00 32.00" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#200f5c" stroke-width="0.00032" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"><rect x="0" y="0" width="32.00" height="32.00" rx="16" fill="red" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#a01c1c" stroke-width="6.4"></g><g id="SVGRepo_iconCarrier"> <title>circle</title> <path d="M0 16q0 3.264 1.28 6.208t3.392 5.12 5.12 3.424 6.208 1.248 6.208-1.248 5.12-3.424 3.392-5.12 1.28-6.208-1.28-6.208-3.392-5.12-5.088-3.392-6.24-1.28q-3.264 0-6.208 1.28t-5.12 3.392-3.392 5.12-1.28 6.208zM4 16q0-3.264 1.6-6.016t4.384-4.352 6.016-1.632 6.016 1.632 4.384 4.352 1.6 6.016-1.6 6.048-4.384 4.352-6.016 1.6-6.016-1.6-4.384-4.352-1.6-6.048z"></path> </g></svg>
+
+   </div></td>
+      {% endif %}
+
+  
+      <td>  <div class="flex-container">{{ task.last_run_date }} : {{ task.last_run_time }} </div></td>
+
+      <td>  <div class="flex-container">{{ task.created_by }}</div></td>
+      <td>  <div class="flex-container">{{ task.date_created }} : {{ task.time_created }} </div></td>
+      <td>  <div class="flex-container">
+
+
+               {% if not task.status == "running"  %}
+
+
+             {% if task.status == "paused"  %}
+
+         <a href="/customer/task-cri?task_pk={{task.pk}}&action=resume" class="" style="margin-bottom:0;">
+
+            <svg fill="#2196f3" width="30px" height="30px" style="margin-right: 6px; margin-left: 6px;" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <path d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"></path> </g></svg>
+
+</a>  
+
+{% else %}
+
+   <a href="/customer/task-cri?task_pk={{task.pk}}&action=play" class="" style="margin-bottom:0;">
+
+            <svg fill="#1ec258" width="30px" height="30px" style="margin-right: 6px; margin-left: 6px;" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>play</title> <path d="M5.92 24.096q0 1.088 0.928 1.728 0.512 0.288 1.088 0.288 0.448 0 0.896-0.224l16.16-8.064q0.48-0.256 0.8-0.736t0.288-1.088-0.288-1.056-0.8-0.736l-16.16-8.064q-0.448-0.224-0.896-0.224-0.544 0-1.088 0.288-0.928 0.608-0.928 1.728v16.16z"></path> </g></svg>
+
+</a>
+
+{% endif %}
+
+
+{% else %}
+
+ <a href="/customer/task-cri?task_pk={{task.pk}}&action=pause" class="" style="margin-bottom:0;">
+
+          <svg width="24px" height="20px" style="margin-right: 8px; margin-left: 6px;"  viewBox="-1 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>pause [#1006]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-227.000000, -3765.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M172,3605 C171.448,3605 171,3605.448 171,3606 L171,3612 C171,3612.552 171.448,3613 172,3613 C172.552,3613 173,3612.552 173,3612 L173,3606 C173,3605.448 172.552,3605 172,3605 M177,3606 L177,3612 C177,3612.552 176.552,3613 176,3613 C175.448,3613 175,3612.552 175,3612 L175,3606 C175,3605.448 175.448,3605 176,3605 C176.552,3605 177,3605.448 177,3606" id="pause-[#1006]"> </path> </g> </g> </g> </g></svg>
+
+</a>
+
+{% endif %}
+
+
+  {% if not task.status == "stopped" and not task.status == 'error'  %}
+
+
+           <a href="/customer/task-cri?task_pk={{task.pk}}&action=stop" class="" style="margin-bottom:0;">
+<svg fill="#b31e1e" height="22px" width="22px" version="1.1" id="Capa_1" style="margin-right: 6px;"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297 297" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M148.5,0C66.486,0,0,66.486,0,148.5S66.486,297,148.5,297S297,230.514,297,148.5S230.514,0,148.5,0z M213.292,190.121 c0,12.912-10.467,23.379-23.378,23.379H106.67c-12.911,0-23.378-10.467-23.378-23.379v-83.242c0-12.912,10.467-23.379,23.378-23.379 h83.244c12.911,0,23.378,10.467,23.378,23.379V190.121z"></path> </g></svg>
+</a>
+
+{% else %}
+
+
+
+           <a disabled class="" style="margin-bottom:0;">
+<svg fill="silver" height="22px" width="22px" version="1.1" id="Capa_1" style="margin-right: 6px;"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 297 297" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M148.5,0C66.486,0,0,66.486,0,148.5S66.486,297,148.5,297S297,230.514,297,148.5S230.514,0,148.5,0z M213.292,190.121 c0,12.912-10.467,23.379-23.378,23.379H106.67c-12.911,0-23.378-10.467-23.378-23.379v-83.242c0-12.912,10.467-23.379,23.378-23.379 h83.244c12.911,0,23.378,10.467,23.378,23.379V190.121z"></path> </g></svg>
+</a>
+
+{% endif %}
+
+
+
+        <a href="/customer/task-cri?task_pk={{task.pk}}"  class=" mx-3" style="margin-bottom:0;"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20.1497 7.93997L8.27971 19.81C7.21971 20.88 4.04971 21.3699 3.27971 20.6599C2.50971 19.9499 3.06969 16.78 4.12969 15.71L15.9997 3.84C16.5478 3.31801 17.2783 3.03097 18.0351 3.04019C18.7919 3.04942 19.5151 3.35418 20.0503 3.88938C20.5855 4.42457 20.8903 5.14781 20.8995 5.90463C20.9088 6.66146 20.6217 7.39189 20.0997 7.93997H20.1497Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 21H12" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+
+        <a a_var="{{task.pk}}" class="delete" data-bs-toggle="modal" data-bs-target="#exampleModal"
+         href="" class=" " style="margin-bottom:0;"><svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M6 10L7.70141 19.3578C7.87432 20.3088 8.70258 21 9.66915 21H14.3308C15.2974 21 16.1257 20.3087 16.2986 19.3578L18 10" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+      </div></td>
+    </tr>
+   {% empty %}
+        <tr>
+            <td colspan="6">No tasks found.</div></td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<div class="m-4" style="display: flex; justify-content:flex-end; align-items:center;" >
+{% if tasks.has_other_pages %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if tasks.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ tasks.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for i in tasks.paginator.page_range %}
+                {% if tasks.number == i %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if tasks.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ tasks.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+
+<div class="results-per-page">
+  <label for="resultsPerPage">Results per page:</label>
+  <select id="resultsPerPage" onchange="changeResultsPerPage(this.value)">
+    <option value="5" {% if tasks.paginator.per_page == 5 %}selected{% endif %}>5</option>
+    <option value="10" {% if tasks.paginator.per_page == 10 %}selected{% endif %}>10</option>
+    <option value="20" {% if tasks.paginator.per_page == 20 %}selected{% endif %}>20</option>
+    <option value="30" {% if tasks.paginator.per_page == 30 %}selected{% endif %}>30</option>
+    <!-- Add more options for different results per page as needed -->
+  </select>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+
+          
+          
+        </div>
+      </div>
+    </div>
+
+    
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header   " style="background-color:#333;" >
+          <h5 class="modal-title text-white " id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="btn-close btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-danger text-center ">
+              
+Do you want to delete this task ?
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-danger">
+<a id='next' href="/customer/task-cri?task_pk={{task.pk}}&action=delete" class="text-white">
+Delete
+        </a>
+
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+
+<style type="text/css">
+
+ 
+ 
+
+  .main {
+    width: 100%; 
+
+}
+
+td,th {
+    padding: 3px !important;  
+
+}
+
+th {
+
+        height: 50px;
+
+}
+.flex-container {
+        padding-left:10px ;
+            display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 50px;
+    word-wrap: break-word;
+}
+.flex-container-center {
+        padding-left:10px ;
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+}
+
+ 
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+
+
+  <script>
+
+
+function changeResultsPerPage(resultsPerPage) {
+    // Get the current URL and remove the existing 'page' query parameter
+    const url = window.location.href;
+    const urlWithoutPage = url.replace(/[\?&]page=\d+/gi, '');
+
+    // Redirect to the new URL with the updated 'per_page' query parameter
+    window.location.href = `${urlWithoutPage}?per_page=${resultsPerPage}`;
+  }
+
+  
+
+     
+
+
+ const source =  $(".delete")
+ source.click(function(e){
+ const task_pk = $(this).attr('a_var')
+
+
+const source_url = "/customer/task-cri?task_pk="+task_pk +"&action=delete"  
+
+$("#next").attr("href",source_url)
+
+    })
+
+
+
+
+     
+  </script>
+
+
+  <script>
+
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+{% endblock javascripts %}
+

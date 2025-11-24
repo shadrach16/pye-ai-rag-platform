@@ -1,0 +1,1001 @@
+{% load static %}
+{% load humanize %}
+
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style type="text/css">
+  
+  /* Dropdown Button */
+.dropbtn {
+  font-size: 14px;
+  border: none;
+  height: 40px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute; 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: #3e8e41;}
+ 
+/* Modal Header */
+#deleteModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+#chatModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+#shareModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+
+
+/* Modal Header */
+#exampleModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+/* Modal Content */
+#exampleModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+#exampleModal  .modal-footer {
+  padding: 0px; 
+  color: white;
+  padding-right: 12px;
+  padding-top: 7px;
+  background-color: white;
+}
+/* Modal Body */
+.modal-body {padding: 0px !important;}
+
+/* Modal Footer */
+#chatModal .modal-footer {
+  padding: 0px; 
+  color: white;
+  width: 50%;
+  margin: 4px;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 13px;
+}
+
+/* Modal Content */
+#deleteModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+#chatModal .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 20; opacity: 1}
+}
+
+
+ .user-icon {
+  width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+ }
+
+    .message {
+      padding: 6px;
+      margin-bottom: 10px;
+    }
+
+    .user-message {
+/*      background-color: #f5f5f5;*/
+      padding: 6px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+/*    color: #333;*/
+    overflow-x: auto;
+    text-wrap: wrap;
+    }
+
+ #chatbot:hover {
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.edit-icon {
+  float: right;
+}
+
+.message {
+      display: flex;
+}
+
+input {
+  min-height: 40px;
+}
+
+pre {
+      padding: 10px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    overflow-x: auto;
+    text-wrap: wrap;
+        background-color: #dcdcdc5e;
+    border-top: 1px solid #c0c0c096;
+    border-bottom: 1px solid #c0c0c096;
+}
+
+.flex-container {
+        padding-left:10px ;
+            display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 50px;
+}
+
+}
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menus {
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+          margin-top: -18px;
+          margin-left: 30px;
+}
+
+.menus svg {
+  margin-right: 13px;
+}
+
+
+ 
+  .custom-col {
+    flex-basis: 25%;
+    max-width: 25%;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+
+.dropdown-content a {
+  border-bottom: 1px solid #eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+     body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            margin: 20px 0;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+    .info-container {
+            margin-top: 20px;
+        }
+        .info-container p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .info-button {
+            display: inline-block;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .info-button:hover {
+            background-color: #0056b3;
+        }
+        .info-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+
+</style>
+{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="main mb-4  ">
+
+
+<div class="  mt-2" style="padding-left:0px !important;
+padding-right:0px !important; margin-top: 10px;">
+
+ {% if chatbots|length is 0 %}
+ <div style="display: flex;justify-content: center;align-items: center; flex-direction:column;" > 
+   <svg fill="#867979" width="64px" height="64px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#867979"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M520.741 163.801a10.234 10.234 0 00-3.406-3.406c-4.827-2.946-11.129-1.421-14.075 3.406L80.258 856.874a10.236 10.236 0 00-1.499 5.335c0 5.655 4.585 10.24 10.24 10.24h846.004c1.882 0 3.728-.519 5.335-1.499 4.827-2.946 6.352-9.248 3.406-14.075L520.742 163.802zm43.703-26.674L987.446 830.2c17.678 28.964 8.528 66.774-20.436 84.452a61.445 61.445 0 01-32.008 8.996H88.998c-33.932 0-61.44-27.508-61.44-61.44a61.445 61.445 0 018.996-32.008l423.002-693.073c17.678-28.964 55.488-38.113 84.452-20.436a61.438 61.438 0 0120.436 20.436zM512 778.24c22.622 0 40.96-18.338 40.96-40.96s-18.338-40.96-40.96-40.96-40.96 18.338-40.96 40.96 18.338 40.96 40.96 40.96zm0-440.32c-22.622 0-40.96 18.338-40.96 40.96v225.28c0 22.622 18.338 40.96 40.96 40.96s40.96-18.338 40.96-40.96V378.88c0-22.622-18.338-40.96-40.96-40.96z"></path></g></svg>
+   <p class="text-secondary" > Empty Bots !! </p>
+
+   <p   class="  w-25 mt-2 text-center " style="  text-transform: capitalize;"> 
+             Create a new ChatBot  </p>
+ 
+   </div>
+
+
+{% endif %}
+
+
+  <div class="row">
+          {% for chatbot in chatbots %}
+    <div class="custom-col mb-2 mx-2  " id='chatbot' style="background:#ffffff; 
+    padding: 0px; border: 1px solid #d3d3d3;" pk="{{chatbot.pk}}" >
+      
+
+      <div class="box m-2" style="      
+      display: flex;
+    flex-direction: row;
+        height: 90px;
+      "
+     >
+ 
+ 
+
+{% if chatbot.get_image %}
+  <img   src="{{chatbot.get_image}}" width="75px" height="75px" style="border: 1px solid silver;
+    border-radius: 12px;
+    padding: 4px;"  />
+{% else %}
+<svg  alt='{{chatbot.name}}'  style="height: 75px; 
+width: 75px;border: 1px solid silver;
+    border-radius: 12px;
+    padding: 4px;"  viewBox="0 -19.5 164 164" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19.2329 89.0831C17.3341 89.4211 15.7432 89.7559 14.1371 89.9817C7.06966 90.976 1.51901 86.5687 0.48068 79.5288C-1.0289 69.307 6.73229 58.1139 14.141 55.0389C16.6482 53.9986 19.5794 53.9795 23.0364 53.3665C32.2494 32.1615 49.7618 21.7934 73.5423 20.3488C73.8921 16.4462 74.238 12.5935 74.6022 8.54059C73.5751 8.11988 72.3431 7.95977 71.6796 7.26077C70.7134 6.24344 69.5996 4.84016 69.5957 3.59771C69.5918 2.53116 70.9221 0.709891 71.8974 0.535306C74.597 0.0535535 77.542 -0.276629 80.1608 0.325233C83.5048 1.0938 83.9852 3.75262 81.8548 6.48561C81.4171 6.9389 81.1341 7.51899 81.0462 8.14288C81.224 11.6156 81.5273 15.081 81.7616 18.179C88.0211 18.7375 94.0055 19.0381 99.9211 19.8421C119.273 22.472 132.088 33.3508 139.077 51.3896C139.194 51.6909 139.333 51.9849 139.478 52.2744C139.549 52.3747 139.633 52.4656 139.727 52.5448C142.943 52.5448 146.247 52.1103 149.393 52.6347C156.138 53.7583 161.178 57.4004 162.853 64.3477C164.528 71.2951 161.862 77.0616 156.759 81.6435C151.742 86.1493 145.621 87.389 138.993 86.5404C138.746 86.7453 138.532 86.987 138.359 87.2571C130.949 104.691 117.203 114.915 99.7662 120.658C84.6227 125.684 68.3154 126.026 52.9746 121.639C36.0424 116.958 23.8017 107.182 19.2329 89.0831ZM74.3653 116.033C77.9548 115.728 81.5686 115.59 85.1292 115.09C99.4118 113.083 112.05 107.628 121.744 96.6153C138.759 77.2881 134.524 42.1123 104.846 32.3558C93.8566 28.746 82.3857 26.5243 70.7233 27.2725C57.6687 28.1106 46.2832 33.0968 37.8617 43.4256C30.0513 53.0022 26.6062 64.3694 26.3233 76.5471C25.9125 94.2223 34.5276 106.232 51.1808 112.095C58.6448 114.649 66.4731 115.979 74.362 116.032L74.3653 116.033ZM20.0205 60.3756C19.7421 60.3376 19.4597 60.3412 19.1824 60.3861C12.7641 62.2757 6.45466 73.2929 8.09026 79.6823C8.58579 81.6199 9.81316 82.7712 11.7592 82.8092C13.8765 82.8512 16.0005 82.5894 17.5501 82.4949C18.4092 74.7881 19.2099 67.6156 20.0185 60.3742L20.0205 60.3756ZM141.736 77.21C145.278 77.15 148.678 75.8064 151.305 73.4289C154.874 70.1905 155.296 65.2817 152.224 62.4522C149.242 59.7061 145.667 58.9152 141.736 59.7146V77.21Z" fill="#000000"></path> <path d="M84.8075 82.0252C86.4018 82.3193 88.1725 82.2825 89.5331 83.0097C90.1516 83.3495 90.6946 83.8115 91.129 84.3676C91.5634 84.9238 91.8802 85.5624 92.06 86.2448C92.3344 88.1095 90.7172 89.0671 88.9411 89.2994C88.0814 89.4143 87.2076 89.3635 86.367 89.1498C84.8505 88.6937 83.2428 88.6309 81.6954 88.9674C80.148 89.304 78.7116 90.0287 77.5215 91.0734C76.1714 92.182 74.5896 93.0209 73.233 91.3781C72.0319 89.9236 72.5832 88.2348 73.7817 86.9346C75.1549 85.3673 76.8518 84.1166 78.7554 83.269C80.659 82.4214 82.7239 81.9971 84.8075 82.0252Z" fill="#000000"></path> <path d="M57.7186 52.5112C61.4295 52.6392 63.7503 55.2876 63.5495 59.1645C63.3893 62.2533 60.9084 64.7434 58.1203 64.6154C54.9698 64.4703 52.4724 61.3206 52.607 57.6582C52.7442 53.9453 54.2853 52.3924 57.7186 52.5112Z" fill="#000000"></path> <path d="M93.575 57.3327C93.5684 54.2361 94.7564 52.8328 97.4244 52.7856C100.873 52.7245 103.039 54.689 102.96 57.8066C102.891 60.4916 100.78 62.7678 98.3 62.8282C95.4672 62.8971 93.5822 60.7024 93.575 57.3327Z" fill="#000000"></path> </g></svg>
+
+{% endif %}
+
+
+<div class="mx-3" style="width:70%"   >
+<h4 class="  font-weight-bold " style="font-size: 16px; height:22px; overflow:hidden; text-transform:capitalize; " pk="{{chatbot.pk}}" >{% if chatbot.get_configs.header_title %}{{chatbot.get_configs.header_title}}{% else %}{{chatbot.name}}{% endif %}</h4>
+
+ 
+<p class="mt-0 mb-1"  style="font-size: 13px; height:22px; overflow:hidden;" pk="{{chatbot.pk}}" class="chatbot_model   " >{{chatbot.get_configs.task}}..  </p>
+ 
+
+
+<div class="mb-2"   style="font-size:13px;color:silver;" >
+
+    <span class="mr-2" > <span class="text-dark font-weight-bolder" >API-ID:</span>  {{ chatbot.api_id }}  </span>  &#x2022; <span style="    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 4px;"   class="user_img   bg-success rounded-pill w-20 mr-2 text-white "> {{ user|safe|slice:":2"}}</span> 
+
+
+</div>
+
+
+
+
+</div>
+
+ 
+</div>
+  <div class="m-2"  style="display: flex; align-items: center;justify-content: space-between;" >
+  <div class="m-2"  style="display: flex; align-items: center;" >
+
+
+    <div aria-label="runs" data-microtip-position="left" role="tooltip" class="css-gl59so " style="margin-right:8px;display: flex;align-items: center;"><svg preserveAspectRatio="xMidYMin" width="14" height="14"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5"></circle> <path d="M15 20.6151C14.0907 20.8619 13.0736 21 12 21C8.13401 21 5 19.2091 5 17C5 14.7909 8.13401 13 12 13C15.866 13 19 14.7909 19 17C19 17.3453 18.9234 17.6804 18.7795 18" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg> <span class="css-10z1dta " style="font-size: 13px;">{{chatbot.get_chat_users|intword}}</span></div>
+
+
+  <div aria-label="comments" data-microtip-position="left" role="tooltip" class="css-gl59so" style="margin-right:4px;display: flex;align-items: center;" ><svg preserveAspectRatio="xMidYMin" width="14" height="14"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0L24 0 24 24 0 24z"></path> <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.702 0-3.305-.425-4.708-1.175L2 22l1.176-5.29C2.426 15.306 2 13.703 2 12 2 6.477 6.477 2 12 2zm0 2c-4.418 0-8 3.582-8 8 0 1.335.326 2.618.94 3.766l.35.654-.656 2.946 2.948-.654.653.349c1.148.614 2.43.939 3.765.939 4.418 0 8-3.582 8-8s-3.582-8-8-8zm1 3v5h4v2h-6V7h2z"></path> </g> </g></svg><span class="css-10z1dta mx-1" style="font-size: 13px;">{{chatbot.get_chat_history|intword}}</span></div>
+
+
+  <div aria-label="likes" data-microtip-position="left" role="tooltip" class="css-gl59so"  style="margin-right:8px;display: flex;align-items: center;" ><svg preserveAspectRatio="xMidYMin" width="12" height="12"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#1C274C"></path> </g></svg><span class="css-10z1dta mx-1" style="font-size: 13px;">{{chatbot.share_count|intword}}</span></div>
+
+&#x2022;
+
+<span class="mx-2" style="font-size: 13px;" > {{ chatbot.last_update|timesince  }}  </span> 
+
+</div>
+ 
+<div class="dropdown">
+  <button class="dropbtn"><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4ZM15 5C15 6.65685 13.6569 8 12 8C10.3431 8 9 6.65685 9 5C9 3.34315 10.3431 2 12 2C13.6569 2 15 3.34315 15 5ZM12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11ZM15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12ZM11 19C11 18.4477 11.4477 18 12 18C12.5523 18 13 18.4477 13 19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19ZM12 22C13.6569 22 15 20.6569 15 19C15 17.3431 13.6569 16 12 16C10.3431 16 9 17.3431 9 19C9 20.6569 10.3431 22 12 22Z" fill="#000000"></path> </g></svg></button>
+  <div class="dropdown-content" style="font-size: 14px; background-color: white; opacity:1">
+
+
+
+
+<a href="/customer/customize_bot?name={{connection.name}}&connections_pk={{connection.pk}}&api_id={{chatbot.api_id}}"    pk="{{chatbot.pk}}" chat-name="{{chatbot.name}}"  
+    class='edit-bot' > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#2b248f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#2b248f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Preview / Edit</a>
+
+
+
+    <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal"  class="share-chat-btn" chat-name="{{chatbot.name}}"  pk="{{chatbot.pk}}" api_id="{{chatbot.api_id}}" > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#1C274C"></path> </g></svg>
+     Connect Bot</a>
+    
+
+    <a href="#"  data-bs-toggle="modal" data-bs-target="#deleteModal" pk="{{chatbot.pk}}" chat-name="{{chatbot.name}}" 
+    class='delete-bot' > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 -5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-518.000000, -1146.000000)" fill="#bd0f0f"> <path d="M540.647,1159.24 C541.039,1159.63 541.039,1160.27 540.647,1160.66 C540.257,1161.05 539.623,1161.05 539.232,1160.66 L536.993,1158.42 L534.725,1160.69 C534.331,1161.08 533.692,1161.08 533.298,1160.69 C532.904,1160.29 532.904,1159.65 533.298,1159.26 L535.566,1156.99 L533.327,1154.76 C532.936,1154.37 532.936,1153.73 533.327,1153.34 C533.718,1152.95 534.352,1152.95 534.742,1153.34 L536.981,1155.58 L539.281,1153.28 C539.676,1152.89 540.314,1152.89 540.708,1153.28 C541.103,1153.68 541.103,1154.31 540.708,1154.71 L538.408,1157.01 L540.647,1159.24 L540.647,1159.24 Z M545.996,1146 L528.051,1146 C527.771,1145.98 527.485,1146.07 527.271,1146.28 L518.285,1156.22 C518.074,1156.43 517.983,1156.71 517.998,1156.98 C517.983,1157.26 518.074,1157.54 518.285,1157.75 L527.271,1167.69 C527.467,1167.88 527.723,1167.98 527.979,1167.98 L527.979,1168 L545.996,1168 C548.207,1168 550,1166.21 550,1164 L550,1150 C550,1147.79 548.207,1146 545.996,1146 L545.996,1146 Z" id="delete" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg> Delete</a>
+    
+  </div>
+</div>
+
+
+</div>
+    </div>
+   
+          {% endfor %}
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+ 
+
+<!-- share Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+     
+    <div class="modal-body" id='modal-body'  > 
+   
+  </div>
+  
+    </div>
+  </div>
+</div>
+ 
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="background:white;"  >
+        <h6 class="text-secondary pt-1" style="font-size:24px;"  ><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12C4 13.3807 5.11929 14.5 6.5 14.5C7.88071 14.5 9 13.3807 9 12C9 10.6193 7.88071 9.5 6.5 9.5" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 6.5L9 10" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 17.5L9 14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M16.5 21C17.8807 21 19 19.8807 19 18.5C19 17.1193 17.8807 16 16.5 16C15.1193 16 14 17.1193 14 18.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M18.665 6.74993C17.9746 7.94566 16.4457 8.35535 15.2499 7.66499C14.0542 6.97464 13.6445 5.44566 14.3349 4.24993C15.0252 3.0542 16.5542 2.64451 17.7499 3.33487" stroke="#000000" stroke-width="1.5" stroke-linecap="round"></path> </g></svg> <span class="pt-1" > Connect to Bot </span>  <span id='Containertooltip' ></span>  </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body m-3"   style="    padding: 14px;
+    height: 55vw; ">
+     
+ 
+
+    <section id="info-section">
+        <h2>API Credentials</h2>
+        <p>Your API credentials include <strong>User ID</strong> and <strong>API ID</strong>. These are necessary for interacting with the chatbot API and embedding the chatbot into your application:</p>
+        
+
+       <div class="info-container" id="infoContainer">
+        <p> <pre><button class="bg-white p-1" onclick="CopyToClipboard('api_id')" class="copy " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button><code><strong style="margin-right: 20px;font-weight: bolder;" > API_ID: </strong>  <span id="apiId">******************************</span> </pre></code></p>
+        
+        <p><pre><button class="bg-white p-1" onclick="CopyToClipboard('userId')" class="copy " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button><code><strong style="margin-right: 20px;font-weight: bolder;"> USER_ID: </strong> <span id="userId">******************************</span></pre></code></p>
+   <button class="bg-white p-1 info-button" onclick="toggleInfo()">Show Info</button>
+
+    </div>
+
+    </section>
+
+
+
+
+
+    <hr />
+    
+<section id="link-integration">
+    <h2 class="link_description"  >1. Connect via Browser</h2>
+    <p>You can access the chatbot directly using a URL. This method is simple and straightforward.</p>
+    <h3>Example:</h3>
+    <pre><code  class="link">GET: <span id="apiContainer" ></span> <button class="bg-white p-1" onclick="CopyToClipboard('directly')" class="copy p-1 " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button></code></pre>
+    <p>Simply open the above URL in your browser to interact with the chatbot.</p>
+</section>
+
+
+<br />
+<section id="api-integration">
+    <h2  class="link_description" >2. Connect via API </h2>
+    <p>You can interact with the chatbot using API requests. This method is suitable for more advanced integrations where you need to programmatically send and receive messages.</p>
+    <h3>API Endpoint:</h3>
+    <pre><code> <span id="msgApiContainer" ></span>  <button class="bg-white p-1" onclick="CopyToClipboard('api_endpoint')" class="copy " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button></code></pre>
+  
+        <h3>Example using JavaScript (Fetch API):</h3>
+        <pre ><button class="bg-white p-1" onclick="CopyToClipboard('fetch_api')" class="copy " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button><code id="fetch_api" >fetch('http://192.168.117.97:8030/customer/process_message', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        message: &lt;MESSAGE&gt;,
+        api_id: &lt;API_ID&gt;,
+        user_id: &lt;USER_ID&gt;>
+    })
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Response:', data);
+})
+.catch(error => {
+    console.error('Error:', error);
+});</code></pre>
+    <p>Use the above JavaScript code to send a message to the chatbot and log the response.</p>
+</section>
+
+ 
+
+<br />
+
+
+   <section id="iframe-integration">
+        <h2>3. Connect via Iframe (Embed)  </h2>
+        <p>You can embed the chatbot into your website using an iframe. This allows the chatbot to be part of your webpage layout.</p>
+        <h3>HTML Code Example:</h3>
+        <pre><button   class="bg-white p-1" onclick="CopyToClipboard('iframe-html')" class="copy p-1 " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button> <code id='iframe-html'>&lt;div class="chat-button" onclick="toggleChat()"&gt;
+   &lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"&gt;&lt;g id="SVGRepo_bgCarrier" stroke-width="0"&gt;&lt;/g&gt;&lt;g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;/g&gt;&lt;g id="SVGRepo_iconCarrier"&gt; &lt;path fill="#EBEEEF" d="M50 0c27.613 0 50 22.386 50 50s-22.387 50-50 50C22.386 100 0 77.614 0 50S22.386 0 50 0z"&gt;&lt;/path&gt; &lt;defs&gt; &lt;circle id="a" cx="50" cy="50" r="50"&gt;&lt;/circle&gt; &lt;/defs&gt; &lt;clipPath id="b"&gt; &lt;use xlink:href="#a" overflow="visible"&gt;&lt;/use&gt; &lt;/clipPath&gt; &lt;g clip-path="url(#b)"&gt; &lt;path fill="#F1C40E" d="M45 61h10c11.046 0 20 8.954 20 20v8c0 11.046-8.954 20.001-20 20.001H45c-11.046 0-20-8.955-20-20.001v-8c0-11.046 8.954-20 20-20z"&gt;&lt;/path&gt; &lt;path fill="#FFF55C" d="M49.865 79.994c-2.042 0-3.863 1.538-3.863 3.152 0 .685.51 1.19 1.24 1.19.847 0 1.152-.504 1.38-.985.244-.519.439-.963 1.335-.963.793 0 1.398.377 1.398 1.061 0 .588-.701.798-1.318 1.267-.72.546-1.535 1.166-1.535 2.226 0 .606.429 1.223 1.224 1.223.889 0 1.088-.49 1.25-.907.061-.157.116-.308.207-.438.125-.178.436-.396.764-.625.867-.608 2.057-1.441 2.057-2.938 0-2.409-2.231-3.263-4.139-3.263zm-.1 9.126c-.78 0-1.412.646-1.412 1.438 0 .797.632 1.439 1.412 1.439.78 0 1.411-.646 1.411-1.439s-.631-1.438-1.411-1.438zM51 53c7.732 0 14 4.479 14 10.001C65 68.521 58.732 73 51 73s-14-4.479-14-9.999C37 57.479 43.268 53 51 53z"&gt;&lt;/path&gt; &lt;path fill="#4D301A" d="M33 47.001h36A2 2 0 0 1 71 49v11a2 2 0 0 1-2 2H33a2 2 0 0 1-2-2V49a2 2 0 0 1 2-1.999z"&gt;&lt;/path&gt; &lt;path fill="#DF9274" d="M51 19c11.046 0 20 11.193 20 25 0 13.809-8.954 25-20 25S31 57.809 31 44c0-13.807 8.954-25 20-25z"&gt;&lt;/path&gt; &lt;path fill="#ffffff" d="M43.5 43a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"&gt;&lt;/path&gt; &lt;path fill="#3498DB" d="M43.5 45a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"&gt;&lt;/path&gt; &lt;path fill="#ffffff" d="M57.5 43a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7z"&gt;&lt;/path&gt; &lt;path fill="#3498DB" d="M57.5 45a1.5 1.5 0 1 1-.002 3.002A1.5 1.5 0 0 1 57.5 45z"&gt;&lt;/path&gt; &lt;path fill="#4D301A" d="M70.619 39.143C68.811 27.661 60.716 19 51 19c-10.006 0-18.296 9.186-19.768 21.179 1.559.524 11.375 3.339 23.859-5.729 2.589 2.925 7.729 7.181 15.528 4.693z"&gt;&lt;/path&gt; &lt;path fill="#C0392C" d="M70.027 37c-1.202.008-.996 3.358-.996 7.5 0 .835-.012 1.637-.02 2.388-1.045 1.618-3.777 5.537-7.025 7.566-2.707 1.692-6.332 2.837-8.23 3.364A3 3 0 1 0 51 62a2.995 2.995 0 0 0 2.891-2.236c1.27-.306 5.731-1.474 8.916-3.463 2.562-1.603 4.854-4.363 6.262-6.294.1 1.233.353 1.993.958 1.993C73.326 52 76 48.642 76 44.5s-2.674-7.522-5.973-7.5zM32 37c-3.313-.022-6 3.358-6 7.5s2.687 7.5 6 7.5c1.283 0 1-3.358 1-7.5s.207-7.492-1-7.5z"&gt;&lt;/path&gt; &lt;/g&gt; &lt;/g&gt;&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;div class="chat-iframe-container" id="chatIframeContainer"&gt;
+  &lt;div class="close-button" onclick="toggleChat()"&gt;
+            &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"&gt;
+                &lt;path d="M18.36 6.64a1.5 1.5 0 00-2.12 0L12 8.88 7.76 4.64a1.5 1.5 0 00-2.12 2.12L9.88 12l-4.24 4.24a1.5 1.5 0 002.12 2.12L12 13.12l4.24 4.24a1.5 1.5 0 002.12-2.12L14.12 12l4.24-4.24a1.5 1.5 0 000-2.12z"/&gt;
+            &lt;/svg&gt;
+        &lt;/div&gt;
+   <span id='iframeContainer' ></span>
+&lt;/div&gt;
+
+&lt;style&gt;
+    .chat-button {
+            position: fixed;
+            bottom: 80px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          z-index: 10000;
+
+        }
+        .chat-button svg {
+            width: 57px;
+            height: 60px;
+            fill: #fff;
+        }
+        .chat-iframe-container {
+            position: fixed;
+             bottom: 144px;
+            right: 20px;
+            width: 480px;
+            height: 650px;
+            display: none;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius:8px;
+          z-index: 10000;
+            
+        }
+        .chat-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+            .close-button {
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            width: 25px;
+            height: 25px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .close-button svg {
+            width: 23px;
+            height: 14px;
+            fill: #fff;
+        }
+
+        iframe {
+          border-radius:8px;
+        }
+
+&lt;/style&gt;
+        </code></pre>
+        <p>Copy and paste the above code into your HTML file where you want the chatbot to appear. Include the following JavaScript to toggle the iframe display:</p>
+        <pre><button   class="bg-white p-1" onclick="CopyToClipboard('iframe-script')" class="copy p-1 " style="float: right; border: 1px solid gray; border-radius:5px; color: black; font-size: 13px; " > <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M21 8C21 6.34315 19.6569 5 18 5H10C8.34315 5 7 6.34315 7 8V20C7 21.6569 8.34315 23 10 23H18C19.6569 23 21 21.6569 21 20V8ZM19 8C19 7.44772 18.5523 7 18 7H10C9.44772 7 9 7.44772 9 8V20C9 20.5523 9.44772 21 10 21H18C18.5523 21 19 20.5523 19 20V8Z" fill="#9f9999"></path> <path d="M6 3H16C16.5523 3 17 2.55228 17 2C17 1.44772 16.5523 1 16 1H6C4.34315 1 3 2.34315 3 4V18C3 18.5523 3.44772 19 4 19C4.55228 19 5 18.5523 5 18V4C5 3.44772 5.44772 3 6 3Z" fill="#9f9999"></path> </g></svg> Copy </button><code id='iframe-script'>&lt;script&gt;
+function toggleChat() {
+    const chatContainer = document.getElementById('chatIframeContainer');
+    if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+        chatContainer.style.display = 'block';
+    } else {
+        chatContainer.style.display = 'none';
+    }
+}
+&lt;/script&gt;</code></pre>
+    </section>
+
+ 
+
+
+
+  </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+<!-- Delete Chat Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-white py-2" id="deleteModalLabel">Delete Chatbot</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body px-5 ">
+    <p class="text-center my-4 text-danger" ><svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 -5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-518.000000, -1146.000000)" fill="#bd0f0f"> <path d="M540.647,1159.24 C541.039,1159.63 541.039,1160.27 540.647,1160.66 C540.257,1161.05 539.623,1161.05 539.232,1160.66 L536.993,1158.42 L534.725,1160.69 C534.331,1161.08 533.692,1161.08 533.298,1160.69 C532.904,1160.29 532.904,1159.65 533.298,1159.26 L535.566,1156.99 L533.327,1154.76 C532.936,1154.37 532.936,1153.73 533.327,1153.34 C533.718,1152.95 534.352,1152.95 534.742,1153.34 L536.981,1155.58 L539.281,1153.28 C539.676,1152.89 540.314,1152.89 540.708,1153.28 C541.103,1153.68 541.103,1154.31 540.708,1154.71 L538.408,1157.01 L540.647,1159.24 L540.647,1159.24 Z M545.996,1146 L528.051,1146 C527.771,1145.98 527.485,1146.07 527.271,1146.28 L518.285,1156.22 C518.074,1156.43 517.983,1156.71 517.998,1156.98 C517.983,1157.26 518.074,1157.54 518.285,1157.75 L527.271,1167.69 C527.467,1167.88 527.723,1167.98 527.979,1167.98 L527.979,1168 L545.996,1168 C548.207,1168 550,1166.21 550,1164 L550,1150 C550,1147.79 548.207,1146 545.996,1146 L545.996,1146 Z" id="delete" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>  Are you sure you want to delete this bot? </p>
+      <div class="modal-footer" style="width: 100%;">
+
+        <a type="button" href="" id="deleteBtn" class="btn circle btn-md btn-danger wow fadeInUp" style="    height: 40px"    role="button" aria-pressed="true"> Delete »</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+ 
+
+
+  <script>
+
+ 
+ 
+
+        function toggleInfo() {
+
+            const USER_ID = '{{user}}';
+        const API_ID =  localStorage.getItem('connect_api_id' )
+        
+            const infoContainer = document.getElementById('infoContainer');
+            const userIdSpan = document.getElementById('userId');
+            const apiIdSpan = document.getElementById('apiId');
+            const button = document.querySelector('.info-button');
+            
+            if (button.textContent = 'Show Info') {
+                userIdSpan.textContent = USER_ID;
+                apiIdSpan.textContent = API_ID;
+                button.style.display = 'none';
+       }
+        }
+
+
+
+
+ function goBack() {
+      window.history.back();
+    }
+
+
+
+function CopyToClipboard(link){
+  console.log('tooltipEl',link)
+  if (link === 'api_id'){
+    var copyText = document.getElementById("apiId");
+  } else if (link === 'directly'){
+    var copyText = document.getElementById("apiContainer");
+  } else if (link === 'userId'){
+    var copyText = document.getElementById("userId");
+  }else if (link === 'api_endpoint'){
+    var copyText = document.getElementById("msgApiContainer");
+  }else if (link === 'fetch_api'){
+    var copyText = document.getElementById("fetch_api");
+  }else if (link === 'iframe-html'){
+    var copyText = document.getElementById("iframe-html");
+  } else {
+    var copyText = document.getElementById("iframe-script");
+  }
+     var tooltipEl = document.getElementById("Containertooltip")
+   
+  navigator.clipboard.writeText(copyText.textContent);
+  tooltipEl.innerHTML= ` <svg style="margin-left: 5px;" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0ea427" d="M512 64a448 448 0 110 896 448 448 0 010-896zm-55.808 536.384l-99.52-99.584a38.4 38.4 0 10-54.336 54.336l126.72 126.72a38.272 38.272 0 0054.336 0l262.4-262.464a38.4 38.4 0 10-54.272-54.336L456.192 600.384z"></path></g></svg> Copied`
+
+}
+
+
+
+
+      
+
+
+
+
+$(".share-chat-btn").click(function(event) {
+
+
+   var api_id = $(this).attr('api_id')
+   localStorage.setItem('connect_api_id',api_id)
+
+var apiString =   `${document.location.origin}/customer/chatbot/iframe/<API_ID>?user_id=<USER_ID>`
+    var apiContainer = document.getElementById('apiContainer');
+        apiContainer.textContent = apiString;
+
+
+var msgApiContainerString =   `${document.location.origin}/customer/process_message?message=<MESSAGE>&api_id=<API_ID>?user_id=<USER_ID>`
+    var msgApiContainer = document.getElementById('msgApiContainer');
+        msgApiContainer.textContent = msgApiContainerString;
+
+
+var iframeString = `<iframe id="chatIframe" src="${document.location.origin}/customer/chatbot/iframe/<API_ID>?user_id=<USER_ID>" width="100%" height="100%" frameborder="0"></iframe>`;
+        var iframeContainer = document.getElementById('iframeContainer');
+        iframeContainer.textContent = iframeString;
+
+})
+$(".chat-btn").click(function(event) {
+
+   var api_id = $(this).attr('api_id')
+
+$("#chatModal #modal-body").html( `<iframe src="/customer/chatbot/iframe/<API_ID>?user_id=<USER_ID>" width="100%" height="600" frameborder="0"></iframe>`)
+//     getMessage( pk) 
+$("#chat-modal-header").text("Preview - "+$(this).attr('chat-name') +" (Bot)")
+// localStorage.setItem("selectedConn",pk)
+});
+    
+$(".delete-bot").click(function(event) {  
+localStorage.setItem("selectedConn",$(this).attr('pk'))
+
+$("#deleteBtn").attr('href',`/customer/chatbot/delete?pk=${$(this).attr('pk')}&connections_pk={{connection.pk}}`)
+$("h6#deleteModalLabel").text("Delete Chatbot (" + $(this).attr('chat-name')+")" )
+$("input#chatbots_pk").val($(this).attr('pk') )
+// localStorage.setItem("selectedConn",pk)
+});
+    
+    
+ 
+
+ 
+
+ $(".create-bot").click(function(event) {  
+localStorage.setItem("selectedConn",$(this).attr('pk'))
+localStorage.setItem("bot-status",'create')
+
+$("h6#exampleModalLabel").text("Create Personalized bot for " + $(this).attr('chat-name') )
+$("input#connections_pk").val($(this).attr('pk') )
+// localStorage.setItem("selectedConn",pk)
+});
+
+ 
+
+ $(".edit-bot").click(function(event) {  
+localStorage.setItem("selectedConn",$(this).attr('pk'))
+localStorage.setItem("bot-status",'edit')
+
+$("h6#exampleModalLabel").text("Edit " + $(this).attr('chat-name')+" Task Prompt" )
+$("input#connections_pk").val($(this).attr('pk') )
+populateForm($(this).attr('pk')); 
+});
+
+
+
+ 
+
+
+ 
+
+// Send message to the server
+function sendMessage(message) {
+
+
+
+  $('#send-button').html(animationIcon)
+  $('#send-button').prop('disabled', true);
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      message: message,
+      pk:localStorage.getItem("selectedConn"),
+      uuid:generateSystemUUID()
+    },
+    success: function(res) {
+      // Handle the response from the server
+        $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+      displayResponse(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+// Handle user input and send the message
+function handleUserInput() {
+  var inputField = document.getElementById('input-field');
+  var message = inputField.value.trim();
+
+  if (message !== '') {
+    displayMessage(message);
+    sendMessage(message);
+    inputField.value = '';
+  }
+}
+
+
+
+function getMessage(pk) {
+  // Make an AJAX request to the server
+
+  $('#send-button').html(animationIcon)
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      pk ,
+      uuid:generateSystemUUID()
+    },
+    success: function(res) {
+      // Handle the response from the server
+      mergeMessage(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+
+function mergeMessage(response){
+  let chat_history = JSON.parse(JSON.parse(response).chat_history||'[]')
+  // displayResponse(JSON.parse(response).greeting ||"Hi, how can I help you today?")
+  chat_history.forEach(chat=>{
+
+if (chat.type === "HumanMessage"){
+  displayMessage(chat.content)
+} else {
+  displayResponse(chat.content)
+}
+ 
+  })
+        $('#send-button').html(sendIcon)
+
+ 
+}
+
+
+// Display user message in the chat container
+
+  function displayMessage(message) {
+  var chatContainer = document.getElementById('chat-container');
+  var messageElement = document.createElement('div');
+  messageElement.classList.add('message', 'user-message');
+
+  // Create SVG user icon element
+//   var userIcon = document.createElement("img");
+// userIcon.setAttribute("class", "icon user-icon");
+// userIcon.setAttribute("src", "https://img.icons8.com/?size=512&id=84861&format=png");
+// userIcon.setAttribute("style", "border-radius:500px;");
+ 
+
+  // Create message text element
+  var messageText = document.createElement('span');
+  messageText.textContent = message;
+
+  // Create SVG icon element at the end of the message
+  var svgIcon = document.createElement("img");
+svgIcon.setAttribute("class", "icon edit-icon");
+svgIcon.setAttribute("src", "https://img.icons8.com/?size=512&id=42322&format=png");
+
+  // Append elements to the message element
+//  messageElement.appendChild(userIcon);
+  messageElement.appendChild(messageText);
+  // messageElement.appendChild(svgIcon);
+
+  // Append message element to the chat container
+  chatContainer.appendChild(messageElement);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  let s =  document.getElementById('modal-body')
+s.scrollTop = s.scrollHeight;
+
+}
+
+
+// Display bot response in the chat container
+function displayResponse(response) {
+  var chatContainer = document.getElementById('chat-container');
+  var messageElement = document.createElement('pre');
+  messageElement.classList.add('message', 'bot-message');
+  messageElement.textContent = response;
+  chatContainer.insertAdjacentElement('beforeend', messageElement);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  let s =  document.getElementById('modal-body')
+s.scrollTop = s.scrollHeight;
+
+}
+
+// Attach event listener to the send button
+$('#send-button').click(handleUserInput);
+
+
+
+function changeResultsPerPage(resultsPerPage) {
+    // Get the current URL and remove the existing 'page' query parameter
+    const url = window.location.href;
+    const urlWithoutPage = url.replace(/[\?&]page=\d+/gi, '');
+
+    // Redirect to the new URL with the updated 'per_page' query parameter
+    window.location.href = `${urlWithoutPage}?per_page=${resultsPerPage}`;
+  }
+
+
+
+
+  </script>
+{% endblock javascripts %}
+

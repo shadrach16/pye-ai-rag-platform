@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot</title>
+</head>
+<body>
+ 
+<script>
+    var $SCRIPT_ROOT = 'http://localhost:8000';
+</script>
+    <script type="text/javascript" src="{% static 'app.js' %}">
+
+    </script>
+
+ 
+  <script src="{% static 'jAlert-master/dist/jAlert.min.js' %}"></script> 
+  <script src="{% static 'jAlert-master/dist/jAlert-functions.min.js' %}"></script> 
+  
+<script type="text/javascript">
+    function alert(content) {
+      $.jAlert({
+        'title': 'Alert',
+        'content': content,
+        'theme': 'dark_green',
+        'btns': { 'text': 'close' }
+      }
+
+
+</script>
+</body>
+</html>

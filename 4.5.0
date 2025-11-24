@@ -1,0 +1,27 @@
+Collecting pydantic
+  Using cached pydantic-2.8.2-py3-none-any.whl.metadata (125 kB)
+Collecting typing-extensions
+  Using cached typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting coloredlogs
+  Using cached coloredlogs-15.0.1-py2.py3-none-any.whl.metadata (12 kB)
+Collecting scipy==1.10.1
+  Using cached scipy-1.10.1-cp39-cp39-win_amd64.whl.metadata (58 kB)
+Requirement already satisfied: numpy<1.27.0,>=1.19.5 in c:\python\python39\lib\site-packages (from scipy==1.10.1) (1.23.5)
+Requirement already satisfied: annotated-types>=0.4.0 in c:\python\python39\lib\site-packages (from pydantic) (0.7.0)
+Requirement already satisfied: pydantic-core==2.20.1 in c:\python\python39\lib\site-packages (from pydantic) (2.20.1)
+Collecting humanfriendly>=9.1 (from coloredlogs)
+  Using cached humanfriendly-10.0-py2.py3-none-any.whl.metadata (9.2 kB)
+Collecting pyreadline3 (from humanfriendly>=9.1->coloredlogs)
+  Using cached pyreadline3-3.4.1-py3-none-any.whl.metadata (2.0 kB)
+Downloading scipy-1.10.1-cp39-cp39-win_amd64.whl (42.5 MB)
+   ---------------------------------------- 42.5/42.5 MB 1.8 MB/s eta 0:00:00
+Using cached pydantic-2.8.2-py3-none-any.whl (423 kB)
+Downloading typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Downloading coloredlogs-15.0.1-py2.py3-none-any.whl (46 kB)
+   ---------------------------------------- 46.0/46.0 kB 1.2 MB/s eta 0:00:00
+Downloading humanfriendly-10.0-py2.py3-none-any.whl (86 kB)
+   ---------------------------------------- 86.8/86.8 kB 1.6 MB/s eta 0:00:00
+Downloading pyreadline3-3.4.1-py3-none-any.whl (95 kB)
+   ---------------------------------------- 95.2/95.2 kB 1.4 MB/s eta 0:00:00
+Installing collected packages: pyreadline3, typing-extensions, scipy, humanfriendly, coloredlogs, pydantic
+Successfully installed coloredlogs-15.0.1 humanfriendly-10.0 pydantic-2.8.2 pyreadline3-3.4.1 scipy-1.10.1 typing-extensions-4.12.2

@@ -1,0 +1,224 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Code Editor {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% load widget_tweaks %}
+
+{% block content %}
+        <div class="banner-area text-combo top-pad-90 rectangular-shape bg-light-gradient ">
+        	<form id="coder_form" class="form" method="post">
+<div class="editor-header" style="display:flex; flex-direction: row; justify-content:space-between; align-items: center; " >
+
+<div style="display:flex; flex-direction: row; align-items: center; justify-content: center; " >
+{% if update %}
+<span>
+ PYE Code (Copied)
+</span>
+{% else %}
+<span>
+ Code
+</span>
+
+{% endif %}
+
+  <select style="max-width:200px; height:35px;" class="form-select mx-3" id="transfomer_type" name="transfomer_type">
+        <option value="">Select Option </option>
+       
+        {% for transtype in transformers_type %}
+
+      {% if transformer_type == transtype.type %}
+
+          <option selected value="{{ transtype.type }}">{{ transtype.type }} </option>
+      {% else %}
+          <option value="{{ transtype.type }}">{{ transtype.type }} </option>
+          {% endif %}
+
+
+          {% endfor %}
+    </select>
+
+  </div>
+
+
+{% if update %}
+
+<button type="button" class="btn btn-sm btn-success text-white my-0 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Save Transformer
+</button> 
+{% else %}
+<button type="button" class="btn btn-sm btn-success text-white my-0 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Create Transformer
+</button>  
+{% endif %}
+
+</div> 
+        {% csrf_token %}
+
+
+        <div id="mydiv">
+                <textarea data-editor="twilight" name="code" cols="163" rows="24" required id="id_program">
+     
+     {{code}}
+        </textarea>
+        </div>
+
+ 
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header   " style="background-color:#333;" >
+          <h5 class="modal-title text-white " id="exampleModalLabel">TRANSFORMER DETAILS</h5>
+          <button type="button" class="btn-close btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+
+            {% if is_public %}
+            <input required type="text" class="form-control" id="name" name="name" placeholder="Transformer Name" value={{name}} >
+
+            {% else %}
+ <input required type="text" class="form-control" id="name" name="name" placeholder="Transformer Name" value={{name}} disabled >
+            {% endif %}
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" placeholder="Description.."  >{{description}}</textarea>
+          </div>
+
+          <div class="mb-3">
+    <label for="public" class="form-label">Public</label>
+    <select class="form-select" id="public" name="is_public">
+        <option value="">Select Option</option>
+        <option value="True">Yes</option>
+        <option value="False">No</option>
+    </select>
+</div>
+
+      <div class="mb-3">
+    <label for="transfomer_type" class="form-label">Type</label>
+    <select class="form-select" id="transfomer_type" name="transfomer_type">
+        <option value="">Select Option</option>
+       
+        {% for transtype in transformers_type %}
+      {% if transtype.type %}
+          <option value="{{ transtype.type }}">{{ transtype.type }} </option>
+          {% endif %}
+
+          {% endfor %}
+    </select>
+</div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Code</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</form>
+
+
+
+
+ 
+</div>
+
+<!-- <div class="alert alert-danger mx-6" role="alert">
+  {{error}} 
+
+
+</div> -->
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+
+<style type="text/css">
+   
+
+<style>
+textarea{
+        height: 100%;
+        width: 100%;
+        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+        box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#mydiv{
+        height: 500px;
+        width: 1000px;
+}
+
+.editor-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+}
+
+</style>
+
+</style>
+
+	<script src="{% static 'ace/ace.js' %}"></script> 
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ -->
+
+     <script>
+                $(function () {
+                    $('textarea[data-editor]').each(function () {
+                var textarea = $(this);
+                var theme = textarea.data('editor');
+                var editDiv = $('<div>', {
+                    position: 'absolute',
+                    width: textarea.width(),
+                    height: textarea.height(),
+                   'class': textarea.attr('class')
+                 }).insertBefore(textarea);
+
+                textarea.css('visibility', 'hidden');
+                ace.require("ace/ext/language_tools");
+                var editor = ace.edit(editDiv[0]);
+
+                editor.setOptions({enableLiveAutocompletion: true, cursorStyle: 'ace', showGutter: true, showLineNumbers: true});
+                editor.setFontSize(16);
+                editor.getSession().setValue(textarea.val());
+                editor.getSession().setMode("ace/mode/python");
+                editor.setTheme("ace/theme/" + theme);
+
+                textarea.closest('form').submit(function () {
+                textarea.val(editor.getSession().getValue());
+            })
+          });
+        });
+</script>
+
+
+  <script>
+ 
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+    
+{% endblock javascripts %}
+

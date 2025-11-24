@@ -1,0 +1,629 @@
+{% load static %}
+{% load humanize %}
+
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style type="text/css">
+  
+  /* Dropdown Button */
+.dropbtn {
+  font-size: 14px;
+  border: none;
+  height: 40px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute; 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: #3e8e41;}
+ 
+/* Modal Header */
+#deletePromptModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+#chatModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+#shareModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+
+
+/* Modal Header */
+#exampleModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+/* Modal Content */
+#exampleModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+#exampleModal  .modal-footer {
+  padding: 0px; 
+  color: white;
+  padding-right: 12px;
+  padding-top: 7px;
+  background-color: white;
+}
+/* Modal Body */
+.modal-body {padding: 0px !important;}
+
+/* Modal Footer */
+#chatModal .modal-footer {
+  padding: 0px; 
+  color: white;
+  width: 50%;
+  margin: 4px;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 13px;
+}
+
+/* Modal Content */
+#deletePromptModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+#chatModal .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 20; opacity: 1}
+}
+
+
+ .user-icon {
+  width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+ }
+
+    .message {
+      padding: 6px;
+      margin-bottom: 10px;
+    }
+
+    .user-message {
+/*      background-color: #f5f5f5;*/
+      padding: 6px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+/*    color: #333;*/
+    overflow-x: auto;
+    text-wrap: wrap;
+    }
+
+ #chatbot:hover {
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.edit-icon {
+  float: right;
+}
+
+.message {
+      display: flex;
+}
+
+input {
+  min-height: 40px;
+}
+
+pre {
+      padding: 10px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    overflow-x: auto;
+    text-wrap: wrap;
+        background-color: #dcdcdc5e;
+    border-top: 1px solid #c0c0c096;
+    border-bottom: 1px solid #c0c0c096;
+}
+
+.flex-container {
+        padding-left:10px ;
+            display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 50px;
+}
+
+}
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menus {
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+          margin-top: -18px;
+          margin-left: 30px;
+}
+
+.menus svg {
+  margin-right: 13px;
+}
+
+
+ 
+  .custom-col-prompt {
+    flex-basis: 48.4%;
+    max-width: 48.4%;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+
+.dropdown-content a {
+  border-bottom: 1px solid #eee;
+}
+
+.custom-col-prompt pre {
+      height: 140px;
+}
+
+
+</style>
+{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="main mb-4  ">
+
+
+<div class="  mt-4" style="padding-left:0px !important;
+padding-right:0px !important; margin-top: 10px;">
+
+ {% if prompts|length is 0 %}
+ <div style="display: flex;justify-content: center;align-items: center; flex-direction:column;" > 
+   <svg fill="#867979" width="64px" height="64px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#867979"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M520.741 163.801a10.234 10.234 0 00-3.406-3.406c-4.827-2.946-11.129-1.421-14.075 3.406L80.258 856.874a10.236 10.236 0 00-1.499 5.335c0 5.655 4.585 10.24 10.24 10.24h846.004c1.882 0 3.728-.519 5.335-1.499 4.827-2.946 6.352-9.248 3.406-14.075L520.742 163.802zm43.703-26.674L987.446 830.2c17.678 28.964 8.528 66.774-20.436 84.452a61.445 61.445 0 01-32.008 8.996H88.998c-33.932 0-61.44-27.508-61.44-61.44a61.445 61.445 0 018.996-32.008l423.002-693.073c17.678-28.964 55.488-38.113 84.452-20.436a61.438 61.438 0 0120.436 20.436zM512 778.24c22.622 0 40.96-18.338 40.96-40.96s-18.338-40.96-40.96-40.96-40.96 18.338-40.96 40.96 18.338 40.96 40.96 40.96zm0-440.32c-22.622 0-40.96 18.338-40.96 40.96v225.28c0 22.622 18.338 40.96 40.96 40.96s40.96-18.338 40.96-40.96V378.88c0-22.622-18.338-40.96-40.96-40.96z"></path></g></svg>
+   <p class="text-secondary" > Empty Prompts !! </p>
+
+   <a href='/customer/prompt_writer'   class="  btn text-white btn-sm w-25 mt-2 " style="background:#0053a6; text-transform: capitalize;"> 
+             Create New Prompt  <svg preserveAspectRatio="xMidYMin" width="16" height="16" style="font-size:16px;rotate:0deg;margin-left:3px;margin-top:-3px" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="css-492dz9"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.25 3C14.25 2.58579 14.5858 2.25 15 2.25H21C21.4142 2.25 21.75 2.58579 21.75 3V9C21.75 9.41421 21.4142 9.75 21 9.75C20.5858 9.75 20.25 9.41421 20.25 9V4.81066L10.5303 14.5303C10.2374 14.8232 9.76256 14.8232 9.46967 14.5303C9.17678 14.2374 9.17678 13.7626 9.46967 13.4697L19.1893 3.75H15C14.5858 3.75 14.25 3.41421 14.25 3ZM5 6.75C4.66848 6.75 4.35054 6.8817 4.11612 7.11612C3.8817 7.35054 3.75 7.66848 3.75 8V19C3.75 19.3315 3.8817 19.6495 4.11612 19.8839C4.35054 20.1183 4.66848 20.25 5 20.25H16C16.3315 20.25 16.6495 20.1183 16.8839 19.8839C17.1183 19.6495 17.25 19.3315 17.25 19V13C17.25 12.5858 17.5858 12.25 18 12.25C18.4142 12.25 18.75 12.5858 18.75 13V19C18.75 19.7293 18.4603 20.4288 17.9445 20.9445C17.4288 21.4603 16.7293 21.75 16 21.75H5C4.27065 21.75 3.57118 21.4603 3.05546 20.9445C2.53973 20.4288 2.25 19.7293 2.25 19V8C2.25 7.27065 2.53973 6.57118 3.05546 6.05546C3.57118 5.53973 4.27065 5.25 5 5.25H11C11.4142 5.25 11.75 5.58579 11.75 6C11.75 6.41421 11.4142 6.75 11 6.75H5Z"></path></svg>  </a>
+ 
+   </div>
+
+
+{% endif %}
+
+
+  <div class="row">
+          {% for prompt in prompts %}
+    <div class="custom-col-prompt mb-2 mx-2  " id='chatbot' style="background:#ffffff; 
+    padding: 0px; border: 1px solid #d3d3d3;" pk="{{prompt.pk}}" >
+      
+
+      <div class="box mt-2 mx-2" style="      
+      display: flex;
+    flex-direction: row;
+        height: 90px;
+      "
+     >
+ 
+ 
+
+{% if prompt.get_image %}
+  <img   src="{{prompt.get_image}}" width="75px" height="75px" style="border: 1px solid silver;
+    border-radius: 12px;
+    padding: 4px;"  />
+{% else %}
+<svg  alt='{{prompt.name}}'  style="height: 75px; 
+width: 75px;border: 1px solid silver;
+    border-radius: 12px;
+    padding:2px" width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.19 2H7.81C4.17 2 2 4.17 2 7.81V16.18C2 19.83 4.17 22 7.81 22H16.18C19.82 22 21.99 19.83 21.99 16.19V7.81C22 4.17 19.83 2 16.19 2ZM9.6 16.2C9.6 17.19 8.79 18 7.8 18C6.81 18 6 17.19 6 16.2C6 15.21 6.81 14.4 7.8 14.4H8.6C9.15 14.4 9.6 14.85 9.6 15.4V16.2ZM9.6 8.6C9.6 9.15 9.15 9.6 8.6 9.6H7.8C6.81 9.6 6 8.79 6 7.8C6 6.81 6.81 6 7.8 6C8.79 6 9.6 6.81 9.6 7.8V8.6ZM14.15 13.25C14.15 13.74 13.75 14.15 13.25 14.15H10.74C10.25 14.15 9.84 13.75 9.84 13.25V10.74C9.84 10.25 10.24 9.84 10.74 9.84H13.25C13.74 9.84 14.15 10.24 14.15 10.74V13.25ZM16.2 18C15.21 18 14.4 17.19 14.4 16.2V15.4C14.4 14.85 14.85 14.4 15.4 14.4H16.2C17.19 14.4 18 15.21 18 16.2C18 17.19 17.19 18 16.2 18ZM16.2 9.6H15.4C14.85 9.6 14.4 9.15 14.4 8.6V7.8C14.4 6.81 15.21 6 16.2 6C17.19 6 18 6.81 18 7.8C18 8.79 17.19 9.6 16.2 9.6Z" fill="#292D32"></path> </g></svg>
+
+{% endif %}
+
+
+<div class="mx-3" style="width:70%"   >
+<h4 class="  font-weight-bold " style="font-size: 16px; height:22px; overflow:hidden; text-transform:capitalize; " pk="{{prompt.pk}}" > {{prompt.name}} </h4>
+
+ 
+ {% if prompt.description %}
+<p class="mt-0 mb-1"  style="font-size: 13px; height:22px; overflow:hidden;" pk="{{prompt.pk}}" class="chatbot_model   " >{{prompt.description}}..  </p>
+ 
+{% endif %}
+
+<div class="mb-2"   style="font-size:13px;color:silver;" >
+
+    <span class="mr-2" > <span class="text-dark font-weight-bold" >PR-ID:</span>  {{ prompt.api_id }}  </span>  &#x2022; <span style="    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 4px;"   class="user_img   bg-secondary rounded-pill w-20 mr-2"> {{ user|safe|slice:":2"}}</span> 
+
+
+</div>
+
+
+
+
+</div>
+
+ 
+</div>
+  
+<pre> {{prompt.content}} </pre>
+    
+  <div class="mb-2 mx-2"  style="display: flex; align-items: center;justify-content: space-between;" >
+
+  <div class="m-2"  style="display: flex; align-items: center;" >
+
+
+    <div aria-label="runs" data-microtip-position="left" role="tooltip" class="css-gl59so " style="margin-right:8px;display: flex;align-items: center;"><svg preserveAspectRatio="xMidYMin" width="14" height="14"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle cx="12" cy="6" r="4" stroke="#1C274C" stroke-width="1.5"></circle> <path d="M15 20.6151C14.0907 20.8619 13.0736 21 12 21C8.13401 21 5 19.2091 5 17C5 14.7909 8.13401 13 12 13C15.866 13 19 14.7909 19 17C19 17.3453 18.9234 17.6804 18.7795 18" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path> </g></svg> <span class="css-10z1dta " style="font-size: 13px;">{{prompt.created_by|intword}}</span></div>
+
+
+  <div aria-label="comments" data-microtip-position="left" role="tooltip" class="css-gl59so" style="margin-right:4px;display: flex;align-items: center;" ><svg preserveAspectRatio="xMidYMin" width="14" height="14"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path fill="none" d="M0 0L24 0 24 24 0 24z"></path> <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10c-1.702 0-3.305-.425-4.708-1.175L2 22l1.176-5.29C2.426 15.306 2 13.703 2 12 2 6.477 6.477 2 12 2zm0 2c-4.418 0-8 3.582-8 8 0 1.335.326 2.618.94 3.766l.35.654-.656 2.946 2.948-.654.653.349c1.148.614 2.43.939 3.765.939 4.418 0 8-3.582 8-8s-3.582-8-8-8zm1 3v5h4v2h-6V7h2z"></path> </g> </g></svg><span class="css-10z1dta mx-1" style="font-size: 13px;">{{prompt.like|intword}}</span></div>
+
+
+  <div aria-label="likes" data-microtip-position="left" role="tooltip" class="css-gl59so"  style="margin-right:8px;display: flex;align-items: center;" ><svg preserveAspectRatio="xMidYMin" width="12" height="12"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#1C274C"></path> </g></svg><span class="css-10z1dta mx-1" style="font-size: 13px;">{{prompt.share_count|intword}}</span></div>
+
+&#x2022;
+
+<span class="mx-2" style="font-size: 13px;" > {{ prompt.last_update|timesince  }}  </span> 
+
+</div>
+ 
+<div class="dropdown">
+  <button class="dropbtn"><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4ZM15 5C15 6.65685 13.6569 8 12 8C10.3431 8 9 6.65685 9 5C9 3.34315 10.3431 2 12 2C13.6569 2 15 3.34315 15 5ZM12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11ZM15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12ZM11 19C11 18.4477 11.4477 18 12 18C12.5523 18 13 18.4477 13 19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19ZM12 22C13.6569 22 15 20.6569 15 19C15 17.3431 13.6569 16 12 16C10.3431 16 9 17.3431 9 19C9 20.6569 10.3431 22 12 22Z" fill="#000000"></path> </g></svg></button>
+  <div class="dropdown-content" style="font-size: 14px; background-color: white; opacity:1">
+
+ 
+     <a class="text-dark"  onclick="like_prompt({{prompt.pk}})"  chat-name="{{prompt.name}}"  pk="{{prompt.pk}}" api_id="{{prompt.api_id}}" > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13.0867 21.3877L13.7321 21.7697L13.0867 21.3877ZM13.6288 20.4718L12.9833 20.0898L13.6288 20.4718ZM10.3712 20.4718L9.72579 20.8539H9.72579L10.3712 20.4718ZM10.9133 21.3877L11.5587 21.0057L10.9133 21.3877ZM1.25 10.5C1.25 10.9142 1.58579 11.25 2 11.25C2.41421 11.25 2.75 10.9142 2.75 10.5H1.25ZM3.07351 15.6264C2.915 15.2437 2.47627 15.062 2.09359 15.2205C1.71091 15.379 1.52918 15.8177 1.68769 16.2004L3.07351 15.6264ZM7.78958 18.9915L7.77666 19.7413L7.78958 18.9915ZM5.08658 18.6194L4.79957 19.3123H4.79957L5.08658 18.6194ZM21.6194 15.9134L22.3123 16.2004V16.2004L21.6194 15.9134ZM16.2104 18.9915L16.1975 18.2416L16.2104 18.9915ZM18.9134 18.6194L19.2004 19.3123H19.2004L18.9134 18.6194ZM19.6125 2.7368L19.2206 3.37628L19.6125 2.7368ZM21.2632 4.38751L21.9027 3.99563V3.99563L21.2632 4.38751ZM4.38751 2.7368L3.99563 2.09732V2.09732L4.38751 2.7368ZM2.7368 4.38751L2.09732 3.99563H2.09732L2.7368 4.38751ZM9.40279 19.2098L9.77986 18.5615L9.77986 18.5615L9.40279 19.2098ZM13.7321 21.7697L14.2742 20.8539L12.9833 20.0898L12.4412 21.0057L13.7321 21.7697ZM9.72579 20.8539L10.2679 21.7697L11.5587 21.0057L11.0166 20.0898L9.72579 20.8539ZM12.4412 21.0057C12.2485 21.3313 11.7515 21.3313 11.5587 21.0057L10.2679 21.7697C11.0415 23.0767 12.9585 23.0767 13.7321 21.7697L12.4412 21.0057ZM10.5 2.75H13.5V1.25H10.5V2.75ZM21.25 10.5V11.5H22.75V10.5H21.25ZM7.8025 18.2416C6.54706 18.2199 5.88923 18.1401 5.37359 17.9265L4.79957 19.3123C5.60454 19.6457 6.52138 19.7197 7.77666 19.7413L7.8025 18.2416ZM1.68769 16.2004C2.27128 17.6093 3.39066 18.7287 4.79957 19.3123L5.3736 17.9265C4.33223 17.4951 3.50486 16.6678 3.07351 15.6264L1.68769 16.2004ZM21.25 11.5C21.25 12.6751 21.2496 13.5189 21.2042 14.1847C21.1592 14.8438 21.0726 15.2736 20.9265 15.6264L22.3123 16.2004C22.5468 15.6344 22.6505 15.0223 22.7007 14.2868C22.7504 13.5581 22.75 12.6546 22.75 11.5H21.25ZM16.2233 19.7413C17.4786 19.7197 18.3955 19.6457 19.2004 19.3123L18.6264 17.9265C18.1108 18.1401 17.4529 18.2199 16.1975 18.2416L16.2233 19.7413ZM20.9265 15.6264C20.4951 16.6678 19.6678 17.4951 18.6264 17.9265L19.2004 19.3123C20.6093 18.7287 21.7287 17.6093 22.3123 16.2004L20.9265 15.6264ZM13.5 2.75C15.1512 2.75 16.337 2.75079 17.2619 2.83873C18.1757 2.92561 18.7571 3.09223 19.2206 3.37628L20.0044 2.09732C19.2655 1.64457 18.4274 1.44279 17.4039 1.34547C16.3915 1.24921 15.1222 1.25 13.5 1.25V2.75ZM22.75 10.5C22.75 8.87781 22.7508 7.6085 22.6545 6.59611C22.5572 5.57256 22.3554 4.73445 21.9027 3.99563L20.6237 4.77938C20.9078 5.24291 21.0744 5.82434 21.1613 6.73809C21.2492 7.663 21.25 8.84876 21.25 10.5H22.75ZM19.2206 3.37628C19.7925 3.72672 20.2733 4.20752 20.6237 4.77938L21.9027 3.99563C21.4286 3.22194 20.7781 2.57144 20.0044 2.09732L19.2206 3.37628ZM10.5 1.25C8.87781 1.25 7.6085 1.24921 6.59611 1.34547C5.57256 1.44279 4.73445 1.64457 3.99563 2.09732L4.77938 3.37628C5.24291 3.09223 5.82434 2.92561 6.73809 2.83873C7.663 2.75079 8.84876 2.75 10.5 2.75V1.25ZM2.75 10.5C2.75 8.84876 2.75079 7.663 2.83873 6.73809C2.92561 5.82434 3.09223 5.24291 3.37628 4.77938L2.09732 3.99563C1.64457 4.73445 1.44279 5.57256 1.34547 6.59611C1.24921 7.6085 1.25 8.87781 1.25 10.5H2.75ZM3.99563 2.09732C3.22194 2.57144 2.57144 3.22194 2.09732 3.99563L3.37628 4.77938C3.72672 4.20752 4.20752 3.72672 4.77938 3.37628L3.99563 2.09732ZM11.0166 20.0898C10.8136 19.7468 10.6354 19.4441 10.4621 19.2063C10.2795 18.9559 10.0702 18.7304 9.77986 18.5615L9.02572 19.8582C9.07313 19.8857 9.13772 19.936 9.24985 20.0898C9.37122 20.2564 9.50835 20.4865 9.72579 20.8539L11.0166 20.0898ZM7.77666 19.7413C8.21575 19.7489 8.49387 19.7545 8.70588 19.7779C8.90399 19.7999 8.98078 19.832 9.02572 19.8582L9.77986 18.5615C9.4871 18.3912 9.18246 18.3215 8.87097 18.287C8.57339 18.2541 8.21375 18.2487 7.8025 18.2416L7.77666 19.7413ZM14.2742 20.8539C14.4916 20.4865 14.6287 20.2564 14.7501 20.0898C14.8622 19.936 14.9268 19.8857 14.9742 19.8582L14.2201 18.5615C13.9298 18.7304 13.7204 18.9559 13.5379 19.2063C13.3646 19.4441 13.1864 19.7468 12.9833 20.0898L14.2742 20.8539ZM16.1975 18.2416C15.7862 18.2487 15.4266 18.2541 15.129 18.287C14.8175 18.3215 14.5129 18.3912 14.2201 18.5615L14.9742 19.8582C15.0192 19.832 15.096 19.7999 15.2941 19.7779C15.5061 19.7545 15.7842 19.7489 16.2233 19.7413L16.1975 18.2416Z" fill="#000000"></path> <path d="M8 11H8.009M11.991 11H12M15.991 11H16" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> 
+     Like</a>
+
+ 
+
+
+<a href="/customer/prompt_writer?pk={{prompt.pk}}"   pk="{{prompt.pk}}" chat-name="{{prompt.name}}"  
+    class='edit-bot' > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#2b248f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#2b248f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Edit</a>
+
+
+
+    <a href="#" data-bs-toggle="modal" data-bs-target="#shareModal"  class="share-chat-btn" chat-name="{{prompt.name}}"  pk="{{prompt.pk}}" api_id="{{promptapi_id}}" > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M13.803 5.33333C13.803 3.49238 15.3022 2 17.1515 2C19.0008 2 20.5 3.49238 20.5 5.33333C20.5 7.17428 19.0008 8.66667 17.1515 8.66667C16.2177 8.66667 15.3738 8.28596 14.7671 7.67347L10.1317 10.8295C10.1745 11.0425 10.197 11.2625 10.197 11.4872C10.197 11.9322 10.109 12.3576 9.94959 12.7464L15.0323 16.0858C15.6092 15.6161 16.3473 15.3333 17.1515 15.3333C19.0008 15.3333 20.5 16.8257 20.5 18.6667C20.5 20.5076 19.0008 22 17.1515 22C15.3022 22 13.803 20.5076 13.803 18.6667C13.803 18.1845 13.9062 17.7255 14.0917 17.3111L9.05007 13.9987C8.46196 14.5098 7.6916 14.8205 6.84848 14.8205C4.99917 14.8205 3.5 13.3281 3.5 11.4872C3.5 9.64623 4.99917 8.15385 6.84848 8.15385C7.9119 8.15385 8.85853 8.64725 9.47145 9.41518L13.9639 6.35642C13.8594 6.03359 13.803 5.6896 13.803 5.33333Z" fill="#1C274C"></path> </g></svg>
+     Share</a>
+    
+
+    <a href="#"  data-bs-toggle="modal" data-bs-target="#deletePromptModal" pk="{{prompt.pk}}" chat-name="{{prompt.name}}" 
+    class='delete-bot' > <svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 -5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-518.000000, -1146.000000)" fill="#bd0f0f"> <path d="M540.647,1159.24 C541.039,1159.63 541.039,1160.27 540.647,1160.66 C540.257,1161.05 539.623,1161.05 539.232,1160.66 L536.993,1158.42 L534.725,1160.69 C534.331,1161.08 533.692,1161.08 533.298,1160.69 C532.904,1160.29 532.904,1159.65 533.298,1159.26 L535.566,1156.99 L533.327,1154.76 C532.936,1154.37 532.936,1153.73 533.327,1153.34 C533.718,1152.95 534.352,1152.95 534.742,1153.34 L536.981,1155.58 L539.281,1153.28 C539.676,1152.89 540.314,1152.89 540.708,1153.28 C541.103,1153.68 541.103,1154.31 540.708,1154.71 L538.408,1157.01 L540.647,1159.24 L540.647,1159.24 Z M545.996,1146 L528.051,1146 C527.771,1145.98 527.485,1146.07 527.271,1146.28 L518.285,1156.22 C518.074,1156.43 517.983,1156.71 517.998,1156.98 C517.983,1157.26 518.074,1157.54 518.285,1157.75 L527.271,1167.69 C527.467,1167.88 527.723,1167.98 527.979,1167.98 L527.979,1168 L545.996,1168 C548.207,1168 550,1166.21 550,1164 L550,1150 C550,1147.79 548.207,1146 545.996,1146 L545.996,1146 Z" id="delete" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg> Delete</a>
+    
+  </div>
+</div>
+
+
+</div>
+    </div>
+   
+          {% endfor %}
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+ 
+
+<!-- share Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="chatModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+     
+    <div class="modal-body" id='modal-body'  > 
+   
+  </div>
+  
+    </div>
+  </div>
+</div>
+ 
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header" style="background:#051837">
+        <h6 class="text-white pt-1"  ><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12C4 13.3807 5.11929 14.5 6.5 14.5C7.88071 14.5 9 13.3807 9 12C9 10.6193 7.88071 9.5 6.5 9.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 6.5L9 10" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M14 17.5L9 14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M16.5 21C17.8807 21 19 19.8807 19 18.5C19 17.1193 17.8807 16 16.5 16C15.1193 16 14 17.1193 14 18.5" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> <path d="M18.665 6.74993C17.9746 7.94566 16.4457 8.35535 15.2499 7.66499C14.0542 6.97464 13.6445 5.44566 14.3349 4.24993C15.0252 3.0542 16.5542 2.64451 17.7499 3.33487" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"></path> </g></svg> <span class="pt-1" > Share Prompt</span></h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body my-3"   style="    padding: 2px 16px;
+    height: 29vw; ">
+     
+     <p class="text-center" > Coming Soon </p>
+
+
+  </div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+ 
+
+<!-- Delete Chat Modal -->
+<div class="modal fade" id="deletePromptModal" tabindex="-1" aria-labelledby="deletePromptModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title text-white py-2" id="deletePromptModalLabel">Delete Prompt</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body px-5 ">
+    <p class="text-center my-4 text-danger" ><svg style="margin-right:5px; margin-top:-2px;" width="22px" height="22px"  viewBox="0 -5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>delete</title> <desc>Created with Sketch Beta.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-518.000000, -1146.000000)" fill="#bd0f0f"> <path d="M540.647,1159.24 C541.039,1159.63 541.039,1160.27 540.647,1160.66 C540.257,1161.05 539.623,1161.05 539.232,1160.66 L536.993,1158.42 L534.725,1160.69 C534.331,1161.08 533.692,1161.08 533.298,1160.69 C532.904,1160.29 532.904,1159.65 533.298,1159.26 L535.566,1156.99 L533.327,1154.76 C532.936,1154.37 532.936,1153.73 533.327,1153.34 C533.718,1152.95 534.352,1152.95 534.742,1153.34 L536.981,1155.58 L539.281,1153.28 C539.676,1152.89 540.314,1152.89 540.708,1153.28 C541.103,1153.68 541.103,1154.31 540.708,1154.71 L538.408,1157.01 L540.647,1159.24 L540.647,1159.24 Z M545.996,1146 L528.051,1146 C527.771,1145.98 527.485,1146.07 527.271,1146.28 L518.285,1156.22 C518.074,1156.43 517.983,1156.71 517.998,1156.98 C517.983,1157.26 518.074,1157.54 518.285,1157.75 L527.271,1167.69 C527.467,1167.88 527.723,1167.98 527.979,1167.98 L527.979,1168 L545.996,1168 C548.207,1168 550,1166.21 550,1164 L550,1150 C550,1147.79 548.207,1146 545.996,1146 L545.996,1146 Z" id="delete" sketch:type="MSShapeGroup"> </path> </g> </g> </g></svg>  Are you sure you want to delete this bot? </p>
+      <div class="modal-footer" style="width: 100%;">
+
+        <a type="button" href="" id="deleteBtnPrompt" class="btn circle btn-md btn-danger wow fadeInUp" style="    height: 40px"    role="button" aria-pressed="true"> Delete »</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+ 
+
+
+  <script>
+
+ 
+ 
+
+
+ function goBack() {
+      window.history.back();
+    }
+
+
+function like_prompt(pk){
+
+  $.ajax({
+            type: 'GET',
+            url: '/customer/prompt/like',  
+            data: { 'pk': pk },
+            success: function (res) {
+alert(res.message)
+            }
+
+          })
+
+}
+
+
+
+// function CopyToClipboard(link){
+//   if (link === 'api'){
+//     var copyText = document.getElementById("msgApiContainer");
+//      var tooltipEl = document.getElementById("msgApiContainertooltip")
+//   } else if (link === 'iframe'){
+//     var copyText = document.getElementById("iframeContainer");
+//      var tooltipEl = document.getElementById("iframeContainertooltip")
+//   } else {
+//     var copyText = document.getElementById("apiContainer");
+//      var tooltipEl = document.getElementById("apiContainertooltip")
+//   }
+   
+//   navigator.clipboard.writeText(copyText.textContent);
+//   // console.log(tooltipEl)
+//   tooltipEl.innerHTML= ` <svg style="margin-left: 5px;" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0ea427" d="M512 64a448 448 0 110 896 448 448 0 010-896zm-55.808 536.384l-99.52-99.584a38.4 38.4 0 10-54.336 54.336l126.72 126.72a38.272 38.272 0 0054.336 0l262.4-262.464a38.4 38.4 0 10-54.272-54.336L456.192 600.384z"></path></g></svg> Copied`
+
+// }
+
+
+// $(".share-chat-btn").click(function(event) {
+
+
+//    var api_id = $(this).attr('api_id')
+
+// var apiString =   `${document.location.origin}/customer/chatbot/iframe/${api_id}?user_id={{user}}`
+//     var apiContainer = document.getElementById('apiContainer');
+//         apiContainer.textContent = apiString;
+
+
+// var msgApiContainerString =   `${document.location.origin}/customer/process_message?message=who+develop+pye&api_id=${api_id}?user_id={{user}}`
+//     var msgApiContainer = document.getElementById('msgApiContainer');
+//         msgApiContainer.textContent = msgApiContainerString;
+
+
+// var iframeString = `<iframe id="iframe" src="${document.location.origin}/customer/chatbot/iframe/${api_id}?user_id={{user}}" width="100%" height="100%" frameborder="0"></iframe>`;
+//         var iframeContainer = document.getElementById('iframeContainer');
+//         iframeContainer.textContent = iframeString;
+
+// })
+
+
+// $(".chat-btn").click(function(event) {
+
+//    var api_id = $(this).attr('api_id')
+
+// $("#chatModal #modal-body").html( `<iframe src="/customer/chatbot/iframe/${api_id}?user_id={{user}}" width="100%" height="600" frameborder="0"></iframe>`)
+// //     getMessage( pk) 
+// $("#chat-modal-header").text("Preview - "+$(this).attr('chat-name') +" (Bot)")
+// // localStorage.setItem("promptConn",pk)
+// });
+    
+$(".delete-bot").click(function(event) {  
+localStorage.setItem("promptConn",$(this).attr('pk'))
+
+$("#deleteBtnPrompt").attr('href',`/customer/prompt/delete?pk=${$(this).attr('pk')}&connections_pk={{connection.pk}}`)
+$("h6#deletePromptModalLabel").text("Delete Prompt (" + $(this).attr('chat-name')+")" )
+$("input#chatbots_pk").val($(this).attr('pk') )
+// localStorage.setItem("promptConn",pk)
+});
+    
+    
+ 
+
+ 
+
+ $(".create-bot").click(function(event) {  
+localStorage.setItem("promptConn",$(this).attr('pk'))
+localStorage.setItem("bot-status",'create')
+
+$("h6#exampleModalLabel").text("Create Personalized bot for " + $(this).attr('chat-name') )
+$("input#connections_pk").val($(this).attr('pk') )
+// localStorage.setItem("promptConn",pk)
+});
+
+ 
+
+ $(".edit-bot").click(function(event) {  
+localStorage.setItem("promptConn",$(this).attr('pk'))
+localStorage.setItem("bot-status",'edit')
+
+$("h6#exampleModalLabel").text("Edit " + $(this).attr('chat-name')+" Task Prompt" )
+$("input#connections_pk").val($(this).attr('pk') )
+populateForm($(this).attr('pk')); 
+});
+
+
+
+ 
+
+function changeResultsPerPage(resultsPerPage) {
+    // Get the current URL and remove the existing 'page' query parameter
+    const url = window.location.href;
+    const urlWithoutPage = url.replace(/[\?&]page=\d+/gi, '');
+
+    // Redirect to the new URL with the updated 'per_page' query parameter
+    window.location.href = `${urlWithoutPage}?per_page=${resultsPerPage}`;
+  }
+
+
+
+
+  </script>
+{% endblock javascripts %}
+

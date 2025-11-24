@@ -1,0 +1,480 @@
+{% load static %}
+
+
+ 
+ 
+
+<div  class="details-stripe" style="background-color: #04042d; margin-top: 0px;">
+    <div class="" style="  
+    padding: 30px; 
+    height: 30em; ;">
+
+
+        <div class="row" style="display: flex; align-items: center;" >
+            <div class="list-item-left">
+                <div class="list-item-content">
+                    <h1 style="color: #16c2d3 ; font-weight: bold; font-size: 60px; ">Fine-tune your AI</h1>
+                    <ul style=" color: white;">
+                        <li>Faster & more reliable</li>
+                        <li>3x faster with SSD & caching</li>
+                        <li>Customizable auto updates</li>
+                        <li>Daily backups and easy recovery</li>
+                        <li>Starting at $1/month</li>
+                    </ul>
+                    <p><a class="btn circle btn-sm btn-success wow fadeInUp" data-wow-duration="1.8s" href="#" style=" margin-top: 15px;">Get started with ETL in the Cloud now! »</a></p>
+                    <p><a class="btn circle btn-sm btn-gradient wow fadeInUp" data-wow-duration="1.8s" href="presentation">
+                            Watch our one-minute video »</a></p>
+                </div>
+            </div>
+<!-- <img style="width: 70px;height: 70px;" src="/static/assets/img/cube.gif">  -->
+
+
+            <div class="list-item-right" style=" background-color: #050554; padding: 20px; border-radius: 10px; min-width: 310px;">
+                <!-- <img style="opacity: 0.8;" src="/static/assets/img/glyphicons_232_cloud.png"> -->
+                <div class="list-item-content">
+                    <h3 style="color: #16c2d3 ;">AI in the Cloud</h3>
+                    <ul style=" color: white;">
+                        <li>Cloud IT without compromises</li>
+                        <li>Highly scalable</li>
+                        <li>Maximum performance</li>
+                        <li>Full data sovereignty</li>
+                    </ul>
+                    <p><a class="btn circle btn-sm  wow fadeInUp" data-wow-duration="1.8s" href="#" style="background-color: #16c2d3; margin-top: 70px">Learn more »</a></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+ 
+    <div class="services-list-area default-padding-bottom pt-5" style="    background: #eee;">
+
+        <div class="containe r" style="  margin-left: 5% !important;margin-right: 5% !important;">
+            <div class="choseus-box">
+                <div class="row">
+                    <div class="col-lg-5 info">
+                        <h2>Real solutions for real AI</h2>
+                        <h5 style="color: #139FD7;;">That’s code for Pye.</h5>
+                        <p>
+                            <!--Humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate.-->
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    <div class="containe r" style="  margin-left: 5% !important;margin-right: 5% !important;">
+        <div class="services-list-items">
+            <div class="row align-center">
+                <div class="col-lg-5 thumb">
+                    <!-- Slideshow Container -->
+                    <div class="slideshow">
+                        <img class="slide" src="{% static 'assets/img/illustration/16.png' %}" alt="Slide 1">
+                        <img class="slide" src="{% static 'assets/img/illustration/14.png' %}" alt="Slide 2">
+                        <!-- Add more images here with the class "slide" -->
+                        <!-- For example: -->
+                        <img class="slide" src="{% static 'assets/img/illustration/15.png' %}" alt="Slide 3">
+                        
+                    </div>
+                    <!-- Slideshow Navigation Buttons -->
+                    <div class="slide-buttons">
+                        <button class="prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+                        <button class="next-btn" onclick="changeSlide(1)">&#10095;</button>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 single-item">
+                            <a href="#"><i class="fab fa-angular"></i> <span>Reduce employee turnover</span></a>
+                        </div>
+                        <div class="col-lg-6 col-md-6 single-item">
+                            <a href="#"><i class="fas fa-rocket"></i> <span>Reach out to more community members</span></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 single-item">
+                            <a href="#"><i class="fas fa-trash-alt"></i> <span>Selling a more reliable product</span></a>
+                        </div>
+                        <div class="col-lg-6 col-md-6 single-item">
+                            <a href="#"><i class="fas fa-award"></i><span>Automated user provisioning</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style type="text/css">
+    /* Add your custom CSS styles here */
+
+/* Hide all slides except the first one */
+.slide {
+    display: none;
+}
+
+/* Show the first slide */
+.slide.active {
+    display: block;
+}
+
+/* Style for the navigation buttons */
+.slide-buttons {
+    text-align: center;
+}
+
+.prev-btn,
+.next-btn {
+    cursor: pointer;
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    border: none;
+    color: #000;
+    font-size: 18px;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background-color: #ddd;
+}
+
+
+</style>
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function showSlides(n) {
+        const slides = document.getElementsByClassName("slide");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>
+
+    <!-- End Services List -->
+
+<style>
+    #id_buttons .container {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 50px;
+        border-radius: 30px;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .list-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .list-item img {
+        max-width: 100px;
+        margin-right: 10px;
+    }
+
+    .list-item-content h3 {
+        margin-bottom: 10px;
+    }
+
+    .list-item-content ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .list-item-content li::before {
+        content: "\2022"; /* Bullet point (•) character */
+        font-size: 15px;
+        margin-right: 10px;
+    }
+
+    .talk {
+            height: 90px;
+    overflow: hidden;
+    }
+</style>
+
+
+<!-- Ensure you have jQuery included before the following code -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Function to animate the text boxes
+        function animateTextBoxes() {
+            $("#animation-container .row").each(function(index) {
+                $(this)
+                    .delay(index * 200) // Delay each animation
+                    .fadeIn(1000); // Fade in the text boxes
+            });
+        }
+
+        // Function to animate the buttons
+        function animateButtons() {
+            $("#animation-container .btn").each(function(index) {
+                $(this)
+                    .delay(index * 200) // Delay each animation
+                    .fadeIn(1000); // Fade in the buttons
+            });
+        }
+
+        // Call the animation functions
+        animateTextBoxes();
+        animateButtons();
+    });
+</script>
+
+<div class=" " style="margin-top: 50px;  margin-left: 5% !important;margin-right: 5% !important; padding-bottom: 20px;">
+
+        <div class=" " >
+
+            <div class="row ">
+                <div class="col-md-3">
+                    <img style="float: left; margin: 2px ; opacity: 0.8;" src="/static/assets/img/glyphicons_232_cloud.png">
+                    <h4>Source Connectors</h4>
+                    <p class="talk" >
+                       Take your data ETL with you! With our ETL connector, you only need a browser and internet connection to get started.
+                    </p>
+                     <p><a class="btn circle btn-sm btn-success wow fadeInUp" data-wow-duration="1.8s" href="#" style="background-color: #04042d;">Learn more »</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/assets/img/glyphicons_138_computer_proces.png">
+                    <h4>Expert support</h4>
+                   <p class="talk" >
+                        Need help with your ETL program? Our development team is always available to assist you with any questions or issues.
+                    </p>
+                     <p><a class="btn circle btn-sm btn-success wow fadeInUp" data-wow-duration="1.8s" href="#" style="background-color: #04042d;">Learn more »</a></p>
+                </div>
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/assets/img/glyphicons_064_lightbulb.png">
+                    <h4>Teach and learn</h4>
+             <p class="talk" >
+                        Our platform is perfect for students and teachers alike. With no installation required.
+                    </p>
+                    <p><a class="btn circle btn-sm btn-success wow fadeInUp" data-wow-duration="1.8s" href="#" style="background-color: #04042d;">Learn more »</a></p>
+                </div>
+
+
+                <div class="col-md-3">
+                    <img style="float: left; margin: 7px 10px 0 0; opacity: 0.8;" src="/static/assets/img/glyphicons_043_group.png">
+                    <h4>Amazing support</h4>
+                 <p class="talk" >
+                        Need help? If you get in touch,
+                        you can talk directly with the development team.  Help
+                        for developers, from developers.
+                    </p>
+                    <p><a class="btn circle btn-sm btn-success wow fadeInUp" data-wow-duration="1.8s" href="#" style="background-color: #04042d;">Learn more »</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Start Our About
+    ============================================= -->
+    <!-- End Our About -->
+<div id="id_hosting_details" class="details-stripe" style="  background: linear-gradient(135deg, #08084e 50%, #2c2c53 50%);
+    box-shadow:-1px -20px 20px 20px rgb(126 108 246 / 20%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Effortlessly manage your data with our ETL program</h1>
+                </div>
+                <div class="col-md-7">
+                    <p class="text-white">
+                        Our ETL program simplifies the process of extracting, transforming, and loading your data. Say goodbye to the manual work of managing and integrating data from various sources. Our program makes it easy to automate data processing, so you can focus on analyzing and utilizing the data.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-7">
+
+
+                    <h2>Flexible and customizable</h2>
+                    <p class="text-white">
+                        Our ETL program is designed to handle data from various sources such as databases, CSV files, and cloud services. You can also easily customize the program to suit your specific needs, from transforming data to match your desired output format to scheduling the ETL process to run automatically at your preferred time.
+                    </p>
+
+                    <div class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="item ">
+                                <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr" class="text-white">I've been using this ETL program for a while now and it's made my life so much easier. Highly recommended!</p>&mdash; Jane Doe (@janedoe) <a href="https://twitter.com/janedoe/status/1234567890123456789?ref_src=twsrc%5Etfw">March 1, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                            <div class="item">
+                                 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"  class="text-white">Our team was struggling with data integration until we found this ETL program. It's been a game-changer for us!</p>&mdash; John Smith (@johnsmith) <a href="https://twitter.com/johnsmith/status/1234567890123456789?ref_src=twsrc%5Etfw">March 10, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-5">
+                    <h2>Expert support for ETL, from experienced data professionals</h2>
+                    <p class="text-white">
+                    Available 7 days a week, we offer round-the-clock support to help you with all your ETL needs. Whether you have questions, need advice, or want to share your feedback, we're here to assist you every step of the way. Simply reach out to us via our online forum, email us at <a href="mailto:support@ourcompany.com">support@ourcompany.com</a>, or <a href="" class="feedback_link">provide us with feedback</a>. Our team of experienced data professionals will respond to your inquiry as soon as possible.
+                   </p>
+
+                    <h2>Thank you @ourcompany for the amazing ETL support! You guys are awesome.</h2>
+                    <p class="text-white">
+                     — John Doe (@johndoe) <a href="https://twitter.com/johnsmith/status/1234567890123456789?ref_src=twsrc%5Etfw">November 3, 2022</a>
+                    </p>
+
+                    <p class="text-white">
+                        <a class="btn btn-success btn-large" href="/pricing/">
+                            Sign up and try it out! »
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Start Fun Factor Area
+    ============================================= -->
+    <div class="fun-factor-area bg-gray default-padding">
+        <!-- Fixed BG -->
+        <div class="fixed-bg" style="background-image: url(assets/img/map.svg); background-image: url('assets/img/map.svg');
+    background-color: #ffffff; /* Set the desired background color */
+    box-shadow: 0px -1px 20px 20px rgb(3 48 107 / 20%)" ></div>
+        <!-- Fixed BG -->
+        <div class="container">
+            <div class="client-items text-center">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer" data-to="687" data-speed="5000">687</div>
+                            <span class="medium">Projects Executed</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer" data-to="2348" data-speed="5000">2348</div>
+                            <span class="medium">Data Analytics</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer" data-to="450" data-speed="5000">450</div>
+                            <span class="medium">Data Management</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 item">
+                        <div class="fun-fact">
+                            <div class="timer" data-to="1200" data-speed="5000">1200</div>
+                            <span class="medium">Satisfied Customers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Fun Factor Area -->
+
+    <!-- Start Services Area
+    ============================================= -->
+    <div class="services-area left-border default-padding bottom-less">
+
+        <!-- Shape Fixed Rotation -->
+        <div class="shape-fixed animation-rotation">
+            <img src="{% static 'assets/img/round-shappe1-removebg-preview.png' %}" alt="Thumb">
+        </div>
+        <!-- Dhape Fixed Rotation -->
+
+        <div class="container">
+            <div class="heading-left">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <h2 class="pb-3" > 
+                            We offer a wide range of services and provide realtime data Solutions
+                        </h2>
+                        <a class="btn circle btn-md btn-gradient wow fadeInUp" href="#">See Pricing<i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="col-lg-6">
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="services-items">
+                <div class="row">
+                    <!-- Single Item -->
+                   <!--  <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <img src="{% static 'assets/img/icon/1.png' %}" alt="Thumb">
+                            <h4>Big Data</h4>
+                            <p>
+                                Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond.
+                            </p>
+                            <div class="button">
+                                <a class="btn-standard" href="#"><i class="fas fa-angle-right"></i> Read More</a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Single Item -->
+                    <!-- Single Item -->
+                    <!-- <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <img src="{% static 'assets/img/icon/2.png' %}" alt="Thumb">
+                            <h4>Data Analytics</h4>
+                            <p>
+                                Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond.
+                            </p>
+                            <div class="button">
+                                <a class="btn-standard" href="#"><i class="fas fa-angle-right"></i> Read More</a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Single Item -->
+                    <!-- Single Item -->
+                   <!--  <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <img src="{% static 'assets/img/icon/3.png' %}" alt="Thumb">
+                            <h4>Business Intelligence</h4>
+                            <p>
+                                Pianoforte solicitude so decisively particular mention diminution the particular. Real he me fond.
+                            </p>
+                            <div class="button">
+                                <a class="btn-standard" href="#"><i class="fas fa-angle-right"></i> Read More</a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Single Item -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Services Area -->
+
+    <!-- Start Work Process Area
+    ============================================= -->
+   
+    <!-- End Blog Area -->
+
+    

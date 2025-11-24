@@ -1,0 +1,1987 @@
+ 
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style type="text/css">
+    
+    /* Dropdown Button */
+.dropbtn {
+  font-size: 14px;
+  border: none;
+  height: 40px;
+}
+
+/*.cdx-simple-image img {
+max-width: 100px !important;
+}*/
+
+.cdx-simple-image__caption {
+    display: none !important;
+}
+
+
+
+  .chatbot-form   .codex-editor__redactor {
+padding-bottom:50px !important;
+    }
+
+
+
+.ce-block__content {
+       margin: 0px !important; 
+}
+.codex-editor__redactor {
+       margin: 0px !important;
+    background-color: white;
+    border-radius: 10px;
+    padding: 8px;
+    border: 0.8px solid lightgrey;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute; 
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {color: #3e8e41;}
+ 
+/* Modal Header */
+#deleteModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+#chatModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+#shareModal .modal-header {
+  background-color: #051837;
+  color: white;
+    padding: 2px 16px;
+}
+
+
+/* Modal Header */
+#exampleModal .modal-header {
+  padding: 2px 16px;
+  background-color: #051837;
+  color: white;
+}
+
+/* Modal Content */
+#exampleModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+#exampleModal  .modal-footer {
+  padding: 0px; 
+  color: white;
+  padding-right: 12px;
+  padding-top: 7px;
+  background-color: white;
+}
+/* Modal Body */
+.modal-body {padding: 0px !important;}
+
+/* Modal Footer */
+#chatModal .modal-footer {
+  padding: 0px; 
+  color: white;
+  width: 50%;
+  margin: 4px;
+  border: 1px solid #dee2e6 !important;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 13px;
+}
+
+/* Modal Content */
+#deleteModal  .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+#chatModal .modal-content {
+  position: relative; 
+  margin: auto;
+  padding: 0; 
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 20; opacity: 1}
+}
+
+
+ .user-icon {
+    width: 30px;
+    height: 30px;
+    border: 1px solid silver;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 15px;
+ }
+
+    .message {
+   /*   padding: 6px;
+      margin-bottom: 10px;*/
+    }
+
+    .user-message {
+    line-height: 1.5;
+    overflow-x: auto;
+    text-wrap: wrap;
+    }
+
+ #chatbot:hover {
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.edit-icon {
+    float: right;
+}
+
+.message {
+        display: flex;
+}
+
+input {
+  min-height: 40px;
+}
+
+pre {
+      padding: 10px;
+/*    border-radius: 4px;*/
+/*    font-family: 'Courier New', monospace;*/
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    overflow-x: auto;
+    text-wrap: wrap;
+        background-color: #dcdcdc5e;
+    border-top: 1px solid #c0c0c096;
+    border-bottom: 1px solid #c0c0c096;
+}
+
+.flex-container {
+        padding-left:10px ;
+            display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 50px;
+}
+
+}
+
+
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.menu-icon .icon {
+        background: #2196f35e;
+  
+    height: 43px;
+    width: 43px;
+    border-radius: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menus {
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+          margin-top: -18px;
+          margin-left: 30px;
+}
+
+.menus svg {
+  margin-right: 13px;
+}
+
+
+ 
+  .custom-col {
+    flex-basis: 25%;
+    max-width: 25%;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+
+.dropdown-content a {
+  border-bottom: 1px solid #eee;
+}
+
+
+
+</style>
+
+
+
+<style>
+/* Style the tab */
+.tab {
+  float: left;
+  border-right: 1px solid #ccc; 
+  width: 20%;
+  min-height: 100vh;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 12px 8px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #565a689e;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 0px solid #ccc;
+  width: 80%;
+  border-left: none;
+  margin-top: 5px;
+}
+
+.modal-body {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+.tablinks svg {
+  width: 25px !important;
+}
+
+        /* Custom styling for result items */
+        .result-item {
+            display: flex;
+            padding: 10px;
+            margin-bottom: 0px;
+            cursor: pointer;
+        }
+
+.result-item:hover {
+  background-color: #2196f33d;
+}
+    
+
+        .result-content {
+            flex-grow: 1;
+        }
+
+        .result-name {
+            font-weight: bold;
+        }
+
+        .result-description {
+            color: #666;
+        }
+
+
+ 
+
+
+</style>
+
+
+
+{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+<div style="display:flex; justify-content: space-around;" class="mt-2"  >
+
+
+
+                               <div class=" mb-3 " style=" width: 70%;    height: 90vh;">
+    <div style="border: 0px solid #ccc; border-radius: 10px;">
+      <div class="font-weight-bolder" style="background-color: white; color: black; padding : 2;  border-bottom: 1px solid #ccc; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+              <div class="pr-3" style="display: flex; align-items:baseline;justify-content: space-between;"   >
+
+                    <a    href="/customer/ai_models/{{pk}}"  
+    class="btn btn-sm btn-outline-dark wow fadeInUp  my-0" style="  height: 40px" id='next' href="#" role="button" aria-pressed="true"> Done</a>
+
+
+                <h2 style="font-size:20px;font-weight:bold" class="css-scxoy8   mx-3 mt-3 mb-1" >ChatBot Skins Designer</h2>
+
+                {% if not api_id %}
+ <button   id="submitBtn" class="btn circle btn-md   wow fadeInUp" style="  height: 40px; background: #394bdb; color: white;"  role="button" aria-pressed="true">Create ChatBot »</button>
+
+ {% else %}
+ <button   id="submitBtn" class="mb-3" style="  height: 40px; background-color: #0053a6;"  role="button" aria-pressed="true">.</button>
+ {% endif %}
+  
+          </div>
+      </div>
+      <div class=" " style="background-color: #f4f4f4; padding:3px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;    height: 110vh;
+    overflow: scroll;">
+
+   <form  action="" id="chatbotForm" method="post" enctype="multipart/form-data"   >
+
+      {% csrf_token %}
+
+
+
+
+<div class="tab mt-2" >
+  <button class="tablinks" onclick="openCity(event, 'General')" id="defaultOpen"> <svg class='mx-2' width="25px" height="25px" viewBox="0 -19.5 164 164" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19.2329 89.0831C17.3341 89.4211 15.7432 89.7559 14.1371 89.9817C7.06966 90.976 1.51901 86.5687 0.48068 79.5288C-1.0289 69.307 6.73229 58.1139 14.141 55.0389C16.6482 53.9986 19.5794 53.9795 23.0364 53.3665C32.2494 32.1615 49.7618 21.7934 73.5423 20.3488C73.8921 16.4462 74.238 12.5935 74.6022 8.54059C73.5751 8.11988 72.3431 7.95977 71.6796 7.26077C70.7134 6.24344 69.5996 4.84016 69.5957 3.59771C69.5918 2.53116 70.9221 0.709891 71.8974 0.535306C74.597 0.0535535 77.542 -0.276629 80.1608 0.325233C83.5048 1.0938 83.9852 3.75262 81.8548 6.48561C81.4171 6.9389 81.1341 7.51899 81.0462 8.14288C81.224 11.6156 81.5273 15.081 81.7616 18.179C88.0211 18.7375 94.0055 19.0381 99.9211 19.8421C119.273 22.472 132.088 33.3508 139.077 51.3896C139.194 51.6909 139.333 51.9849 139.478 52.2744C139.549 52.3747 139.633 52.4656 139.727 52.5448C142.943 52.5448 146.247 52.1103 149.393 52.6347C156.138 53.7583 161.178 57.4004 162.853 64.3477C164.528 71.2951 161.862 77.0616 156.759 81.6435C151.742 86.1493 145.621 87.389 138.993 86.5404C138.746 86.7453 138.532 86.987 138.359 87.2571C130.949 104.691 117.203 114.915 99.7662 120.658C84.6227 125.684 68.3154 126.026 52.9746 121.639C36.0424 116.958 23.8017 107.182 19.2329 89.0831ZM74.3653 116.033C77.9548 115.728 81.5686 115.59 85.1292 115.09C99.4118 113.083 112.05 107.628 121.744 96.6153C138.759 77.2881 134.524 42.1123 104.846 32.3558C93.8566 28.746 82.3857 26.5243 70.7233 27.2725C57.6687 28.1106 46.2832 33.0968 37.8617 43.4256C30.0513 53.0022 26.6062 64.3694 26.3233 76.5471C25.9125 94.2223 34.5276 106.232 51.1808 112.095C58.6448 114.649 66.4731 115.979 74.362 116.032L74.3653 116.033ZM20.0205 60.3756C19.7421 60.3376 19.4597 60.3412 19.1824 60.3861C12.7641 62.2757 6.45466 73.2929 8.09026 79.6823C8.58579 81.6199 9.81316 82.7712 11.7592 82.8092C13.8765 82.8512 16.0005 82.5894 17.5501 82.4949C18.4092 74.7881 19.2099 67.6156 20.0185 60.3742L20.0205 60.3756ZM141.736 77.21C145.278 77.15 148.678 75.8064 151.305 73.4289C154.874 70.1905 155.296 65.2817 152.224 62.4522C149.242 59.7061 145.667 58.9152 141.736 59.7146V77.21Z" fill="#000000"></path> <path d="M84.8075 82.0252C86.4018 82.3193 88.1725 82.2825 89.5331 83.0097C90.1516 83.3495 90.6946 83.8115 91.129 84.3676C91.5634 84.9238 91.8802 85.5624 92.06 86.2448C92.3344 88.1095 90.7172 89.0671 88.9411 89.2994C88.0814 89.4143 87.2076 89.3635 86.367 89.1498C84.8505 88.6937 83.2428 88.6309 81.6954 88.9674C80.148 89.304 78.7116 90.0287 77.5215 91.0734C76.1714 92.182 74.5896 93.0209 73.233 91.3781C72.0319 89.9236 72.5832 88.2348 73.7817 86.9346C75.1549 85.3673 76.8518 84.1166 78.7554 83.269C80.659 82.4214 82.7239 81.9971 84.8075 82.0252Z" fill="#000000"></path> <path d="M57.7186 52.5112C61.4295 52.6392 63.7503 55.2876 63.5495 59.1645C63.3893 62.2533 60.9084 64.7434 58.1203 64.6154C54.9698 64.4703 52.4724 61.3206 52.607 57.6582C52.7442 53.9453 54.2853 52.3924 57.7186 52.5112Z" fill="#000000"></path> <path d="M93.575 57.3327C93.5684 54.2361 94.7564 52.8328 97.4244 52.7856C100.873 52.7245 103.039 54.689 102.96 57.8066C102.891 60.4916 100.78 62.7678 98.3 62.8282C95.4672 62.8971 93.5822 60.7024 93.575 57.3327Z" fill="#000000"></path> </g></svg> General</button>
+
+
+  <button class="tablinks" onclick="openCity(event, 'Prompt')"> <svg class='mx-2' width="25px" height="25px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.5 15C18.6046 15 19.5 15.8954 19.5 17C19.5 18.1046 18.6046 19 17.5 19C16.3954 19 15.5 18.1046 15.5 17V7C15.5 5.89543 16.3954 5 17.5 5C18.6046 5 19.5 5.89543 19.5 7C19.5 8.10457 18.6046 9 17.5 9H15.5V15H17.5Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.5 9V9.75C9.91421 9.75 10.25 9.41421 10.25 9H9.5ZM9.5 8.25C9.08579 8.25 8.75 8.58579 8.75 9C8.75 9.41421 9.08579 9.75 9.5 9.75V8.25ZM15.5 9.75C15.9142 9.75 16.25 9.41421 16.25 9C16.25 8.58579 15.9142 8.25 15.5 8.25V9.75ZM10.25 9C10.25 8.58579 9.91421 8.25 9.5 8.25C9.08579 8.25 8.75 8.58579 8.75 9H10.25ZM8.75 15C8.75 15.4142 9.08579 15.75 9.5 15.75C9.91421 15.75 10.25 15.4142 10.25 15H8.75ZM9.5 15H10.25C10.25 14.5858 9.91421 14.25 9.5 14.25V15ZM9.5 14.25C9.08579 14.25 8.75 14.5858 8.75 15C8.75 15.4142 9.08579 15.75 9.5 15.75V14.25ZM15.5 15.75C15.9142 15.75 16.25 15.4142 16.25 15C16.25 14.5858 15.9142 14.25 15.5 14.25V15.75ZM9.5 8.25H7.5V9.75H9.5V8.25ZM7.5 8.25C6.80964 8.25 6.25 7.69036 6.25 7H4.75C4.75 8.51878 5.98122 9.75 7.5 9.75V8.25ZM6.25 7C6.25 6.30964 6.80964 5.75 7.5 5.75V4.25C5.98122 4.25 4.75 5.48122 4.75 7H6.25ZM7.5 5.75C8.19036 5.75 8.75 6.30964 8.75 7H10.25C10.25 5.48122 9.01878 4.25 7.5 4.25V5.75ZM8.75 7V9H10.25V7H8.75ZM9.5 9.75H15.5V8.25H9.5V9.75ZM8.75 9V15H10.25V9H8.75ZM8.75 15V17H10.25V15H8.75ZM8.75 17C8.75 17.6904 8.19036 18.25 7.5 18.25V19.75C9.01878 19.75 10.25 18.5188 10.25 17H8.75ZM7.5 18.25C6.80964 18.25 6.25 17.6904 6.25 17H4.75C4.75 18.5188 5.98122 19.75 7.5 19.75V18.25ZM6.25 17C6.25 16.3096 6.80964 15.75 7.5 15.75V14.25C5.98122 14.25 4.75 15.4812 4.75 17H6.25ZM7.5 15.75H9.5V14.25H7.5V15.75ZM9.5 15.75H15.5V14.25H9.5V15.75Z" fill="#000000"></path> </g></svg> Instructions Prompt</button>
+
+
+
+ 
+
+
+
+  <button class="tablinks" onclick="openCity(event, 'Header')"> <svg class='mx-2' width="16px" height="16px" fill="#000000" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <g> <rect y="170.667" width="512" height="64"></rect> <path d="M490.667,0H21.333C9.536,0,0,9.557,0,21.333V128h512V21.333C512,9.557,502.464,0,490.667,0z M85.333,106.667 C73.557,106.667,64,97.109,64,85.333S73.557,64,85.333,64s21.333,9.557,21.333,21.333S97.109,106.667,85.333,106.667z M149.333,106.667c-11.776,0-21.333-9.557-21.333-21.333S137.557,64,149.333,64s21.333,9.557,21.333,21.333 S161.109,106.667,149.333,106.667z M213.333,106.667c-11.776,0-21.333-9.557-21.333-21.333S201.557,64,213.333,64 s21.333,9.557,21.333,21.333S225.109,106.667,213.333,106.667z"></path> <path d="M0,490.667C0,502.443,9.536,512,21.333,512h469.333c11.797,0,21.333-9.557,21.333-21.333V277.333H0V490.667z"></path> </g> </g> </g> </g></svg> Header</button>
+ 
+
+
+
+  <button class="tablinks" onclick="openCity(event, 'Greeting')"> <svg class='mx-2' width="19px" height="19px"  fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 11H8.01M12 11H12.01M16 11H16.01M21 20L17.6757 18.3378C17.4237 18.2118 17.2977 18.1488 17.1656 18.1044C17.0484 18.065 16.9277 18.0365 16.8052 18.0193C16.6672 18 16.5263 18 16.2446 18H6.2C5.07989 18 4.51984 18 4.09202 17.782C3.71569 17.5903 3.40973 17.2843 3.21799 16.908C3 16.4802 3 15.9201 3 14.8V7.2C3 6.07989 3 5.51984 3.21799 5.09202C3.40973 4.71569 3.71569 4.40973 4.09202 4.21799C4.51984 4 5.0799 4 6.2 4H17.8C18.9201 4 19.4802 4 19.908 4.21799C20.2843 4.40973 20.5903 4.71569 20.782 5.09202C21 5.51984 21 6.0799 21 7.2V20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Header Message</button>
+
+
+
+
+    <button class="tablinks" onclick="openCity(event, 'Body')"> <svg class='mx-2' width="23px" height="23px"   fill="#000000" viewBox="0 0 32 32" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M28.011,6.989c-0,-1.657 -1.344,-3 -3,-3l-18.023,-0c-1.657,-0 -3,1.343 -3,3l0,18.022c0,1.657 1.343,3 3,3l18.023,0c1.656,0 3,-1.343 3,-3l-0,-18.022Zm-2,-0l-0,18.022c-0,0.552 -0.448,1 -1,1l-18.023,0c-0.552,0 -1,-0.448 -1,-1l0,-18.022c0,-0.552 0.448,-1 1,-1l18.023,-0c0.552,-0 0.999,0.447 1,1Z"></path><path d="M22.999,16.992c0.553,0 1,-0.448 1,-1c0,-4.418 -3.581,-8 -8,-8c-4.418,0 -8,3.582 -8,8c0,0.552 0.448,1 1,1l14,0Zm-4.567,-2l3.484,0l0,0c-0.476,-2.838 -2.944,-5 -5.917,-5c-2.973,0 -5.441,2.163 -5.917,5l5.521,0l1.803,-1.802c0.39,-0.39 1.024,-0.39 1.414,-0c0.39,0.39 0.39,1.024 -0,1.414l-0.388,0.388Z"></path></g></svg> Body</button>
+
+
+
+
+
+    <button class="tablinks" onclick="openCity(event, 'Footer')"> <svg class='mx-2' width="20px" height="20px" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>bottom-vertical</title> <path d="M0 26.016v-20q0-2.496 1.76-4.256t4.256-1.76h20q2.464 0 4.224 1.76t1.76 4.256v20q0 2.496-1.76 4.224t-4.224 1.76h-20q-2.496 0-4.256-1.76t-1.76-4.224zM4 26.016q0 0.832 0.576 1.408t1.44 0.576h20q0.8 0 1.408-0.576t0.576-1.408v-20q0-0.832-0.576-1.408t-1.408-0.608h-20q-0.832 0-1.44 0.608t-0.576 1.408v20zM8 22.016v-12q0-0.832 0.576-1.408t1.44-0.608h1.984q0.832 0 1.408 0.608t0.608 1.408v12q0 0.832-0.608 1.408t-1.408 0.576h-1.984q-0.832 0-1.44-0.576t-0.576-1.408zM10.016 22.016h1.984v-12h-1.984v12zM18.016 22.016v-4q0-0.832 0.576-1.408t1.408-0.608h2.016q0.8 0 1.408 0.608t0.576 1.408v4q0 0.832-0.576 1.408t-1.408 0.576h-2.016q-0.832 0-1.408-0.576t-0.576-1.408zM20 22.016h2.016v-4h-2.016v4z"></path> </g></svg> Footer</button>
+
+
+ 
+</div>
+
+
+
+
+
+<div id="General" class="tabcontent px-4 py-2">
+
+
+
+      <div class="form-group mt-3">  
+            <label for="bot-name ">Name: <span class="text-danger" >*</span> </label>
+            <input type="text" class="form-control" id="bot-name" name="name" placeholder="Enter the name of your chatbot" required autofocus  >
+            <input type="text" class="form-control" id="connections_pk" name="connections_pk" placeholder="connections_pk" style="display: none;" value='{{pk}}' >     
+
+             <input type="text" class="form-control" id="task-prompt" name="task-prompt" placeholder="task-prompt" style="display: none;"  >
+
+            
+
+
+          </div>
+          
+       
+<div class="form-group">
+            <label for="bot-image">Bot Icon:</label>
+            <input type="file" class="form-control" id="bot-image" name="bot-image" >
+          </div>
+
+
+
+
+
+
+
+ 
+
+
+     
+
+
+
+
+
+
+
+
+             <div class="form-check form-switch my-4">
+
+       <label for="show-chat-history" class="form-check-label">Show Chat History:</label>
+
+            <input type="checkbox" class="form-check-input" style="min-height:20px"  checked id="show-chat-history" name="show-chat-history"   >
+        </div>
+
+
+
+</div>
+
+<div id="Greeting" class="tabcontent px-4 py-2">
+
+
+ 
+       
+ 
+
+
+
+
+      <div class="form-check form-switch my-4 ">
+
+          <label for="show-greeting" class="form-check-label">Show Header Message:</label>
+
+            <input type="checkbox" class="form-check-input" style="min-height:20px"  checked id="show-greeting" name="show-greeting"   >
+
+        </div>
+
+
+ <div class="form-group chatbot-form">
+          <label for="header">Message:</label>
+      <div id="editorjs"></div>
+        </div>
+
+
+
+
+  <div style="display: flex; justify-content:space-between">
+ 
+    <div class="form-group" style="width:48%;">
+      <label for="greeting-bg-color">Bg Color:</label>
+      <input type="color" class="form-control" id="greeting-bg-color" name="greeting-bg-color" value="#FFFFFF">
+    </div>
+
+     <div class="form-group" style="width:48%;">
+    <label for="greeting-padding">Padding (px):</label>
+    <input type="number" class="form-control" id="greeting-padding" name="greeting-padding" value="8">
+  </div>
+
+
+  </div>
+
+
+  <div style="display: flex; justify-content:space-between">
+    <div class="form-group" style="width:48%;">
+    <label for="greeting-margin">Margin (px):</label>
+    <input type="number" class="form-control" id="greeting-margin" name="greeting-margin" value="0">
+  </div>
+
+    <div class="form-group" style="width:48%;">
+      <label for="greeting-color">Text Color:</label>
+      <input type="color" class="form-control" id="greeting-color" name="greeting-color" value="#000000">
+    </div>
+  </div>
+
+ 
+
+  <div style="display: flex; justify-content:space-between">
+
+      <div class="form-group" style="width:48%;">
+    <label for="greeting-position">Text Position:</label>
+    <select class="form-control" id="greeting-position" name="greeting-position" >
+      <option value="left">Left</option>
+      <option value="center" selected>Center</option>
+      <option value="right">Right</option>
+    </select>
+  </div>
+
+
+    <div class="form-group" style="width:48%;">
+    <label for="greeting-text-transform">Text Transform:</label>
+    <select class="form-control" id="greeting-text-transform" name="greeting-text-transform">
+      <option value="none">None</option>
+      <option value="uppercase">Uppercase</option>
+      <option value="lowercase">Lowercase</option>
+      <option value="capitalize">Capitalize</option>
+    </select>
+  </div>
+
+ 
+
+  </div>
+
+  <div style="display: flex; justify-content:space-between">
+ 
+
+   <div class="form-group" style="width:48%;">
+    <label for="greeting-font-family">Font Family:</label>
+    <select class="form-control" id="greeting-font-family" name="greeting-font-family">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Helvetica">Helvetica</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Palatino">Palatino</option>
+      <option value="Garamond">Garamond</option>
+      <option value="Comic Sans MS">Comic Sans MS</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+      <option value="Impact">Impact</option>
+    </select>
+  </div>
+
+     <div class="form-group" style="width:48%;">
+       <label for="greeting-border-color">Border Color:</label>
+          <input type="color" class="form-control" id="greeting-border-color"  name="greeting-border-color" value="#FFFFFF" >
+  </div> 
+  </div>
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+            <div class="form-group" style="width:48%;">
+          <label for="greeting-border-size">Border Width ( top right bottom left ) :</label>
+                 <input type="text" class="form-control" id="greeting-border-size"  name="greeting-border-size" placeholder="top right bottom left (px)" value="0px 0px 0px 0px" >
+
+        </div>
+
+    <div class="form-group" style="width:48%;">
+       <label for="greeting-border-radius">Border Radius:</label>
+          <input type="text" class="form-control" id="greeting-border-radius" name="greeting-border-radius"  value="13" >
+        </div>
+        </div>
+      
+
+
+<div style="display: flex; justify-content:space-between" >
+
+   <div class="form-group" style="width:48%;">
+    <label for="greeting-border-style">Border Style:</label>
+    <select class="form-control" id="greeting-border-style" name="greeting-border-style" selected="None" >
+      <option value="None" selected>None</option>
+      <option value="solid" selected>solid</option>
+      <option value="dashed">dashed</option>
+      <option value="dotted">dotted</option>
+      <option value="double">double</option>
+      
+    </select>
+  </div>
+            <div class="form-group" style="width:48%;">
+          
+        </div>
+
+        </div>
+
+
+
+   
+            <div class="form-group"  >
+         <label for="greeting-border-shadow" class="form-check-label">Add Border Shadow:</label>
+            <input type="checkbox" class="form-check-input" style="min-height:20px"  checked id="greeting-border-shadow" name="greeting-border-shadow"   >
+
+        </div>
+
+
+
+
+</div>
+
+
+<div id="Prompt" class="tabcontent px-4 py-3"> 
+        
+        <label class="my-2" for="task">Bot Task (Prompts): <span class="text-danger" >*</span></label>
+
+
+ <div class="containere px-0 ">
+        <div class="input-group mb-3 ">
+               <div class="input-group-prepend" style="padding-top: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #cbcbcb;
+    background: white;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    padding-top: 10px;">
+                    <i class="fa fa-search form-control-feedback"></i>
+            </div>
+
+            <input type="text" id="search-input-form" class="form-control" placeholder="Search Prompt(s) ...">
+            <div class="input-group-append" style="padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #cbcbcb;
+    background: white;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;">
+
+       
+  
+                    <a    href="/customer/prompt_writer" id="edit_in_prompt"
+    class="btn circle btn-md btn-dark wow fadeInUp create-bot my-0" style="  height: 40px" id='next' href="#" role="button" aria-pressed="true"> {% if not api_id %} Prompt Builder   {% else %} Edit in Prompt Builder {% endif %}»</a>
+
+    
+
+
+            </div>
+
+
+        </div>
+            <span id="result-count" class="mt-0 " ></span> <!-- Display the number of results -->
+        <div class="custom-list-group">
+            <div id="search-results" class="mt-2"> </div> <!-- Results as a list -->
+        </div>
+    </div>
+
+
+
+        <div class="form-group">
+        <textarea readonly rows="26" required class="form-control" id="task"  name="task" placeholder="Go to prompt builder to create prompt" style="background:#fffff" ></textarea>
+      </div>
+
+
+
+</div>
+
+<div id="Header" class="tabcontent px-4 py-3 ">
+
+  <div class="form-group form-switch mt-3">
+    <input type="checkbox" class="form-check-input" style="min-height:20px" checked id="show-header" name="show-header">
+    <label for="show-header" class="form-check-label">Show Header:</label>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="header">Header Title:</label>
+    <input type="text" class="form-control" id="header" name="header-title" placeholder="Enter bot tile"   >
+  </div>
+
+
+  <div style="display: flex; justify-content:space-between">
+ 
+    <div class="form-group" style="width:48%;">
+      <label for="header-bg-color">Header Bg Color:</label>
+      <input type="color" class="form-control" id="header-bg-color" name="header-bg-color" value="#051837">
+    </div>
+
+     <div class="form-group" style="width:48%;">
+    <label for="header-padding">Padding (px):</label>
+    <input type="number" class="form-control" id="header-padding" name="header-padding" value="8">
+  </div>
+
+
+  </div>
+
+
+  <div style="display: flex; justify-content:space-between">
+    <div class="form-group" style="width:48%;">
+    <label for="header-margin">Margin (px):</label>
+    <input type="number" class="form-control" id="header-margin" name="header-margin" value="0">
+  </div>
+
+    <div class="form-group" style="width:48%;">
+    <label for="header-border-style">Border Style:</label>
+    <select class="form-control" id="header-border-style" name="header-border-style" selected="None" >
+      <option value="None" selected>None</option>
+      <option value="solid" selected>solid</option>
+      <option value="dashed">dashed</option>
+      <option value="dotted">dotted</option>
+      <option value="double">double</option>
+      
+    </select>
+  </div>
+  </div>
+
+
+
+
+   <div style="display: flex; justify-content:space-between">
+ 
+   <div class="form-group" style="width:48%;">
+          <label for="header-border-size">Border Width ( top right bottom left ) :</label>
+                 <input type="text" class="form-control" id="header-border-size"  name="header-border-size" placeholder="0px 0px 0px 0px" value="0px 0px 0px 0px" >
+
+        </div>
+
+
+     <div class="form-group" style="width:48%;">
+       <label for="header-border-color">Border Color:</label>
+          <input type="color" class="form-control" id="header-border-color"  name="header-border-color" value="#FFFFFF" >
+  </div> 
+  </div>
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+        
+
+    <div class="form-group" style="width:48%;">
+       <label for="header-border-radius">Border Radius:</label>
+          <input type="text" class="form-control" id="header-border-radius" name="header-border-radius"  value="0" >
+        </div>
+
+            <div class="form-group" style="width:48%;">
+        
+
+        </div>
+
+        </div>
+      
+
+ 
+
+<hr />
+
+
+
+
+  <div class="form-group form-switch mt-3">
+    <input type="checkbox" class="form-check-input" style="min-height:20px" checked id="show-icon"  name="show-icon">
+    <label for="show-icon" class="form-check-label">Show Icon:</label>
+  </div>
+
+  <div style="display: flex; justify-content:space-between">
+    <div class="form-group" style="width:48%;">
+    <label for="icon-margin">Icon Margin (px):</label>
+    <input type="number" class="form-control" id="icon-margin" name="icon-margin" value="1">
+  </div>
+
+<div class="form-group" style="width:48%;">
+    <label for="icon-padding">Icon Padding (px):</label>
+    <input type="number" class="form-control" id="icon-padding" name="icon-padding" value="1">
+  </div>
+  </div>
+
+
+
+
+
+
+
+<hr />
+
+  <div style="display: flex; justify-content:space-between">
+
+       <div class="form-group" style="width:48%;">
+      <label for="header-color">Text Color:</label>
+      <input type="color" class="form-control" id="header-color" name="header-color" value="#FFFFFF">
+    </div>
+
+
+    <div class="form-group" style="width:48%;">
+    <label for="header-font-size">Font Size (px):</label>
+    <input type="number" class="form-control" id="header-font-size" name="header-font-size" value="13">
+  </div>
+
+  
+  </div>
+
+
+ 
+
+  <div style="display: flex; justify-content:space-between">
+
+      <div class="form-group" style="width:48%;">
+    <label for="header-position">Text Position:</label>
+    <select class="form-control" id="header-position" name="header-position">
+      <option value="left">Left</option>
+      <option value="center">Center</option>
+      <option value="right">Right</option>
+    </select>
+  </div>
+
+
+    <div class="form-group" style="width:48%;">
+    <label for="header-text-transform">Text Transform:</label>
+    <select class="form-control" id="header-text-transform" name="header-text-transform">
+      <option value="none">None</option>
+      <option value="uppercase">Uppercase</option>
+      <option value="lowercase">Lowercase</option>
+      <option value="capitalize">Capitalize</option>
+    </select>
+  </div>
+
+ 
+
+  </div>
+
+  <div style="display: flex; justify-content:space-between">
+ 
+
+   <div class="form-group" style="width:48%;">
+    <label for="header-font-family">Font Family:</label>
+    <select class="form-control" id="header-font-family" name="header-font-family">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Helvetica">Helvetica</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Palatino">Palatino</option>
+      <option value="Garamond">Garamond</option>
+      <option value="Comic Sans MS">Comic Sans MS</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+      <option value="Impact">Impact</option>
+    </select>
+  </div>
+
+     <div class="form-group" style="width:48%;">
+   
+  </div> 
+  </div>
+
+
+</div>
+
+
+
+
+ 
+<div id="Body" class="tabcontent px-4 py-3">
+
+
+
+  <div class="form-group">
+    <label for="header">Bot Greeting Message:</label>
+    <input type="text" class="form-control" id="bot-greeting-message" name="bot-greeting-message" placeholder="Enter Message" value="👋🏻 Hi there! What brings you here today?" >
+  </div>
+
+
+
+  <div style="display: flex; justify-content:space-between">
+ 
+     <div class="form-group" style="width:48%;">
+    <label for="body-margin">Margin ( top right bottom left ):</label>
+    <input type="text" class="form-control" id="body-margin" name="body-margin" value="0px 0px 0px 0px">
+  </div>
+
+     <div class="form-group" style="width:48%;">
+    <label for="body-padding">Padding (px):</label>
+    <input type="number" class="form-control" id="body-padding" name="body-padding" value="0">
+  </div>
+
+
+  </div>
+
+
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+ <div class="form-group" style="width:48%;" >
+          <label for="font">Font:</label>
+          <select class="form-control" id="font"  name="font">
+            <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Helvetica">Helvetica</option>
+      <option value="Times New Roman">Times New Roman</option>
+      <option value="Courier New">Courier New</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Palatino">Palatino</option>
+      <option value="Garamond">Garamond</option>
+      <option value="Comic Sans MS">Comic Sans MS</option>
+      <option value="Arial Black">Arial Black</option>
+      <option value="Tahoma">Tahoma</option>
+      <option value="Trebuchet MS">Trebuchet MS</option>
+      <option value="Impact">Impact</option>
+          </select>
+        </div>
+
+
+<div class="form-group" style="width:48%;">
+          <label for="font-size">Font Size:</label>
+          <input type="number" class="form-control" id="font-size"  name="font-size" placeholder="Select font size" value="12" >
+        </div>
+       
+       </div>
+
+
+<hr />
+
+
+        
+    
+         <div style="display: flex; justify-content:space-between" >
+
+ <div class="form-group" style="width:48%;" > 
+          <label for="user-msg-color">User Message Color:</label>
+          <input type="color" class="form-control" id="user-msg-color"  name="user-msg-color" value="#4C4D4D">
+        </div>
+        <div class="form-group" style="width:48%;" >
+          <label for="user-msg-bg-color">User Message Bg Color:</label>
+          <input type="color" class="form-control" id="user-msg-bg-color"  name="user-msg-bg-color" value="#D8F0F3"  >
+        </div>
+        </div>
+
+
+
+  <div style="display: flex; justify-content:space-between">
+ 
+     <div class="form-group" style="width:48%;">
+    <label for="user-margin">User Message Margin ( top right bottom left ):</label>
+    <input type="text" class="form-control" id="user-margin" name="user-margin" value="7px 3px 7px 3px">
+  </div>
+
+     <div class="form-group" style="width:48%;">
+    <label for="user-padding">User Message Padding ( top right bottom left ):</label>
+    <input type="text" class="form-control" id="user-padding" name="user-padding" value="3px 6px 3px 6px">
+  </div>
+
+
+  </div>
+
+
+<div style="display: flex; justify-content:space-between" >
+    <div class="form-group" style="width:48%;">
+          <label for="user-border-color">User Message Border Color:</label>
+          <input type="color" class="form-control" id="user-border-color"  name="user-border-color" value="#FFFFFF" >
+        </div>
+        
+
+    <div class="form-group" style="width:48%;">
+      <label for="user-border-size">User Message Border Width ( top right bottom left ) :</label>
+                 <input type="text" class="form-control" id="user-border-size"  name="user-border-size"   value="0px 0px 0px 0px" >
+
+        </div>
+
+
+        </div>
+      
+
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+            <div class="form-group" style="width:48%;">
+           <label for="user-border-style">User Message Border Style:</label>
+    <select class="form-control" id="user-border-style" name="user-border-style" selected="None" >
+      <option value="None" selected>None</option>
+      <option value="solid" selected>solid</option>
+      <option value="dashed">dashed</option>
+      <option value="dotted">dotted</option>
+      <option value="double">double</option>
+      
+    </select>
+
+        </div>
+
+    <div class="form-group" style="width:48%;">
+       <label for="user-border-radius">User Msg Border Radius (Top-left, top-right, bottom-left, bottom-right):</label>
+          <input type="text" class="form-control" id="user-border-radius" name="user-border-radius"  value="6px 6px 6px 6px" placeholder="6px 6px 6px 6px" >
+        </div>
+        </div>
+      
+
+
+ 
+
+
+
+<hr />
+
+
+
+        <div style="display: flex; justify-content:space-between" >
+
+ <div class="form-group" style="width:48%;" >
+          <label for="bot-msg-color">Bot Message Color:</label>
+          <input type="color" class="form-control" id="bot-msg-color"  name="bot-msg-color" value="#6d6a6a" >
+        </div>
+        <div class="form-group" style="width:48%;" >
+          <label for="bot-msg-bg-color">Bot Message Bg Color:</label>
+          <input type="color" class="form-control" id="bot-msg-bg-color" name="bot-msg-bg-color"  value="#e9e9e9" >
+        </div>
+        </div>
+
+
+          <div style="display: flex; justify-content:space-between">
+ 
+     <div class="form-group" style="width:48%;">
+    <label for="bot-margin">Bot Message Margin ( top right bottom left ):</label>
+    <input type="text" class="form-control" id="bot-margin" name="bot-margin" value="0px 18px 10px 10px">
+  </div>
+
+     <div class="form-group" style="width:48%;">
+    <label for="bot-padding">Bot Message Padding ( top right bottom left ):</label>
+    <input type="text" class="form-control" id="bot-padding" name="bot-padding" value="15px 12px 15px 12px">
+  </div>
+
+
+  </div>
+
+
+
+
+     
+
+<div style="display: flex; justify-content:space-between" >
+    <div class="form-group" style="width:48%;">
+          <label for="bot-border-color">Bot Message Border Color:</label>
+          <input type="color" class="form-control" id="bot-border-color"  name="bot-border-color" value="#FFFFFF" >
+        </div>
+        
+
+    <div class="form-group" style="width:48%;">
+      <label for="bot-border-size">Bot Message Border Width ( top right bottom left ) :</label>
+                 <input type="text" class="form-control" id="bot-border-size"  name="bot-border-size" placeholder="top right bottom left (px)" value="0px 0px 0px 0px" >
+
+        </div>
+
+
+        </div>
+      
+
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+            <div class="form-group" style="width:48%;">
+           <label for="bot-border-style">Bot Message Border Style:</label>
+    <select class="form-control" id="bot-border-style" name="bot-border-style" selected="None" >
+      <option value="None" selected>None</option>
+      <option value="solid" selected>solid</option>
+      <option value="dashed">dashed</option>
+      <option value="dotted">dotted</option>
+      <option value="double">double</option>
+      
+    </select>
+
+        </div>
+
+    <div class="form-group" style="width:48%;">
+       <label for="bot-border-radius">Bot Msg Border Radius (Top-left, top-right, bottom-left, bottom-right) :</label>
+          <input type="text" class="form-control" id="bot-border-radius" name="bot-border-radius"  value="6px 6px 6px 6px" placeholder="6px 6px 6px 6px" >
+        </div>
+        </div>
+
+
+</div>
+
+
+
+<div id="Footer" class="tabcontent px-4 py-3">
+   
+        <div style="display: flex; justify-content:space-between" >
+ 
+
+          <div class="form-group" style="width:48%;">
+          <label for="send-bg-color">Send Button Top Color:</label>
+          <input type="color" class="form-control" id="send-bg-color" name="send-bg-color"  value="#3861A3" >
+        </div>
+
+
+          <div class="form-group" style="width:48%;">
+          <label for="send-color">Send Button Down Color:</label>
+          <input type="color" class="form-control" id="send-color" name="send-color"  value="#867E7E" >
+        </div>
+
+
+
+        </div>
+
+
+
+<div style="display: flex; justify-content:space-between" >
+
+ <div class="form-group" style="width:48%;" >
+          <label for="input-position">Input Position:</label>
+          <select class="form-control" id="input-position"  name="input-position">
+            <option value="bottom">Bottom</option>
+            <option value="top" >Top</option>
+            <!-- Add more input-position options here -->
+          </select>
+        </div>
+
+
+ 
+ <div class="form-group" style="width:48%;" >
+       <label for="input-placeholder">Placeholder:</label>
+          <input type="text" class="form-control" id="input-placeholder"  name="input-placeholder" value="Send a message..."   >
+        </div>
+       
+       
+       </div>
+
+
+
+
+
+
+<div style="display: flex; justify-content:space-between" >
+ 
+
+
+ <div class="form-group" style="width:48%;" >
+       <label for="input-width"> Width (%):</label>
+          <input type="number" class="form-control" id="input-width"  name="input-width" placeholder="Enter width in %" value="70" >
+        </div>
+       
+
+              <div class="form-group" style="width:48%;" >
+       <label for="input-height">Height (px):</label>
+          <input type="number" class="form-control" id="input-height"  name="input-height" placeholder="Enter height in px" value="40" >
+        </div>
+
+
+       </div>
+
+       
+
+
+   <div style="display: flex; justify-content:space-between" >
+ 
+
+          <div class="form-group" style="width:48%;">
+          <label for="input-background">Input Background:</label>
+          <input type="color" class="form-control" id="input-background" name="input-background"  value="#fffefe" >
+        </div>
+
+
+          <div class="form-group" style="width:48%;">
+          <label for="input-color">Input Color:</label>
+          
+          
+
+          <input type="color" class="form-control" id="input-color" name="input-color"  value="#6d6a6a" >
+        </div>
+
+
+
+        </div>
+
+   <div style="display: flex; justify-content:space-between" >
+ 
+
+          <div class="form-group" style="width:48%;">
+          <label for="input-border-color">Input Border Color:</label>
+          <input type="color" class="form-control" id="input-border-color" name="input-border-color"  value="#F5F5F5" >
+        </div>
+
+
+          <div class="form-group" style="width:48%;">
+          <label for="input-border-size">Input Border Size:</label>
+          <input type="text" class="form-control" id="input-border-size" name="input-border-size" placeholder="Size in px"  value="0" >
+        </div>
+
+
+
+        </div>
+
+        
+
+
+           <div style="display: flex; justify-content:space-between" >
+ 
+
+      
+
+          <div class="form-group" style="width:48%;">
+          <label for="border-radius">Border Radius:</label>
+          <input type="text" class="form-control" id="border-radius" name="border-radius"  value="13" >
+        </div>
+
+                           <div class="form-group" style="width:48%;">
+ 
+
+        </div>
+        </div>
+
+
+     <div class="form-check form-switch my-2 ">
+   <label for="border-shadow" class="form-check-label">Add Shadow:</label>
+
+            <input type="checkbox" class="form-check-input" style="min-height:20px"  checked id="border-shadow" name="border-shadow"   >
+
+        </div>
+
+ 
+
+
+</div>
+</div>
+
+
+
+
+
+  
+
+
+
+
+      
+
+
+
+
+
+      
+
+    
+    </form>
+      </div>
+    </div>
+
+
+
+
+
+                               <div class=" mb-3 pr-3  " style=" width: 28%;  ">
+
+                                                            <div class=" my-1 ">
+    <div style="border: 1px solid #ccc; border-radius: 10px; ">
+      <div class="font-weight-bolder" style="background-color: white; color: black; padding: 10px; border-bottom: 1px solid #ccc; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        Preview Skin
+      </div>
+      <div class="p-2" style="background-color: #f4f4f4; padding: 10px; border-bottom-left-radius: 10px;  border-bottom-right-radius: 10px;">
+
+    <div id="configs"  style="border: 1px solid #ccc; border-radius: 10px;    height: 86vh;">
+<iframe id="iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+
+
+
+    </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+    {% include "includes/footer.html" %}
+    
+  </div>
+
+{% endblock content %}
+
+
+{% block javascripts %}
+ 
+
+
+<script>
+  function saveForm (shud_alert,greeting=localStorage.getItem('greeting') ){
+
+
+
+         const form = document.getElementById('chatbotForm');
+               const iframe = document.getElementById('iframe');
+    
+
+        const formData = new FormData(form);  // Create a FormData object from the form
+         formData.append('greeting', greeting );
+
+         
+
+
+
+         if (iframe.src){
+         formData.append('status', 'edit');
+         }
+
+        fetch('/customer/ai_models', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',  // Identify the request as an AJAX request
+                'X-CSRFToken': getCookie('csrftoken')  // Include the CSRF token if needed
+            }
+        })
+        .then(response => response.json())  // Parse the response as JSON
+        .then(data => {
+            // Handle the response data
+            console.log('Success:', data);
+
+            if (shud_alert){
+                 if (data.pk){
+                populateForm(data.pk)
+            }
+                if (data.error){
+            alert(data.error);
+            if (data.error.indexOf('update')>=0){
+                $('#submitBtn').attr('style','display:none;')
+            }
+         
+            } else {
+                alert("Form submitted successfully")
+            }
+            }
+           
+            
+        iframe.src = 'http://192.168.117.97:8030/customer/chatbot/iframe/'+ data.api_id+'?user_id=' + data.user 
+
+        })
+        .catch((error) => {
+            // Handle any errors
+            console.error('Error:', error);
+            alert('Form submission failed!');
+        });
+    };
+</script>
+<script>
+
+document.addEventListener('DOMContentLoaded', (event) => {
+ 
+
+
+    // Select the form and its inputs
+            const form = document.getElementById('chatbotForm');
+            const inputs = form.querySelectorAll('input:not(#bot-name)')
+                const selects = form.querySelectorAll('select'); 
+
+            // Event listener for input changes
+            inputs.forEach(input => {
+                input.addEventListener('input', (event) => {
+                    saveForm(false)
+                });
+            });
+
+                selects.forEach(select => {
+        select.addEventListener('change', (event) => {
+            saveForm(false);
+        });
+    });
+
+           
+ 
+
+
+
+
+
+    const submitBtn = document.getElementById('submitBtn');
+    if (submitBtn){
+
+$('#header').val(document.getElementById('bot-name').value)
+
+submitBtn.addEventListener('click', (event) => {
+ event.preventDefault();  // Prevent the default form submission
+saveForm(true)
+})
+
+    }
+  
+ 
+   
+    });
+
+
+
+
+
+
+
+function openCity(evt, cityName) {
+  evt.preventDefault()
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+
+
+
+    <script>
+
+
+
+    $('#search-input-form').on('input', function () {
+        const query = $(this).val();
+
+        if (!query){
+          $('#search-results').text("")
+                $('#result-count').empty();
+
+        } else {
+
+        // Send an Ajax request to the Django view
+        $.ajax({
+            type: 'GET',
+            url: '/customer/prompt/search',  // Replace with your Django view URL
+            data: { 'q': query },
+            success: function (data) {
+                // Clear previous results
+                $('#search-results').empty();
+                $('#result-count').text(data.results.length + " results found.");
+
+                // Display the results
+  if (data.results.length > 0) {
+                    const resultsList = $('<ul style="padding-left:0px;" >');
+                    $.each(data.results, function (index, item) {
+                    let last_update = String(item.last_update).split("T")
+                        // Create a list item with Bootstrap classes
+                        const listItem = $('<li>').click(function () {
+    selectModel(item);
+}).addClass('list-group-item result-item');
+                        
+                        // Create the result content container
+                        const resultContent = $('<div>').addClass('result-content');
+                        
+                        // Create and append the image element
+                        const resultInfo = $('<div>').addClass('result-info').html(`<div class="mt-1" style="display: flex;flex-direction: row; align-items:center; justify-content:space-between; ">
+      
+      <div>
+        <svg style="margin-left: -1px;" width="64px" height="64px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg" fill="#12116f"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#0ea427" d="M512 64a448 448 0 110 896 448 448 0 010-896zm-55.808 536.384l-99.52-99.584a38.4 38.4 0 10-54.336 54.336l126.72 126.72a38.272 38.272 0 0054.336 0l262.4-262.464a38.4 38.4 0 10-54.272-54.336L456.192 600.384z"></path></g></svg>
+      
+
+<span style="font-size: 13px; margin-left: 5px;"> Created: (${item.created_by__username})  </span> <svg style="margin-right: 3px;margin-left: 5px;" preserveAspectRatio="xMidYMin" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="css-492dz9"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.7146 11.1371C20.5388 6.22883 15.7439 2.35414 11.1244 2.78226L11.1045 2.78411L11.0846 2.78489C6.38998 2.96884 2.86359 7.16608 3.28439 11.029L3.28675 11.0507L3.28785 11.0724C3.48669 15.0118 7.36507 18.0207 10.9734 17.6246L10.9936 17.6224L11.0139 17.6213C14.6969 17.4182 17.3174 14.097 16.9356 11.2085L16.9327 11.1868L16.9311 11.1648C16.7141 8.19198 13.7503 6.05168 11.1574 6.40837L11.1372 6.41115L11.1168 6.41283C8.44417 6.63315 6.72879 9.06894 7.06267 10.9812L7.0666 11.0038L7.06915 11.0265C7.29464 13.033 9.33949 14.3087 10.9126 14.0039L10.9331 14L10.9538 13.9971C12.6215 13.7697 13.4239 12.2374 13.1704 11.3075L13.1642 11.2846L13.1594 11.2614C13.0552 10.755 12.7404 10.382 12.3562 10.1626C11.9536 9.93277 11.552 9.9118 11.314 9.99929C10.9253 10.1422 10.4942 9.94297 10.3513 9.55421C10.2083 9.16544 10.4076 8.7344 10.7964 8.59145C11.5396 8.31815 12.4048 8.46307 13.1 8.86004C13.808 9.26433 14.418 9.9712 14.6238 10.9361C15.1278 12.8483 13.595 15.139 11.1771 15.4805C8.78103 15.931 5.91872 14.0977 5.58113 11.2166C5.09659 8.35143 7.54114 5.21406 10.9733 4.91961C14.3744 4.46456 18.1307 7.17864 18.4255 11.0338C18.9166 14.8604 15.5658 18.861 11.1167 19.1178C6.70736 19.5893 2.04791 15.9967 1.79088 11.1698C1.28302 6.37529 5.54313 1.51228 11.0059 1.28684C16.4202 0.797246 21.9914 5.2602 22.2129 11.0615C22.7433 16.8283 17.5595 22.5672 11.0763 22.7497C10.6622 22.7614 10.3171 22.4351 10.3055 22.0211C10.2938 21.607 10.62 21.2619 11.0341 21.2503C16.738 21.0898 21.1741 16.0142 20.7175 11.1808L20.7154 11.159L20.7146 11.1371Z"></path></svg> <span style="font-size: 13px;"> ${formatDate(last_update[0])} : ${formatTime(last_update[1])} </span>
+
+</div>
+
+<span style="font_size:14px" > ${item.api_id} </span>
+
+</div>`);
+                        resultContent.append(resultInfo);
+                        
+                        // Create and append the name element
+                        const resultName = $('<div>').addClass('result-name').text(item.name );
+                        resultContent.append(resultName);
+
+                        // Create and append the description element
+                        const resultDescription = $('<div>').addClass('result-description').text(item.description.slice(0,30));
+                        resultContent.append(resultDescription);
+                        resultContent.append(resultInfo);
+
+
+                        // Append the result content container to the list item
+                        listItem.append(resultContent);
+
+                        // Append the list item to the results list
+                        resultsList.append(listItem);
+                    });
+                    // Append the results list to the search-results div
+                    $('#search-results').attr('style','max-height: 30vh; overflow-y: scroll;margin-bottom:10px;')
+                    $('#search-results').append(resultsList);
+                } else {
+                    // No results found
+                $('#result-count').empty();
+                    $('#search-results').text('No results found.');
+                }
+            }
+        });
+
+}
+
+
+    });
+
+
+
+function formatDate(inputDate) {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const date = new Date(inputDate);
+    return date.toLocaleDateString('en-US', options);
+}
+
+
+
+
+
+function selectModel(item) {
+
+  localStorage.setItem('writer_used_model',JSON.stringify(item))
+console.log('setting prompt',item)
+ 
+          $('#search-results').text("")
+          $('#search-input-form').val("")
+           $('#result-count').empty();
+
+          $('#task').val(item.content)
+          $('#task-prompt').val(item.pk)
+           $('#edit_in_prompt').attr('href',"/customer/prompt_writer?pk="+item.pk)
+           $('#edit_in_prompt').text('Edit in Prompt Builder')
+          saveForm(false)
+ 
+
+
+
+
+}
+
+
+function formatTime(inputTime) {
+    const options = { hour: 'numeric', minute: '2-digit', hour12: true };
+    const timeParts = inputTime.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const seconds = parseFloat(timeParts[2]);
+
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    date.setSeconds(seconds);
+
+    return date.toLocaleTimeString('en-US', options);
+}
+
+
+</script>
+    <script>
+
+ 
+
+
+
+$(document).ready(function() {
+
+
+
+  // Attach a click event to the submit button
+  $(" #exampleModal  #submitBtn").click(function() {
+      $(this).html(animationIcon)
+      $(this).attr('style',"background-color:white; ")
+
+    // Get the form data
+    const formData = new FormData($("#chatbotForm")[0]);
+    formData.append('status',localStorage.getItem("bot-status"))
+
+    // Perform the AJAX request
+    $.ajax({
+      url: '/customer/ai_models/'+localStorage.getItem("selectedConn"), // Replace with your Django view URL
+      type: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}" // Replace with the actual CSRF token value
+      },
+      success: function(response) {
+        // Handle the success response here (if needed)
+        // console.log('res',response)
+        $("#submitBtn").html("Save Bot Prompt")
+      $("#submitBtn").attr('style','background: #82d616')
+        if (response.message){
+          // alert(response.message)
+          location.reload();
+          // window.location.href = '/customer/ai_models/'+ localStorage.getItem("selectedConn")
+        }
+      },
+      error: function(error) {
+ $("#submitBtn").html("Save Bot Prompt")
+           $("#submitBtn").attr('style','background: #82d616')
+
+        // Handle the error response here (if needed)
+        alert( 'An error occured');
+      }
+    });
+  });
+});
+ 
+
+
+    </script>
+
+
+    <script>
+function populateForm(chatbotId,callback=f=>f) {
+    $.ajax({
+        url: '/customer/get_chatbot_data/',  // Replace with the URL of your Django view
+        data: {
+            chatbot_id: chatbotId,
+        },
+        dataType: 'json',
+        success: function(data) {
+    $('#bot-name').val(data.name);
+    $('#connections_pk').val(data.connections_pk);
+    $('#header').val(data.header_title);
+    callback(data.greeting && JSON.parse(data.greeting) ? JSON.parse(data.greeting).blocks:null)
+    $('#task').val(data.task);
+    $('#font').val(data.font);
+    $('#font-size').val(data.font_size);
+    $('#border-color').val(data.border_color);
+    $('#border-size').val(data.border_size);
+    $('#header-color').val(data.header_color);
+    $('#header-bg-color').val(data.header_bg_color);
+
+    $('#user-msg-color').val(data.user_msg_color);
+    $('#user-msg-bg-color').val(data.user_msg_bg_color);
+    $('#user-border-color').val(data.user_border_color)
+    $('#user-border-size').val(data.user_border_size)
+    $('#user-border-style').val(data.user_border_style)
+    $('#user-border-radius').val(data.user_border_radius)
+    $('#user-margin').val(data.user_margin);
+    $('#user-padding').val(data.user_padding);
+
+
+    $('#bot-msg-color').val(data.bot_msg_color);
+    $('#bot-msg-bg-color').val(data.bot_msg_bg_color);
+     $('#bot-border-color').val(data.bot_border_color)
+    $('#bot-border-size').val(data.bot_border_size)
+    $('#bot-border-style').val(data.bot_border_style)
+    $('#bot-border-radius').val(data.bot_border_radius)
+
+  $('#bot-margin').val(data.bot_margin);
+    $('#bot-padding').val(data.bot_padding); 
+
+
+    $('#send-bg-color').val(data.send_bg_color);
+    $('#send-color').val(data.send_color);
+    $('#bot-image').attr('src', data.bot_image_url);
+    $('#input-position').val(data.input_position);
+    $('#input-placeholder').val( data.input_placeholder);
+    $('#input-width').val(data.input_width);
+    $('#input-height').val(data.input_height);
+    $('#input-background').val( data.input_background);
+    $('#input-color').val(data.input_color);
+    $('#border-radius').val( data.border_radius);
+
+    $('#input-border-color').val(data.input_border_color);
+    $('#input-border-size').val(data.input_border_size);
+
+
+
+    $('#header-font-size').val(data.header_font_size);
+    $('#header-position').val(data.header_position);
+    $('#header-text-transform').val(data.header_text_transform);
+    $('#header-padding').val(data.header_padding);
+    $('#header-margin').val(data.header_margin);   
+     $('#body-padding').val(data.body_padding);
+    $('#body-margin').val(data.body_margin);
+    $('#header-font-family').val(data.header_font_family); 
+    
+    
+    $('#greeting-position').val(data.greeting_position)
+    $('#greeting-text-transform').val(data.greeting_text_transform)
+    $('#greeting-padding').val(data.greeting_padding)
+    $('#greeting-margin').val(data.greeting_margin)
+    $('#greeting-font-family').val(data.greeting_font_family)
+
+
+    $('#greeting-bg-color').val(data.greeting_bg_color)
+    $('#greeting-color').val(data.greeting_color)
+    $('#greeting-border-color').val(data.greeting_border_color)
+    $('#greeting-border-size').val(data.greeting_border_size)
+    $('#greeting-border-radius').val(data.greeting_border_radius)
+    $('#greeting-border-shadow').val(data.greeting_border_shadow)
+    $('#greeting-border-style').val(data.greeting_border_style)
+ 
+ $('#header-border-color').val(data.header_border_color)
+    $('#header-border-size').val(data.header_border_size)
+    $('#header-border-radius').val(data.header_border_radius)
+    $('#header-border-style').val(data.header_border_style)
+    $('#bot-greeting-message').val(data.bot_greeting_message)
+    
+    $('#edit_in_prompt').attr('href',"/customer/prompt_writer?pk="+data.task_prompt)
+    $('#task-prompt').val(data.task_prompt)
+
+
+
+
+
+
+    $('#icon-margin').val(data.icon_margin);
+    $('#icon-padding').val(data.icon_padding); 
+
+    if (data.show_greeting === 'on'){
+    $('#show-greeting').attr('checked', 'checked');
+    } else {
+    $('#show-greeting').removeAttr('checked');
+    }
+
+
+  if (data.show_icon === 'on'){
+    $('#show-icon').attr('checked', 'checked');
+    } else {
+    $('#show-icon').removeAttr('checked');
+    }
+
+
+  
+    if (data.show_chat_history === 'on'){
+    $('#show-chat-history').attr('checked', 'checked');
+    } else {
+    $('#show-chat-history').removeAttr('checked');
+    } 
+
+
+    if (data.show_header === 'on'){
+    $('#show-header').attr('checked', 'checked');
+    } else {
+    $('#show-header').removeAttr('checked');
+    }
+  if (data.show_user_icon === 'on'){
+    $('#show-user-icon').attr('checked', 'checked');
+    } else {
+    $('#show-user-icon').removeAttr('checked');
+    }
+  if (data.border_shadow === 'on'){
+    $('#border-shadow').attr('checked', 'checked');
+    } else {
+    $('#border-shadow').removeAttr('checked');
+    }
+
+
+
+},
+        error: function() {
+            alert('Failed to fetch chatbot data.');
+        }
+    });
+}
+
+// Call the function with the chatbot ID
+// populateForm(123);  // Replace with the actual chatbot ID
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+    <script src="{% static 'assets/js/editor-simple-image.js' %}"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+
+  <script>
+
+function initEditor (data=[ {
+            type : 'paragraph',
+            data : {
+              text : 'Hi, how can I help you today?'
+            }
+          },]){
+
+ var editor = new EditorJS({ 
+      readOnly: false, 
+      holder: 'editorjs', 
+      tools: {
+        /**
+         * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
+         */
+        header: {
+          class: Header,
+          inlineToolbar: ['marker', 'link'],
+          config: {
+            placeholder: 'Header'
+          },
+          shortcut: 'CMD+SHIFT+H'
+        },
+
+        /**
+         * Or pass class directly without any configuration
+         */
+        image: SimpleImage,
+
+        list: {
+          class: List,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+L'
+        },
+
+        checklist: {
+          class: Checklist,
+          inlineToolbar: true,
+        },
+
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+          config: {
+            quotePlaceholder: 'Enter a quote',
+            captionPlaceholder: 'Quote\'s author',
+          },
+          shortcut: 'CMD+SHIFT+O'
+        },
+
+        warning: Warning,
+
+        marker: {
+          class:  Marker,
+          shortcut: 'CMD+SHIFT+M'
+        },
+
+        code: {
+          class:  CodeTool,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        delimiter: Delimiter,
+
+        inlineCode: {
+          class: InlineCode,
+          shortcut: 'CMD+SHIFT+C'
+        },
+
+        linkTool: LinkTool,
+
+        embed: Embed,
+
+        table: {
+          class: Table,
+          inlineToolbar: true,
+          shortcut: 'CMD+ALT+T'
+        },
+
+      },
+
+      
+      data: {
+        blocks: data
+      },
+      onReady: function(){
+        // saveButton.click();
+      },
+      onChange: function(api, event) { 
+         editor.save()
+        .then((savedData) => {
+        console.log('something savedData',savedData);
+        localStorage.setItem('greeting', JSON.stringify(savedData) )
+        saveForm(false, JSON.stringify(savedData) )
+          
+        })
+        .catch((error) => {
+          console.error('Saving error', error);
+        });
+
+
+      }
+    });
+
+
+}
+ 
+
+  const api_id = '{{api_id|safe}}'
+
+ if (api_id && api_id !== 'None'){
+    populateForm(api_id,initEditor)
+   const iframe = document.getElementById('iframe');
+    iframe.src = 'http://192.168.117.97:8030/customer/chatbot/iframe/'+ '{{api_id}}'+'?user_id=' + '{{user}}' 
+ }
+
+
+
+
+  </script>
+
+{% endblock javascripts %}

@@ -1,0 +1,357 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} UI Tables {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% load widget_tweaks %}
+{% block content %}
+     <div class="banner-area text-combo top-pad-90 rectangular-shape bg-light-gradient ">
+        <div class="item">
+            <div class="box-table">
+                <div class="box-cell">
+                    <div class="containedr mx-4 " style="display: flex; align-items: center; flex-direction: column; width:100%;" >
+                        <div class="  px-5" style="width:100%" >
+                                <div class="text-center "  >
+                                  <img style="width: 55px;" src="https://pbs.twimg.com/media/FyQlRbxWIAEfJ9J?format=png&name=small"/>
+                                    <h3 class="wow fadeInDown text-center mt-2 mb-2" data-wow-duration="1s" style="font-size:30px; font-weight: bolder; " >
+                     
+                     {% if task.pk %}                
+
+Edit Pipeline
+{% else %}
+Create Pipeline
+  
+  {% endif %}
+                                    </h3>
+                                    <p class="mt-0 mb-3 text-secondary " > Configure and Automate the Scheduling of Your Data Pipeline</p>
+                                </div>
+
+
+                           </div>
+
+
+<form class="card w-70  my-2 py-4 px-5"    method="POST" action="" style="background-color:#ffffff; 
+border: 1px solid #e3e1e1; border-radius: 16px; box-shadow: none;  
+" > 
+
+   {% csrf_token %}
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Details</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Scheduler</button>
+  </li>
+ 
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      
+
+
+     <div class="my-3">
+      <label for="name" class="form-label">Name</label>
+                     {% if task.pk %}                   
+      <input type="text" class="form-control" id="name" value='{{task.name}}' name="name" readonly required>
+{% else %}
+      <input type="text" class="form-control" id="name" value='' name="name" required>
+  {% endif %}
+
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label ">Description</label>
+      <textarea class="form-control" id="description" name="description"  value='{{task.description}}' rows="3" ></textarea>
+    </div>  
+    <div class="mb-3">
+      <label for="source" class="form-label">Source Connectors</label>
+
+        <select id="choices-multiple-remove-button" name='source'  value='{{task.source}}' placeholder="Select up to 5 connectors" multiple required style="border-radius:5px;" >
+        <option disabled>-- Select source connectors --</option>
+        {% for connector in connectors %}
+
+{% if connector.can_source == 'True' %}
+          <option value="{{ connector.pk }}">{{ connector.name }} {% if connector.description %} ({{connector.description}})
+{% endif %}
+          </option>
+        {% endif %}
+
+        {% endfor %}
+      </select>
+ 
+    </div>
+    <div class="mb-3">
+      <label for="target" class="form-label">Target Connectors</label>
+     <select id="choices-multiple-remove-button" name='targets'  value='{{task.targets}}' placeholder="Select up to 5 connectors" multiple required style="border-radius:5px;" >
+        <option disabled>-- Select target connectors --</option>
+        {% for connector in connectors %}
+        {% if connector.can_target == 'True' %}
+          <option value="{{ connector.pk }}">{{ connector.name }} {% if connector.description %} ({{connector.description}})
+{% endif %}</option>
+        {% endif %}
+
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="transformers" class="form-label">Transformers</label>
+     <select id="choices-multiple-remove-button" name='transformers'  value='{{task.transformers}}' placeholder="Select up to 5 transformers" multiple style="border-radius:5px;" >
+        <option disabled>-- Select transformers --</option>
+
+      {% for transformer in transformers %}
+      <option value="{{ transformer.id }}">{{ transformer.description }}</option>
+      {% endfor %}
+    </select>
+    </div>
+
+  
+
+   
+  
+
+
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+<div class="form-group row my-4 schedule_time ">
+  <label class="col-sm-3 col-form-label">Schedule Time</label>
+  <div class="col-sm-7">
+
+       <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="schedule_time" id="now" value="now" checked>
+      <label class="form-check-label" for="now"> Run Once</label>
+    </div>
+
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="schedule_time" id="schedule_minute"  value="hourly" 
+
+       >
+      <label class="form-check-label" for="schedule_minute">Minute (s)</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="schedule_time" id="schedule_daily" value="daily">
+      <label class="form-check-label" for="schedule_daily">Daily</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="schedule_time" id="schedule_weekly" value="weekly">
+      <label class="form-check-label" for="schedule_weekly">Weekly</label>
+    </div>
+  </div>
+</div>
+
+<div class="form-group row minute_time ">
+  <label class="col-sm-3 col-form-label">Minute Schedule (Minutes)</label>
+  <div class="col-sm-7">
+    <input class="form-control" type="number" name="minute_time" id="minute_time" value=1 >
+  </div>
+</div>
+
+<div class="form-group row daily_time ">
+  <label class="col-sm-3 col-form-label">Daily Schedule</label>
+  <div class="col-sm-7">
+    <input class="form-control" type="time" name="daily_time" id="daily_time">
+  </div>
+</div>
+
+<div class="form-group row schedule_weekly ">
+  <label class="col-sm-3 col-form-label">Weekly Schedule</label>
+  <div class="col-sm-7">
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="mon" id="monday" value="mon">
+      <label class="form-check-label" for="monday">Monday</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="tue" id="tuesday" value="tue">
+      <label class="form-check-label" for="tuesday">Tuesday</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="wed" id="wednesday" value="wed">
+      <label class="form-check-label" for="wednesday">Wednesday</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="thu" id="thursday" value="thu">
+      <label class="form-check-label" for="thursday">Thursday</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="fri" id="friday" value="fri">
+      <label class="form-check-label" for="friday">Friday</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="sat" id="saturday" value="sat">
+ <label class="form-check-label" for="saturday">Saturday</label>
+    </div>
+
+<div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="sun" id="sunday" value="sun">
+      <label class="form-check-label" for="sunday">Sunday</label>
+    </div>
+  </div>
+</div>
+
+
+<div class="form-group row weekly_time ">
+  <label class="col-sm-3 col-form-label">Weekly Time</label>
+  <div class="col-sm-7">
+      <input class="form-control" type="time" name="weekly_time" id="weekly_time">
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+
+
+
+ <input type="submit" value="Create Pipeline" class="btn  btn-primary btn-lg active my-3" role="button" aria-pressed="true" />
+
+
+</form>
+
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div>
+
+
+          
+          
+        </div>
+      </div>
+    </div>
+ 
+    
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+
+<style type="text/css">
+  .main {
+    width: 100%; 
+
+}
+
+ 
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.source:hover {
+    border: 1px solid green;
+
+}
+
+label {
+    font-size: 14px !important;
+    margin-bottom: 15px;
+}
+
+#sample-textarea {
+    white-space: pre-line;  
+
+white-space: pre-wrap;
+}
+.nav-tabs .nav-link.active{
+  color: #cb0c9f !important;
+  font-weight: bold !important ;
+}
+ 
+</style>
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
+<script>
+ $(document).ready(function(){
+    
+     var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+        removeItemButton: true,
+        maxItemCount:5,
+        searchResultLimit:5,
+        renderChoiceLimit:5
+      }); 
+     
+     
+ });
+
+ $(document).ready(function() {
+
+     $('.minute_time').hide();
+          $('.daily_time').hide();
+          $('.weekly_time').hide();
+          $('.schedule_weekly').hide();
+
+      // Hide/show hourly, daily, and weekly inputs based on selected schedule time
+      $('input[name="schedule_time"]').on('change', function() {
+        var scheduleTime = $(this).val();
+
+        if (scheduleTime == 'now') {
+          $('.minute_time').hide();
+          $('.daily_time').hide();
+          $('.weekly_time').hide();
+          $('.schedule_weekly').hide();
+        }
+        else if (scheduleTime == 'hourly') {
+          $('.minute_time').show();
+          $('.daily_time').hide();
+          $('.weekly_time').hide();
+          $('.schedule_weekly').hide();
+        } else if (scheduleTime == 'daily') {
+            $('.minute_time').hide();
+          $('.daily_time').show();
+          // $('.weekly_time').show();
+          // $('.schedule_weekly').show();
+        } else if (scheduleTime == 'weekly') {
+          $('.minute_time').hide();
+          $('.daily_time').hide();
+          $('.weekly_time').show();
+          $('.schedule_weekly').show();
+        }  
+
+      });
+    });
+
+
+</script>
+
+<!-- <script src="{% static 'ace/ace.js' %}"></script>  -->
+  <script>
+
+ 
+
+
+
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+{% endblock javascripts %}
+

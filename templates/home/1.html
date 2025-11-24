@@ -1,0 +1,37 @@
+path('process_payment/', views.process_payment, name='process_payment'),
+
+def process_payment(request):
+    # Retrieve form data
+    amount = request.POST.get('amount')
+    payer_name = request.POST.get('payer_name')
+    email = request.POST.get('email')
+
+    # Create payment payload
+    payload = {
+        'merchantId': settings.REMITA_MERCHANT_ID,
+        'serviceTypeId': '123456789',
+        'amount': amount,
+        'payerName': payer_name,
+        'payerEmail': email,
+        # Add other required parameters
+    }
+
+    # Make API request to Remita
+    response = requests.post(
+        f"{settings.REMITA_API_BASE_URL}/remita/exapp/api/v1/send/api/echannelsvc/echannel/initialize",
+        json=payload,
+        headers={'Content-Type': 'application/json', 'Authorization': f"Bearer {settings.REMITA_API_KEY}"}
+    )
+
+    # Process the response and redirect the user to the payment page
+    if response.status_code == 200:
+        payment_data = response.json()
+        redirect_url = payment_data['paymentAuthUrl']
+        return redirect(redirect_url)
+    else:
+        # Handle error case
+        return render(request, 'paymenterror.html')
+
+
+TemplateDoesNotExist at /customer/process_payment/
+paymenterror.html

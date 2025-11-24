@@ -1,0 +1,341 @@
+ 
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link id="pagestyle" href="/static/assets/css/soft-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+ 
+
+<style type="text/css">
+  
+
+   body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* To prevent scrollbars within the iframe */
+        }
+
+/* For WebKit based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #071147; /* Background color of the track */
+  border-radius: 3px; /* Rounded corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Rounded corners of the thumb */
+}
+
+/* For Firefox */
+/* Note: Firefox supports scrollbar customization from version 64 onwards */
+/* You may need to add vendor prefixes for earlier versions */
+/* See: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars */
+
+/* Example styles for Firefox scrollbar */
+* {
+  scrollbar-width: thin; /* or auto */
+  scrollbar-color: #071147 #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+
+
+.code-class {
+        background: #070114;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+  
+</style>
+
+
+ 
+
+</head>
+
+<body class="g-sidenav-show bg-gray-100">
+{% include 'home/bot_chat.html' %}
+
+   
+
+</body>
+</html>
+
+<!-- Specific JS goes HERE --> 
+
+ 
+
+
+  <script>
+
+ function generateUUID() {
+            // Function to generate a random UUID
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0,
+                    v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function generateSystemUUID() {
+            // Check if a UUID already exists in localStorage
+            let uuid = localStorage.getItem('systemUUID');
+            if (!uuid) {
+                uuid = hashCode( generateUUID());
+                localStorage.setItem('systemUUID', uuid);
+            }
+            return uuid;
+        }
+
+        function hashCode(str) {
+            let hash = 0, i, chr;
+            if (str.length === 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                chr = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash.toString(16);
+}
+
+ 
+animationIcon = `     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="28px" height="28px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="84" cy="50" r="10" fill="#e15b64">
+    <animate attributeName="r" repeatCount="indefinite" dur="0.25s" calcMode="spline" keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="1s" calcMode="discrete" keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#e15b64">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+</circle><circle cx="50" cy="50" r="10" fill="#f47e60">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+</circle><circle cx="84" cy="50" r="10" fill="#f8b26a">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#abbd81">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+</circle>
+</svg>`
+
+
+$(document).ready(function() {
+
+ // const greeting_msg =  '{{configs.bot_greeting_message|safe}}' 
+ // console.log('')
+ // if (greeting_msg){
+ //  displayResponse(greeting_msg)
+ // }
+
+ 
+   var pk = "{{pk}}"
+$("#chat-container").text('')
+    getMessage( pk) 
+// $("#chat-modal-header").text('{{chatbot.name}}' +" (Chat Model)")
+// localStorage.setItem("selectedConn",pk)
+  
+ })
+
+
+
+
+  // Make an AJAX request to the server
+  let sendIcon = `<svg width="36px" height="36px" viewBox="0 0 24 24"   xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.7 8.97989L4.14 17.7099C4.05 17.3799 4 17.0299 4 16.6699V7.32989C4 4.24989 7.33 2.32989 10 3.86989L14.04 6.19989L18.09 8.53989C18.31 8.66989 18.52 8.80989 18.7 8.97989Z" fill="{{configs.send_bg_color}}"></path> <path opacity="0.4" d="M18.0907 15.4598L14.0407 17.7998L10.0007 20.1298C8.0907 21.2298 5.8407 20.5698 4.7207 18.9598L5.1407 18.7098L19.5807 10.0498C20.5807 11.8498 20.0907 14.3098 18.0907 15.4598Z" fill="{{configs.send_color}}"></path> </g></svg>`
+
+
+
+
+
+// Send message to the server
+function sendMessage(message) {
+
+
+var show_chat_history = "{{configs.show_chat_history}}"
+
+     if (show_chat_history !== 'on'){
+$("#message-body").text('')
+
+} 
+
+
+
+  $('#send-button').html(animationIcon)
+  $('#send-button').prop('disabled', true);
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      message: message,
+      pk:"{{pk}}",
+      api_id:"{{api_id}}",
+      user_id:"{{user_id}}",
+      uuid:generateSystemUUID()
+    },
+    success: function(res) {
+      // Handle the response from the server
+        $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+      displayResponse(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+         $('#send-button').prop('disabled', false);
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+// Handle user input and send the message
+function handleUserInput() {
+  var inputField = document.getElementById('input-field');
+  var message = inputField.value.trim();
+
+  if (message !== '') {
+    displayMessage(message);
+    sendMessage(message);
+    inputField.value = '';
+  }
+}
+
+
+
+function getMessage(pk) {
+  // Make an AJAX request to the server
+
+  $('#send-button').html(animationIcon)
+  $.ajax({
+    url: '/customer/process_message', // URL to your Django view for processing messages
+    type: 'GET',
+    data: {
+      pk,
+      api_id:"{{api_id}}",
+      user_id:"{{user_id}}",
+      uuid:generateSystemUUID()
+      
+    },
+    success: function(res) {
+      // Handle the response from the server
+      mergeMessage(res.response);
+    },
+    error: function(error) {
+       $('#send-button').html(sendIcon)
+
+      console.log('Error:', error);
+    }
+  });
+}
+
+
+function mergeMessage(response){
+  let chat_history = JSON.parse(JSON.parse(response).chat_history||'[]')
+  // displayResponse(JSON.parse(response).greeting ||"Hi, how can I help you today?")
+  chat_history.forEach(chat=>{
+
+if (chat.type === "HumanMessage"){
+  displayMessage(chat.content)
+} else {
+  displayResponse(chat.content)
+}
+ 
+  })
+        $('#send-button').html(sendIcon)
+
+ 
+}
+
+
+// Display user message in the chat container
+
+function displayMessage(message) {
+    var bodyElement = document.getElementById('message-body');
+    var chatContainerUsr = document.createElement('div');
+    chatContainerUsr.setAttribute('id', 'chat-container-usr');
+
+    var messageElement = document.createElement('div');
+      messageElement.setAttribute('style',`display: flex;align-items: center; width:100%;{% if configs.font %}font-family:{{configs.font}};{% endif %}{% if configs.font_size %}font-size: {{configs.font_size}}px{% endif %};{% if configs.user_msg_color %}color: {{configs.user_msg_color}}{% endif %};`)
+    messageElement.classList.add('message', 'user-message');
+
+    var messageText = document.createElement('span');
+    messageText.textContent = message;
+
+    messageElement.appendChild(messageText);
+    chatContainerUsr.appendChild(messageElement);
+    bodyElement.appendChild(chatContainerUsr);
+
+    let modalBody = document.getElementById('modal-body');
+    modalBody.scrollTop = modalBody.scrollHeight;
+}
+
+
+
+// Display bot response in the chat container
+function displayResponse(response) {
+    var bodyElement = document.getElementById('message-body');
+      var chatContainer = document.createElement('div');
+    chatContainer.setAttribute('id', 'chat-container');
+
+
+
+    var messageElement = document.createElement('pre');
+    messageElement.classList.add('message', 'bot-message');
+
+    var imgElement = document.createElement('img');
+    const bot_image = "{{configs.bot_image|safe}}";
+
+    imgElement.src = bot_image ? bot_image : '{% static "assets/img/pyebot.png" %}';
+    imgElement.alt = 'Bot Image';
+    imgElement.style.width = '23px';
+    imgElement.style.height = '23px';
+    imgElement.style.marginRight = '10px';
+    imgElement.style.position = 'absolute';
+    imgElement.style.left = '5px';
+    imgElement.style.marginTop = '-20px';
+    imgElement.style.borderRadius = '50%';
+
+    let regex = /```([^`]+)```/g;
+    const wrappedText = response.replace(regex, '<div class="code-class">$1</div>');
+
+    messageElement.innerHTML = wrappedText;
+    messageElement.insertAdjacentElement('beforeend', imgElement);
+
+    chatContainer.insertAdjacentElement('beforeend', messageElement);
+    bodyElement.appendChild(chatContainer);
+
+    let modalBody = document.getElementById('modal-body');
+    modalBody.scrollTop = modalBody.scrollHeight;
+}
+
+
+// Attach event listener to the send button
+$('#send-button').click(handleUserInput);
+
+
+
+ 
+
+
+
+  </script>
+

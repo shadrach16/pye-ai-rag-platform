@@ -1,0 +1,270 @@
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/soft-ui-dashboard/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/static/assets/img/favicon1.png">
+
+  <title>
+    PYE - Empowering personal AI solutions
+  </title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link id="pagestyle" href="/static/assets/css/soft-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+
+ 
+
+<style type="text/css">
+  
+/* For WebKit based browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #071147; /* Background color of the track */
+  border-radius: 3px; /* Rounded corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 3px; /* Rounded corners of the thumb */
+}
+
+/* For Firefox */
+/* Note: Firefox supports scrollbar customization from version 64 onwards */
+/* You may need to add vendor prefixes for earlier versions */
+/* See: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars */
+
+/* Example styles for Firefox scrollbar */
+* {
+  scrollbar-width: thin; /* or auto */
+  scrollbar-color: #071147 #f1f1f1; /* Color of the scrollbar thumb and track */
+}
+
+#pye_showChatbotButton {
+  bottom: 20px;
+  right: 20px;
+}
+
+#pye_chatbotContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 70px;
+  display: none;
+  z-index:100;
+}
+
+#pye_chatbot {
+  width: 550px;
+  height: 780px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 4px 10px silver;
+  border-radius: 12px;
+/*  overflow-y: scroll;*/
+}
+
+#pye_closeChatbotButton {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#iframe {
+      border-radius: 12px;
+}
+  
+</style>
+
+
+  <!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+<body class="g-sidenav-show bg-gray-100"   >
+
+
+  {% include "includes/sidebar.html" %}
+
+  <main class="main-content mt-4 border-radius-lg" style="margin-top:0px !important;    margin-left: 15.7rem;" >
+    
+    {% include "includes/navigation.html" %}
+    
+    <div style="min-height: 125vh;" class="main-content">
+    {% block content %}{% endblock content %}
+  </div>
+
+  </main>
+
+
+ <div id="pye_chatbotContainer">
+    <div id="pye_chatbot">
+      <!-- Chatbot content goes here -->
+      <iframe id="iframe" src="" width="100%" height="100%" frameborder="0"></iframe>
+      <svg id="pye_closeChatbotButton" height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 26 26" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#030104;" d="M21.125,0H4.875C2.182,0,0,2.182,0,4.875v16.25C0,23.818,2.182,26,4.875,26h16.25 C23.818,26,26,23.818,26,21.125V4.875C26,2.182,23.818,0,21.125,0z M18.78,17.394l-1.388,1.387c-0.254,0.255-0.67,0.255-0.924,0 L13,15.313L9.533,18.78c-0.255,0.255-0.67,0.255-0.925-0.002L7.22,17.394c-0.253-0.256-0.253-0.669,0-0.926l3.468-3.467 L7.221,9.534c-0.254-0.256-0.254-0.672,0-0.925l1.388-1.388c0.255-0.257,0.671-0.257,0.925,0L13,10.689l3.468-3.468 c0.255-0.257,0.671-0.257,0.924,0l1.388,1.386c0.254,0.255,0.254,0.671,0.001,0.927l-3.468,3.467l3.468,3.467 C19.033,16.725,19.033,17.138,18.78,17.394z"></path> </g> </g></svg>
+    </div>
+  </div>
+
+
+  {% include "includes/fixed-plugin.html" %}
+
+  {% include "includes/scripts.html" %}
+
+  <!-- Specific JS goes HERE --> 
+  {% block javascripts %}{% endblock javascripts %}
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+ 
+ <script type="text/javascript">
+
+
+
+
+
+
+
+ let animationIcon = `     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#fff;display:block;" width="28px" height="28px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<circle cx="84" cy="50" r="10" fill="#e15b64">
+    <animate attributeName="r" repeatCount="indefinite" dur="0.25s" calcMode="spline" keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+    <animate attributeName="fill" repeatCount="indefinite" dur="1s" calcMode="discrete" keyTimes="0;0.25;0.5;0.75;1" values="#e15b64;#abbd81;#f8b26a;#f47e60;#e15b64" begin="0s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#e15b64">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+</circle><circle cx="50" cy="50" r="10" fill="#f47e60">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.25s"></animate>
+</circle><circle cx="84" cy="50" r="10" fill="#f8b26a">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5s"></animate>
+</circle><circle cx="16" cy="50" r="10" fill="#abbd81">
+  <animate attributeName="r" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+  <animate attributeName="cx" repeatCount="indefinite" dur="1s" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84" keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.75s"></animate>
+</circle>
+</svg>`
+
+
+
+   
+   const showChatbotButton = document.getElementById('pye_showChatbotButton');
+const chatbotContainer = document.getElementById('pye_chatbotContainer');
+
+showChatbotButton.addEventListener('click', () => {
+  chatbotContainer.style.display = 'block';
+  $('#iframe').attr('src',`${document.location.origin}/customer/chatbot/iframe/FIYGWYG1?user_id=adroit`)
+});
+
+const closeChatbotButton = document.getElementById('pye_closeChatbotButton');
+
+ 
+
+closeChatbotButton.addEventListener('click', () => {
+  chatbotContainer.style.display = 'none';
+});
+
+
+
+
+
+
+function increaseBrowserZoom(zoom) {
+  document.documentElement.style.zoom = zoom ;
+}
+
+function getSystemDimensions() {
+const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+return viewportWidth + viewportHeight
+}
+
+console.log('getSystemDimensions: ',getSystemDimensions() )
+
+if ( getSystemDimensions()  <= 2748){
+  increaseBrowserZoom('80%');
+}
+
+
+
+ function goBack() {
+      window.history.back();
+    }
+
+
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+ 
+
+
+
+ </script>
+
+
+
+  <link  rel="stylesheet" href="{% static 'jAlert-master/dist/jAlert.css' %}" />
+  <script src="{% static 'jAlert-master/dist/jAlert.min.js' %}"></script> 
+  <script src="{% static 'jAlert-master/dist/jAlert-functions.min.js' %}"></script> 
+<!--   
+<script type="text/javascript">
+    function alert(content) {
+      $.jAlert({
+        'title': 'Alert',
+        'content': content,
+        'theme': 'dark_green',
+        'btns': { 'text': 'close' }
+      }
+      )
+    }
+
+
+</script> -->
+
+</body>
+</html>

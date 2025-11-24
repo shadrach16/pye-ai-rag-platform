@@ -1,0 +1,177 @@
+{% load static %}
+<style>
+    .header {
+      background-color: #1d1d24;
+    /* box-shadow: 2px -3px 20px 20px rgb(17 22 218 / 50%); */
+    padding: 5px;
+    height: 65px !important;
+    display: flex;
+    align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+/*      background-color: #ffffff;*/
+/*      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);*/
+    }
+
+    .navbar-links {
+      margin-left: 24px;
+    }
+
+    .navbar-links a {
+      color: #001b41;
+      text-decoration: none;
+      padding: 8px;
+    }
+
+    .navbar-links a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .support {
+      margin-left: auto;
+    }
+
+    .support button {
+      padding: 8px 16px;
+      background-color: #001b41;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .support button:hover {
+      background-color: #002c63;
+    }
+    .search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-input {
+    border: none;
+    padding: 8px;
+    width: 200px;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+</style>
+
+
+
+
+  <header class="header ff-osr bg-g1">
+    <div class="mx-4 w-100">
+      <div class="row align-items-center">
+        <!-- Logo -->
+        <div class="col-lg-auto text-center text-lg-left focus-container mr-lg-40 mr-md-16 col-6" style="" >
+          <a style="display: flex; flex-direction: row;" href="/?linkId=hd.log.home" data-linkid="hd.log.home" id="button-hd-log-home" aria-label="Return to home page" class="logo">
+           
+
+   <img   src="{% static 'assets/img/pyechart2.png' %}" style="width:72px; " >
+             <div class="mx-2" > PYE.ai </div>
+        </div>
+
+
+
+        <a rel="noopener noreferrer" href="customer/customerclick" class="px-3  text-white">
+                Pricing
+            </a>
+
+            <a rel="noopener noreferrer" href="customer/customerclick" class="px-3  text-white">
+                Blogs
+            </a>
+
+            <a  rel="noopener noreferrer" href="customer/customerclick" class="px-3 text-white">
+                Discord <svg width="19px" height="19px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#e3e3e3" fill-rule="evenodd" d="M.5 2.75a2.25 2.25 0 114.28.97l1.345 1.344.284-.284a2.25 2.25 0 013.182 0l.284.284 1.344-1.344a2.25 2.25 0 111.06 1.06l-1.343 1.345.284.284a2.25 2.25 0 010 3.182l-.284.284 1.344 1.344a2.25 2.25 0 11-1.06 1.06l-1.345-1.343-.284.284a2.25 2.25 0 01-3.182 0l-.284-.284-1.344 1.344a2.25 2.25 0 11-1.06-1.06l1.343-1.345-.284-.284a2.25 2.25 0 010-3.182l.284-.284L3.72 4.781A2.25 2.25 0 01.5 2.75zM2.75 2a.75.75 0 100 1.5.75.75 0 000-1.5zm0 10.5a.75.75 0 100 1.5.75.75 0 000-1.5zm9.75.75a.75.75 0 111.5 0 .75.75 0 01-1.5 0zM13.25 2a.75.75 0 100 1.5.75.75 0 000-1.5zM7.47 5.841a.75.75 0 011.06 0L10.16 7.47a.75.75 0 010 1.06L8.53 10.16a.75.75 0 01-1.06 0L5.84 8.53a.75.75 0 010-1.06L7.47 5.84z" clip-rule="evenodd"></path></g></svg>
+            </a>
+
+
+ 
+
+        <div class="col-auto d-none d-md-flex d-lg-flex align-items-center support">
+           
+            <a rel="noopener noreferrer" href="tel:1-484-254-5555" class="px-3 py-2" type="hotline" tel="1-484-254-5555" title="1-484-254-5555"></a>
+            <!-- <button class="px-3 py-2">Support</button> -->
+            <a rel="noopener noreferrer" href="/customer/customerclick" class="px-3 py-2 text-white ">
+                Sign In
+            </a>
+
+
+        </div>
+ <!--   <form   class="form-group mb-0 has-search mx-2   " style="display:flex; flex-direction: row; align-items: center; justify-content:flex-start; " >
+    <div style=" margin-right:15px ;    height: 40px; " >
+    <span style="    margin-top: 1px;" class="fa fa-search form-control-feedback"></span>
+    <input style="       border-radius: 12px;
+    background-color: #2196f314;
+    min-height: 40px !important;
+    padding-left: 40px; width: 350px;
+    " type="text" class="form-control" placeholder="Type to search" name="q"   value="{{q}}" id="modalInput" readonly data-toggle="modal" data-target="#myModal">
+    </div>
+   
+     
+           
+  </form> -->
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+
+<!-- Create Chat Bot Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-md">
+    <div class="modal-content  ">
+   
+
+
+
+    </div>
+  </div>
+</div> 
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content" style="height:540px;border-radius: 15px;" >
+   <iframe style="    border-radius: 15px;" id="iframe" src="http://192.168.117.97:8030/customer/chatbot/iframe/PYISWARCBIA3?user_id=adroit" width="100%" height="100%" frameborder="0"></iframe>
+    </div>
+  </div>
+</div>

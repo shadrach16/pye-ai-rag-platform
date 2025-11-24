@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Error</title>
+    <style>
+        .error-container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .error-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .error-container p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Payment Error</h1>
+        <p>Sorry, there was an error processing your payment. Please try again later.</p>
+        <button id="retryButton" class="btn btn-primary">Retry Payment</button>
+    </div>
+
+    <script>
+        document.getElementById('retryButton').addEventListener('click', function() {
+            // Redirect the user back to the payment page
+            window.location.href = "{% url 'payment_page' %}";
+        });
+    </script>
+</body>
+</html>
